@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/app_icon1"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_icon1"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TestingProject"
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.dashboard.RecceInstallationLastPage"
+            android:exported="false"
+            android:theme="@style/NoActTheme"/>
+        <activity
+            android:name=".activity.dashboard.RecceInstallation"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceInstallationDashboard"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ReplaceCodeActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.SignatureActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceHistoryDetails"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceHistory"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceClientDashboardSite"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceClientDashboard"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceAsmDashboardSite"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceAsmDashboard"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceDashboardActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.acme.afsvendor.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".activity.dashboard.AdminDashVendorSites"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddClientDetailDashActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ViewSiteDetailActivityClientDash"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ViewCampaignSitesClientDash"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ClientDashFirstPage"
+            android:exported="false"
+            android:label="@string/title_activity_client_dash_first_page"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.EditCampaign"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddClientDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_client_detail"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddSiteDetailsActivityVendor"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddCampaignDetails"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ViewVendorSites"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AdminViewVendorDetails"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ClientDetail"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AdminViewClientDetails"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ViewCampaignSites"
+            android:exported="false"
+            android:label="@string/title_activity_view_campaign_sites"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.OTP"
+            android:exported="false"
+            android:label="@string/title_activity_otp"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.ContentOtp"
+            android:exported="false"
+            android:label="Content Otp"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.SelectLoginType"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddVenderActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.vender.UpdateSiteDetailActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.vender.VenderDashBoardActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.WelcomeActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.ChangePasswordActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ViewSiteDetailActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.CampaignListActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddSiteDetailActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AddClientActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ClientDashBoardActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.BaseActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.ForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.ClientListActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.AdminDashboardActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.login.SplashActivity"
+            android:exported="true"
+            android:theme="@style/NoActTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

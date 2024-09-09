@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.dashboard.AdminDashboardActivity">
+
+        <!-- Loading code -->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+        <!-- Loading code end -->
+
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/acmelogo" />
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onNotificationClick"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/ic_notification" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvCampaign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/dmsansregular"
+            android:layout_below="@id/topBar"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="16dp"
+            android:text="All Sites"
+            android:textColor="#071116"
+            android:textSize="24sp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCampaign"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+
+            android:layout_marginBottom="@dimen/_5sdp"
+            >
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCampaignList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_5sdp" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:onClick="onPlusClick"
+            android:id="@+id/ivPlus"
+            android:src="@drawable/ic_add" />
+
+
+        <ImageView
+            android:id="@+id/ivAddClient"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_above="@id/ivPlus"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddClientClick"
+            android:src="@drawable/ic_addclient" />
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:id="@+id/ivRedo"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddVenderClick"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@id/ivPlus"
+            android:src="@drawable/ic_addvender" />
+
+
+        <ImageView
+            android:id="@+id/ivDeleteClient"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_toLeftOf="@id/ivPlus"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:scaleType="fitXY"
+            android:onClick="onDeleteClientClick"
+            android:visibility="gone"
+            android:src="@drawable/ic_deleteclient" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+
+    </RelativeLayout>
+
+</layout>

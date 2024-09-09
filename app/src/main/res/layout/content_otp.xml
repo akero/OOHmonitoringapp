@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.login.WelcomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_main_bg"
+        android:clipChildren="false"
+        android:paddingTop= "26dp"
+        android:paddingBottom= "26dp">
+
+        <!-- Loading code -->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+        <!-- Loading code end -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/etEmailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="start"
+            android:layout_marginEnd="26dp"
+            android:layout_marginStart="26dp"
+
+            android:clipChildren="false"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/otp1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorPrimary"
+                android:elevation="2dp"
+                android:layout_marginEnd="26dp"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toStartOf="@id/otp2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/otp2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="26dp"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                android:elevation="2dp"
+                app:layout_constraintEnd_toStartOf="@id/otp3"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/otp1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/otp3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="26dp"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:inputType="number"
+                android:maxLength="1"
+                app:layout_constraintEnd_toStartOf="@id/otp4"
+                android:padding="@dimen/_10sdp"
+                android:elevation="2dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/otp2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/otp4"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:inputType="number"
+                android:maxLength="1"
+                android:elevation="2dp"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginStart="26dp"
+                app:layout_constraintStart_toEndOf="@id/otp3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tvRememberPassword"
+            android:paddingLeft= "26dp"
+            android:paddingRight="26dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/dmsansbold"
+            android:text="Welcome To\nAhaan Printing and Retail"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_20ssp" />
+
+
+
+
+        <TextView
+            android:id="@+id/tvRememberPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:layout_above="@id/etEmailId"
+            android:layout_marginBottom="6dp"
+            android:paddingLeft= "26dp"
+            android:paddingRight="26dp"
+            android:text="Enter OTP"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_10ssp" />
+
+
+
+<!--
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etEmailId"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_selector_3"
+            android:fontFamily="@font/dmsansbold"
+            android:onClick="btnSubmitClick"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@drawable/textcolor_selector_2"
+            android:textSize="@dimen/_14ssp" />
+
+
+-->
+
+
+    </RelativeLayout>
+
+
+</layout>

@@ -1,0 +1,57 @@
+backlog-
+vendor dash
+put correct login token line 189 vendordashactivity
+
+
+dash
+
+edit vendor-
+title says add vendor
+
+client login-
+add campaign-
+api returns image required
+
+
+Backend-
+edit site vendor-    D  {"success":false,"message":"Validation Error.","data":{"campaign_id":["The campaign id field is required."]}}
+client - edit or add site- site not found
+>vendor- add site button not functional
+add campaign admin file upload pending from backend
+images read pending all
+check for failed success message
+----------------------------------
+add site details-
+TODO add site details media type and illumination name of items- folow up with anish
+sites all showing null check with dev
+site not found for new sites
+site not found for old sites
+----------------------------------
+add new site-
+api call returns method not called exception
+----------------------------------
+edit client- 
+api call return seems to ask for logintoken- add login token to call. line 319 apireference
+
+
+
+
+add site details-
+//calendar end date not showing
+//success message showing for failed calls 2
+//download not saving file
+edit client-
+shows add client
+api call return seems to ask for logintoken- add login token to call
+//download not saving file
+//success message says vendor added successfully
+//addclientdetailactivity- add failure msg
+//success message says vendor added successfully
+vendor login-
+//gray screen on login
+//add- image field required
+//on fail says success
+//on failure it says added successfully
+
+edit client-
+//shows add client

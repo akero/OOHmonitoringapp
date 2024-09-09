@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.dashboard.AddSiteDetailActivity">
+
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/acmelogo" />
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/ic_notification" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@id/topBar"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/_20sdp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvAddSiteDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Edit Campaign Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/llUnit"
+                    android:layout_below="@id/tvAddSiteDetail"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="Name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <EditText
+                            android:id="@+id/etName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvName"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/primarystroke"
+                            android:fontFamily="@font/dmsansregular"
+                            android:padding="@dimen/_8sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/texthintcolor"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvVendor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="Vendor"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvVendor"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:id="@+id/frame_vendor_id"
+                            android:paddingRight="8dp"
+                            android:background="@drawable/primarystroke">
+
+                            <Spinner
+                                android:id="@+id/spinnervendor"
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:background="@null"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_gravity="center|right"
+                                android:src="@drawable/ic_arrow"/>
+                        </FrameLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/llUnit1"
+                    android:layout_below="@id/llUnit"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvclientid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="Client ID"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvclientid"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:id="@+id/frame_client_id"
+                            android:paddingRight="8dp"
+                            android:background="@drawable/primarystroke">
+
+                            <Spinner
+                                android:id="@+id/spinnermediatype1"
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:background="@null"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_gravity="center|right"
+                                android:src="@drawable/ic_arrow"/>
+                        </FrameLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvnumsites"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="Number of sites"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <EditText
+                            android:id="@+id/etnumsites"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvnumsites"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/primarystroke"
+                            android:fontFamily="@font/dmsansregular"
+                            android:padding="@dimen/_8sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/texthintcolor"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/llDates"
+                    android:layout_below="@id/llUnit1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvStartDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="Start Date"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <EditText
+                            android:id="@+id/etStartDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvStartDate"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/primarystroke"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="@font/dmsansregular"
+                            android:onClick="showCalendar"
+                            android:padding="@dimen/_8sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/texthintcolor"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvEndDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="End Date"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <EditText
+                            android:id="@+id/etEndDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvEndDate"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/primarystroke"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="@font/dmsansregular"
+                            android:onClick="showCalendar"
+                            android:padding="@dimen/_8sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/texthintcolor"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:id="@+id/tvMediaType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llDates"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Media Type"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvMediaType"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:id="@+id/flMedia"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/primarystroke">
+
+                    <Spinner
+                        android:id="@+id/spinnermediatype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center|right"
+                        android:src="@drawable/ic_arrow"/>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvIllumination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/flMedia"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Illumination"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvIllumination"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/flIllumination"
+                    android:background="@drawable/primarystroke">
+
+                    <Spinner
+                        android:id="@+id/spinnerillumination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center|right"
+                        android:src="@drawable/ic_arrow"/>
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_110sdp"
+                    android:id="@+id/rlAddImage"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/primarystroke"
+                    android:layout_below="@id/flIllumination">
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerInParent="true" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/view"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:onClick="addImage"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_gallery" />
+
+                    <TextView
+                        android:id="@+id/tvAddSite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Add Site Photograph"
+                        android:onClick="addImage"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <com.acme.afsvendor.utility.RoundRectCornerImageView
+                        android:id="@+id/ivCampaignImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:layout_marginEnd="@dimen/_1sdp"
+                        android:layout_marginBottom="@dimen/_1sdp"
+                        android:background="@color/colorPrimarylight"
+                        android:onClick="addImage"
+                        android:scaleType="fitXY" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rlAddImage"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansbold"
+                    android:onClick="btnSaveClick"
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_14ssp" />
+
+                <Button
+                    android:id="@+id/btnClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnSave"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/primaryround"
+                    android:fontFamily="@font/dmsansbold"
+                    android:onClick="btnCloseClick"
+                    android:text="Close"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+
+        </ScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+    </RelativeLayout>
+</layout>

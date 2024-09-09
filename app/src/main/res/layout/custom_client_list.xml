@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/graystroke"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_height="@dimen/_120sdp">
+
+    <com.acme.afsvendor.utility.RoundRectCornerImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:id="@+id/ivCampaign"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/aone"
+        android:scaleType="fitXY"
+        />
+
+
+    <ImageView
+        android:id="@+id/ivText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_list_textbg" />
+
+    <TextView
+        android:id="@+id/tvClientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/dmsansregular"
+        android:text="Client Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp" />
+
+    <TextView
+        android:id="@+id/tvUnitNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvClientName"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:fontFamily="@font/dmsansregular"
+        android:text="Unit Id:- #4544004"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.dashboard.AdminDashboardActivity">
+
+        <!-- Loading code -->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+        <!-- Loading code end -->
+
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/afs_logo" />
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable= "true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/ic_notification" />
+
+
+
+            <ImageView
+                android:id="@+id/ivPlusicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivSearchicon"
+                android:clickable= "true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/plus" />
+
+            <ImageView
+                android:id="@+id/ivSearchicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivNotification"
+                android:clickable= "true"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/search" />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topBar"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+
+            android:layout_marginBottom="@dimen/_5sdp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llTopbuttons"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                app:layout_constraintWidth_default="spread"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                >
+
+                <Button
+                    android:id="@+id/btnAll"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/primaryround"
+                    android:fontFamily="@font/dmsansregular"
+                    android:onClick="btnAllClick"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnPending"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="All"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+
+
+                <Button
+                    android:id="@+id/btnPending"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/btnAll"
+                    app:layout_constraintEnd_toStartOf="@id/btnApproved"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Pending"
+                    android:onClick="btnPendingClick"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnApproved"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toEndOf="@id/btnPending"
+                    app:layout_constraintEnd_toStartOf="@id/btnRejected"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/black"
+                    android:onClick="btnApprovedClick"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Approved"
+                    android:textAllCaps="false"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnRejected"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:onClick="btnRejectedClick"
+                    android:layout_alignParentEnd="true"
+                    app:layout_constraintStart_toEndOf="@id/btnApproved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Rejected"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCampaignList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below= "@id/llTopbuttons"
+                android:layout_marginBottom="@dimen/_5sdp" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:onClick="onPlusClick"
+            android:id="@+id/ivPlus"
+            android:src="@drawable/ic_add" />
+
+
+        <ImageView
+            android:id="@+id/ivAddClient"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_above="@id/ivPlus"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddClientClick"
+            android:src="@drawable/ic_addclient" />
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:id="@+id/ivRedo"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddVenderClick"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@id/ivPlus"
+            android:src="@drawable/ic_addvender" />
+
+
+        <ImageView
+            android:id="@+id/ivDeleteClient"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_toLeftOf="@id/ivPlus"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:scaleType="fitXY"
+            android:onClick="onDeleteClientClick"
+            android:visibility="gone"
+            android:src="@drawable/ic_deleteclient" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+
+    </RelativeLayout>
+
+</layout>

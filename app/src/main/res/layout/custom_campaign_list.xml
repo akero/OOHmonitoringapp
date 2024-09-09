@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_height="@dimen/_120sdp">
+
+    <com.acme.afsvendor.utility.RoundRectCornerImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ivCampaign"
+        android:scaleType="centerCrop"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit"
+        android:src= "@drawable/edit2"
+        android:layout_alignParentRight= "true"
+        android:layout_marginEnd= "5dp"
+        android:layout_marginTop= "11dp"
+        android:clickable= "true"
+        android:visibility="gone"
+        />
+
+   <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:id="@+id/ivText"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_list_textbg"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/tvSiteNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dmsansregular"
+        android:text="Site No. 004"
+        android:paddingEnd="12dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/tvUnitNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvSiteNo"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:fontFamily="@font/dmsansregular"
+        android:text="Unit Id:- #4544004"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp" />
+
+</RelativeLayout>

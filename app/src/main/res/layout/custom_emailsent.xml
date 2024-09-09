@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_15sdp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_20sdp">
+
+
+    <TextView
+        android:id="@+id/tvSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/dmsansbold"
+        android:text="Success"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvSuccess"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/dmsansregular"
+            android:text="Please check your email to\na change password"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_10ssp" />
+
+
+        <TextView
+            android:id="@+id/tvResubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvMsg"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/dmsansregular"
+            android:text="Didn't receive email? Resend"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_10ssp" />
+
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvResubmit"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/primaryround"
+            android:fontFamily="@font/dmsansbold"
+            android:text="Close"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp" />
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,517 @@
+DO GIT RESET HARD RESET
+
+Ship
+
+change back in contentotp class 221 once install done
+and line 78 in otp
+
+api call in receinstallationlastpage
+
+//date and time, remove icon- code
+//area- code
+//editable if no content fetched otherwise not
+//width first
+
+remove unit id
+
+//e signature
+
+history- add all 4 pics
+>afs- change splash and logo
+
+download button in history
+
+history changes
+//four types of result
+search with retailer code and name
+
+pixellation
+
+asm login
+
+
+//auto login
+//logout
+//remove project name
+//remove client dropdown
+//remove location
+//hardcode date
+//area
+error
+//area
+pics
+
+tell dev to give all stores that need to be approved by client in single call
+ask what happens once client approves and implement
+recce dash install phase- ask
+
+
+
+//make recce dashboard
+//implement api
+//rearrange UI according to data required for store photos
+//rishabh@acmemedia.in
+//type- recce
+//have to enter other details before store photo upload
+
+
+//enter code for image upload
+//date code
+//image code
+//test
+//api call
+
+LOGIN
+https://acme.warburttons.com/api/register-user
+
+//login for recce- rish1994f
+//login for asm- email rish1994j
+login for client 
+
+
+>DESIGN
+
+//asm approval
+//recceasmdashsite
+//client id dropdown- put in json
+>java- pending
+test
+
+//client-
+java
+
+//recce
+//java
+//Also save
+//division and 
+//retailer_code
+//refresh button
+//capitalize code
+//loading spinner delay
+
+on new install first pic asks permission then fails first pic taken check. works after first pic is taken again.
+
+
+//issue- file upload not working check what the call is that is sent- could be beackend issue
+
+//need to add a bar where person can enter retailer code and press fetch button and it auto //fills in the form
+
+//send asm name to project upload for identification
+test
+
+
+change contentotp hardcode back when api done line 212
+
+
+
+
+
+
+//admin vendor- only show vendors whos campaigns are live- emailed- api/admin_vendors
+
+slow ticks movement
+
+req failed edit pic site from campaign admin dash- big image not updating
+/edit campaign not filling data
+add dashes to viewsitedetailclientdash
+
+For doing put big image The request failed.
+                                                                                                    iq: Exception in CronetUrlRequest: net::ERR_HTTP2_PROTOCOL_ERROR, ErrorCode=11, InternalErrorCode=-337, Retryable=false
+                                                                                                    	at org.chromium.net.impl.CronetUrlRequest.onError(:com.google.android.gms.dynamite_cronetdynamite@231818047@23.18.18 (190800-0):5)
+
+
+/notif to vendor to put image
+
+/bottom left pixellation
+
+/line 305 admindashvendor
+
+/ex form
+
+add site to vendor login
+
+//sites campaign tab- area will be auto
+//in clients- remove plus from old campaign tab
+//view sote det- end date
+//old campaigns cant be edited anywhere
+//clientdash- view site- area, remove edit from old campaigns
+//calendar not setting correct date
+//test performance- line 481 viewsitedetail compress image
+//edit_site- large image not working- compress image
+//add site test large image
+//no value for site- when updating image multiple times
+//edit site from admin dash vendor tab not working because need campaign id
+//add vendor name to dash
+//edit_site- placeholder vendor id
+//when updating image from vendor login its sending placeholder_vendor_id fix that
+//handle upload response	
+//upload both location/uri in viewsitedetails
+//imageupload- size limit is 2mb- emailed- site not updating- emailed- says its fixed check
+//viewsite line 169 error
+//swipe/ button/ dropdown to see next site- drowndown has site number. to admin dash all, vendor and client login- go with dropdown or dash
+//send sites array
+//viewcampaignsites
+//campaignlistactivity
+//viewvendorsites
+//admindashvendorsites
+//updating image issue- emailed- working- find where issue is in my code- need permission to read file
+//ok so the write external storage permission is not being asked for and not being granted. why . also theres 2 popups now asking for camera and location permission each instead of 1.- test
+//line608 apiref- need permission to read file
+//image and latlong implement
+//test on real device (camera)
+//can try site_img endpoint check ifimage upload is fixed
+//file not saving- its saving to internal storage
+//ask dev for illumination/ media type content- emailed- implemented
+//location takes too long to retrieve- fixed
+//After photo capture- tag41 java.util.NoSuchElementException- because on emulator- test- works on phone
+//get_site_by_id doesnt work- emailed- works
+//latlong Location not available- test- fixed
+//can only be tested on device- test
+//upload image test phone
+//med type, illu- editcampaigndetails, addcampaigndetails, addsitedetailactivity- emailed
+//test on phone
+//Illumination type:
+Non Lit/Ambient Lit
+Front Lit
+Back Lit
+Digital
+media types:
+Billboard
+Unipole
+Hoarding
+Gantry
+BQS
+LED Screen
+MUPI
+Digital Wall Print
+
+//After all done-
+//check all todos
+//test
+//addcampdet test todos
+//fixjsonstring placeholders test in adpref\
+//pixelation in image in vendor login
+//bottom right overflow
+//move otp boxes to left
+//add site button to be added by kushagra- messaged- skip
+//emailed about needing campaignid during site creation
+//uncomment camera once its done in viewsitedetail.
+//emailed vendors. not updating- 
+//In the campaign creation process, there's no need to add vendors directly. Vendors should be associated with sites during the site creation phase.
+//move vendor dropdown from add campaign
+//remove from edit
+//line525 admindash relink commented code
+//Add new sites page. Url is campaignid/vendorid
+//https://acme.warburttons.com/api/get_admin_vendor_campaigns/+ vendor id to get campaignids
+//get sites for all campaigns and 
+//show
+/new client. makecampaign. open campaign. error- emailed 
+/dots not visible in dash- client and vendor
+//check if delete is there
+//ui stuck on refreshing-
+//add the edits to ui
+//add vendor_id spinner in addsitedetails- emailed (vendor id is not updating)
+//addsitedetailactivity when editing put correct position of spinners- emailed (vendor id is not updating)
+//fix issues that were fixed in email
+//https://acme.warburttons.com/api/clients/72
+type for this is "vendor" yet its showing up in get clients api call.
+Its not present in all clients api call (https://acme.warburttons.com/api/clients)
+//Vendors are not also clients right so https://acme.warburttons.com/api/clients/72 should not return anything.- emailed
+//ask what mediatype and illumination are- placeholders- ask what real data is- emailed
+//testing admin dashboard
+//campaign
+//edit campaign- working
+//add campaign- working
+//add site- working
+//client- working
+//edit site- name not updating
+//editcampaign put correct spinner location all spinners
+check other spinners for edit
+//move boxes
+//uid is just any number use math random
+//- crud-campaign, PUT. When editing campaign from admin dashboard I get this error-
+ {"success":false,"message":"Validation Error.","data":{"uid":["The uid field is required."],"user_id":["The user id field is required."]}}
+can u just remove user_id and uid requirement for editing campaign
+//9- POST in https://acme.warburttons.com/api/campaigns
+This asks for a uid. But as we are creating a new campaign a campaign id does not exist yet. So please remove the requirement for uid and when a create campaign call is sent auto assign a new id for the campaign.- if it works skip
+//fix scaling
+//remove null from all image uploads
+//fix up ui
+//client
+//working
+//vendor
+//working
+//fix up ui
+//logo in headers- can skip
+//remove placeholders from edit site- emailed on 24 jan
+//check other areas for placeholders
+//make new content and test everything especially client login> campaigns
+//add campaign- remove uid when backend dev finishes- line 255- emailed (think it already works)
+//editcampaigndetails when editing and pressing save response is {"success":false,"message":"Validation Error.","data":{"uid":["The uid field is required."],"user_id":["The user id field is required."]}}- add uid (id of campaign) and user_id (id of user who made campaign) - line 289- emailed- fixed, test when rest of class is fixed
+//when adding site and not all data is entered put toast that check fields, works if //image not there, total area theres no error shown because error message is an error
+//when adding site the media type and illumination are entered as placeholder_media_type
+//fetch correct campaignlist for client login
+//implement add image- on line 192 appcampdet
+//vendor dropdown not showing, sometimes client not show
+//notification icon- remove it
+//add icons to dropdown
+//client dashboard, campaigns added are showing as old
+//change date type When creating campaign for a client, the campaign type is automatically assigned as old. Fix this also
+//pls use start date and end date format like 2024-01-17 bcoz od date format you are not getting correct data
+//see which class
+//change in api call and check if it works
+//dropdown for client in addcampaigndetails size fix
+//add campaign details- fix spinner height
+//add site- What is site_no in this? "id" is id so what's site_no. Number of sites?- emailed
+//vendor login need to add ui changes
+//vendor remove edit and add
+//Identify first 5% of the task after break to help with task switching before starting a new task spend a few mins thinking of what is interesting or novel or challenging;
+/vendor login all sites fix margins
+//fix size of spinner in add campaign
+/addvendor add logo
+//addvendor when editing insert data
+/test swipe in viewsitedetailactivity after below is done- could leave
+//client- testclient- testcampaign- testsite- data doesnt fill
+//add code for clinet login all sites dash and 
+//view sites dash
+//remove edit from client login site
+//client login fix header old color
+//all sites header
+/Swipe in client to move sites
+//view site header
+//fill data for header- emailed- fixed
+//client viewsite add header- make new class- emailed- wait for fix to api site call //response
+//implementui will need to update the header for all- emailed
+//scroll in admin- client- view site not working
+//viewcampaignsites from client login- remove 3 dots
+/add header
+//test client login wajckbds@gmail.com, rish1994h@gmail.com for vendor
+//correctly retreive data for vendor>campaigns- emailed
+line 191 apiref when url is made then change line
+//https://acme.warburttons.com/api/verifyLogin- For vendor and client login need to add the client id in the response- emailed
+//correct client login
+//correct vendor login
+Vendor will continue to work as he was doing before
+remove + from  view sites vendor, use camefrom in intent
+remove text xml headers
+//clientviewsites add edit
+//clicking on site causes crash
+//correctly retreive data for cliient>campaigns
+//add retreived client id to api call
+//add old live code
+//fetch campaigns
+//populate the activity for live
+//for old
+//add header
+//addsitedetailactivity when editing, the end date doesnt auto fill
+//when editing then clicking add more sites name, end date arent emptied
+//adding more site says site updated successfully
+/ask what last update in view sites client dash is
+//remove + from  view sites client 
+//line 161 check what response is once email gets reply
+//old campaign, live campaign java- fix colors
+//ViewCampaignSitesClientDash- connect to view site details
+//make dropdown functional
+//make a different addclientdetailactivity for right click client edit on 
+//on right click menu connect to AdminViewClientDetails
+//line 831 apiref change to put, url query params and attach pic
+edit campaign- same issue as above- make a dropdown for client selection in campaign creation,and send client_id of selected client- pending- you can >create client by using clients api- user_id and uid arent being entered, ask developer- pending
+//admin client dash connects to campaigns first then sites
+//add header with details- add ux to other classes and get padding right
+//check email about https://acme.warburttons.com/api/get_campaign_sites/18
+//make new viewsitedetail for client dash
+-you need to select a image in postman while creating a campaign, after doing this you will not get this error
+https://acme.warburttons.com/api/sites/22?campaign_id=18&vendor_id=18&start_date=2023-07-24 &end_date=2023-07-24 &location=Delhi&longitute=11&latitude=21&width=222&height=111&total_area=233&media_type=Digital&illumination=Banner&name=test&site_no=22-
+think this is create> edit test- says image required- pending till upload image is implemented which is pending from backend
+//copy viewcampaignsites
+//make new one for clientdashfirstpage
+//add the xml code (copy from clientdashfirstpage)
+//update url- https://acme.warburttons.com/api/campaigns/4?uid=4353&user_id=5&start_date=2023/09/22&end_date=2023/09/22&vendor=6&name=a&illumination=digital&num_of_site=10&media_type=led&image=1682335036&client_id=5
+4 is id
+//add to campaign- edit the api class
+check apireference add campaign
+2023-12-19 12:26:02.618  9114-9455  tg9                     com.acme.acmevendor                  D  {"success":false,"message":"Validation Error.","data":{"name":["The name field is required."],"uid":["The uid field is required."],"user_id":["The user id field is required."],"image":["The image must be an image.","The image must be a file of type: jpeg, png, jpg, gif, svg."]}}
+-pending backend
+//edit campaign-spinner client vendor
+//line 401
+//add campaign-maybe vendor spinner                              
+//implement edit campaign in dash line 424
+//edit campaign class work on
+//have to upload image
+//line 326 editcampaign add image illu media
+//line 676 apiref
+//add client selection add campaign
+//SORT UID USER_ID IN ADDCAMPAIGN
+//addcampaign line 193, finish the client dropdown
+//add new campaign- `user_id`, `client_id` must be active user ids- make a dropdown for client selection in campaign creation,and send client_id of selected client- pending backend- you can create client by using clients api
+user_id, means id of user
+uid , means any unique no.
+//line 123 addclentdetailactivity- pending from backend. follow up- wait for email, api call return seems to ask for logintoken- add login token to call. line 319 apireference
+-you need to use put method to edit client, when you are using PUT method each data should send by using query params
+make api call line 306 apireferenceclass- pending email
+//remove add photo in create client
+//ask backend dev why adding site says site not found- have to send in form data
+addsitedetailactivity line 311 pendng from backend. After this accept site id from backend in case user wants to edit further.
+-You are passing datas in params instead of form-data,you must pass data into form-data for creating a new site
+-Site edit working check site add- line 324- pending email
+-add multipartdata line 540 apiref
+-all parameters should be pass into form data while creating a site, u are passing data in media query which is for updation- pending email- remove forward slash, make sure campaign_id is an existing campaign- working
+site edit working, image upload not working just skip it
+/site edit working, image upload not working just skip it
+//line 521 apiref addsite remove placeholder
+//fix multipart in api ref for everything to include the jsonstrng
+//site add post not working- have to upload image- pending till upload image is implemented
+adding site POST not allowed- pending backend- need to add to formdata- pending
+//campaign id, name, /vendor id
+//adding site change to url in api ref line 332 addsitedetail    
+//edit site says site updated but data is not updated- send email 
+//add delete
+//add code to dropdown a list which says delete
+//delete code
+//-have to send a delete crud call
+//https://chat.openai.com/c/1e8b7358-620f-4d11-beb0-b31b29f2209e
+//add delete to site in dash, only admin can delete
+//remove edit from menu
+//pass correct token in campaignlist in vendor dash 
+//fix otp box shake
+//backend tasks
+//Where do I send call to delete campaign, site, client, vendor?
+//add failure checks to everything
+//put image into dash
+//images read pending all
+//Have to implement glide for everything except sitedetails
+//loading images is slow implement glide. 
+//fix images app wide
+/add delete and update data for all
+//show in ui- line 72 addclientdetailactivity
+//admin client view next click doesnt work make it edit
+//fill data into the etexts
+//pass json data from adminviewclientdetails
+//store in addclientdetailactivity
+//migrate view site to the main one
+//add spinning circle when loading ui
+//fix blinking in data sitedetails add loading screen
+//add loading screen in loading and vendor and client
+//use customprogressxml
+//screenshake if otp wrong
+//line 410 addmoresite. add more site in edit site
+//new method
+//clear data in ui
+//new api call specifically for this method
+//autocapture otp
+//remove login picker
+//use guidelines to fix otp boxes
+//remove unnecessary stuff from sitedetails
+//edit site vendor-    D  {"success":false,"message":"Validation Error.","data":{"campaign_id":["The campaign id field is required."]}}
+//2023-11-21 15:18:10.120  4259-4290  OpenGLRenderer          com.acme.acmevendor                 
+//client - edit or add site- site not found
+//vendor- add site button not functional
+//the campaign field is required- edit site for vendor dash
+//for add campaign-
+//uid  is unique id for each campaign
+//user_id , id of user who is creating the campaign
+//client_id means this campaign belongs to which client, there should be dropdown of clients and need to send id of selected client
+//pass client details to new class
+//make ui for client properties
+//insert data
+//line 91android:textColor="@color/black"
+//line 308 todo in viewvendorsites
+//make viewcampaignsites
+//line 86
+//call api with id
+//populate ui
+//add vendor client viewsites
+//connect to view site details
+//add api call for 3 different types in viewsitedetail
+//retreive data from json array for admin
+//figure out what to do for vendor client
+//putting all data in jsonarray1
+//admin
+//line 69 campaignlistadapter
+//network on main thread exception
+//Start with non dash
+//implement crud get campaign in admin dash
+//in new implementui
+//put jsonobject, add setters >make viewcampaignsites
+//call api with id
+//then implement into the xml
+//vendor
+//client
+//pass to sitedetails and implement correct site data
+//line 204 api class
+//TODO- >implement otp- line 44 in otp class have to call api now
+//TODO- >line 110 api class
+//TODOsort data - pending from backend
+//ask what unit id is
+//populate total sites in sitedetails
+//fix click in admindash
+//fix api calls in admin dash
+//unit id not showing in client
+//vendor
+//Change unit id to company name
+//add null checks to sitedetails
+//line 93, viewsitedetailactivity. complete the url ask dev
+//then fix inserting in ui
+//fix download button
+//fix inserting data
+//sitedetails
+//test below for vendor- Stuck from faggot's end. cant do his job properly. wrong response from api do client for now).
+//api response is wrong properly send login token
+//access token save to memory for client
+//put data in ui in admin, line 134
+//implement ids into the ui
+//insert data in sitedetails
+//add getters setters for new data points
+//check for what the side or unit id is
+//add api call
+//get response
+//parse
+//insert into ui
+//width is inserting, debug implementui
+//in signup page fix colors
+//implement sitedetail clicks for vendor and client
+//remove unneeded buttons from sitedetails
+//implement api into ui for all 3 and then insert all data
+//done for admin, implement client and vendor
+//client
+//fix color of button in otp
+//fix color login buttons 
+//in viewsitedetails line 301 fix the data layout
+//change file name according to site number
+//vendor
+//send api and put data in site details
+//receiving res from all 3 now add to ui
+//on line 93 ClientDashboardactivity
+//add to ui in admin dash
+//add to api call
+//then pass further updatasitedetailactivity line 43
+//implement itemclick in vendoractivity
+//in all 3
+//parse api response in all 3
+//populate ui
+//in admindashactivity
+//line 211
+//ui is updating. 
+//Implement properly for all values and for vendor and client
+//implement for client and vendor
+//dont show login, check if file exists and auto login and skip.
+//implement signup flow
+//in login screen add tokens etc, save and retrieve (pending)
+//addcampaigndetails, use addsitesdetail class
+//viewsitedetail line 56
+//vendor admin
+//In adminviewclientdetails. whole thing
+//implement forgot pass
+//implement client and vendor parts from login
+//implement proper logintoken and checks for it
+//implement otp
+//implement proper sign in
+//implement saving and retrieving logintoken
+//add the other two flows. added vendor
+//acme flow
+//fix api response- the login page is being returned.
+//add further to add vendor and client code
+//implement login flow
+//apireference continue in otp once backend is done
+//store token on login in loginactivity
+//performance optimizations

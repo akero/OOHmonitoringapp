@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.vender.VenderDashBoardActivity">
+
+        <!-- Loading code -->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:elevation="2dp"
+            android:visibility="gone"/>
+        <!-- Loading code end -->
+
+
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/afs_logo" />
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable= "true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/ic_notification" />
+
+            <TextView
+                android:id="@+id/ivReplace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivNotification"
+                android:clickable= "true"
+                android:textColor="@color/white"
+                android:fontFamily="@font/dmsansregular"
+                android:text= "Replace code"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                 />
+
+            <ImageView
+                android:id="@+id/ivHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivNotification"
+                android:clickable= "true"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/history" />
+
+        </RelativeLayout>
+
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_below="@id/topBar"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topBar"
+            android:padding="@dimen/_10sdp">
+
+
+            <TextView
+                android:id="@+id/tvCampaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:layout_below="@id/line"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Photos"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+
+            <Button
+                android:id="@+id/btnUpdatePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCampaign"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Store Photo 1"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <Button
+                android:id="@+id/btnUpdatePhoto1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnUpdatePhoto"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Store Photo 2"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <Button
+                android:id="@+id/btnUpdatePhoto2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnUpdatePhoto1"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Store Photo 3"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <Button
+                android:id="@+id/btnUpdatePhoto3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnUpdatePhoto2"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Store Photo 4"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+
+
+
+            <Button
+                android:id="@+id/btnUpdatePhoto4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnUpdatePhoto3"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Owner's signature"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:elevation= "1dp"
+                android:id= "@+id/line"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#D9D9D9"
+                android:layout_below= "@+id/rlAddImage"
+                />
+
+            <TextView
+                android:id="@+id/tvCampaign1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Signage Board Details"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llFetch"
+                android:layout_below="@id/tvCampaign1"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id= "@+id/rlFetch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnFetch"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="6dp"
+
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvFetch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart= "1dp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Retailer code"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etFetch"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvFetch"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:hint="Enter code and press Fetch"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+
+                <Button
+                    android:id="@+id/btnFetch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    app:layout_constraintStart_toEndOf="@id/rlFetch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+
+                    android:background="@drawable/primarystroke"
+                    android:clickable= "true"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Fetch"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_14ssp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions"
+                android:layout_below="@id/llFetch"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Dimensions (in feet)"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:hint="Width"
+                        android:layout_marginEnd="2dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text=""
+
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:hint="Height"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvarea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Area"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etarea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvarea"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:hint=""
+                        android:focusable="false"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions1"
+                android:layout_below="@id/llDimensions"
+                android:orientation="horizontal">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="State"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth1"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions2"
+                android:layout_below="@id/llDimensions1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="District"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight2"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="City"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth2"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions3"
+                android:layout_below="@id/llDimensions2"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Shop name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Date and time"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth3"
+                        android:layout_width="match_parent"
+                        android:layout_height="37dp"
+                        android:layout_below="@id/tvwidth3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions4"
+                android:layout_below="@id/llDimensions3"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Owner's name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight4"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Owner's email"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth4"
+                        android:hint= "optional"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions5"
+                android:layout_below="@id/llDimensions4"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Owner's mobile no."
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight5"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Owner's alternate no."
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etOwnerAlternateNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth10"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:hint="optional"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions10"
+                android:layout_below="@id/llDimensions5"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvBrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Alternate shop name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etBrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvBrand"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:hint="optional"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Your name"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth5"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions8"
+                android:layout_below="@id/llDimensions10"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="ASM name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight8"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:focusable="false"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="ASM number"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth8"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:hint="optional"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llDimensions9"
+                android:layout_below="@id/llDimensions8"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvHeight9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Latitude"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etHeight9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvHeight9"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:focusable="false"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/texthintcolor"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_2sdp">
+
+                    <TextView
+                        android:id="@+id/tvwidth9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsansregular"
+                        android:text="Longitude"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <EditText
+                        android:id="@+id/etWidth9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvwidth9"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:focusable="false"
+                        android:background="@drawable/primarystroke"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColorHint="@color/texthintcolor"
+                        android:padding="@dimen/_8sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvTotalArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llDimensions9"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Remarks"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_10ssp" />
+
+
+
+            <EditText
+                android:id="@+id/etTotalArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTotalArea"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:hint="(optional)"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:padding="@dimen/_8sdp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/texthintcolor"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tvTotalArea1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etTotalArea"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Location"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_10ssp" />
+
+
+
+
+
+            <EditText
+                android:id="@+id/etTotalArea1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTotalArea1"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:padding="@dimen/_8sdp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/texthintcolor"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tvTotalArea11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etTotalArea1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Does owner approve?"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_10ssp" />
+
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_below="@id/tvTotalArea11"
+
+                >
+
+                <RadioButton
+                    android:id="@+id/radioYes"
+                    android:checked= "true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes"
+                    android:layout_marginEnd="4dp"
+
+                    />
+
+                <RadioButton
+                    android:id="@+id/radioNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    />
+
+
+
+            </RadioGroup>
+
+
+
+            <TextView
+                android:id="@+id/txtarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_below="@id/radiogroup"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Latitude/ Longitude"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_10ssp" />
+
+            <EditText
+                android:id="@+id/area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtarea"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/primarystroke"
+                android:fontFamily="@font/dmsansregular"
+                android:padding="@dimen/_8sdp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/texthintcolor"
+                android:textSize="@dimen/_12ssp" />
+
+            <RelativeLayout
+                android:id="@+id/clientspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_below= "@+id/area"
+                android:layout_marginRight="@dimen/_2sdp">
+
+                <TextView
+                    android:id="@+id/tvclientid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Client"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvclientid"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:id="@+id/frame_client_id"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/primarystroke">
+
+                    <Spinner
+                        android:id="@+id/spinnermediatype1"
+                        android:layout_width="match_parent"
+                        android:layout_height="37dp"
+                        android:background="@null"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center|right"
+                        android:src="@drawable/ic_arrow"/>
+                </FrameLayout>
+
+                <!--  <EditText
+                      android:id="@+id/etclientid"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/tvclientid"
+                      android:layout_marginTop="@dimen/_2sdp"
+                      android:background="@drawable/primarystroke"
+                      android:fontFamily="@font/dmsansregular"
+                      android:padding="@dimen/_8sdp"
+                      android:textColor="@color/colorPrimary"
+                      android:textColorHint="@color/texthintcolor"
+                      android:textSize="@dimen/_12ssp" /> -->
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp"
+                android:id="@+id/rlAddImage"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/primarystroke"
+                android:layout_below="@id/clientspinner">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:layout_centerInParent="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/view"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:onClick="addImage"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_gallery" />
+
+                <TextView
+                    android:id="@+id/tvAddSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Add Site Photograph"
+                    android:onClick="addImage"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+                <com.acme.afsvendor.utility.RoundRectCornerImageView
+                    android:id="@+id/ivCampaignImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_1sdp"
+                    android:layout_marginBottom="@dimen/_1sdp"
+                    android:background="@color/colorPrimarylight"
+                    android:onClick="addImage"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:elevation= "1dp"
+                android:id= "@+id/line1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#D9D9D9"
+                android:layout_below= "@+id/btnUpdatePhoto4"
+                />
+
+            <Button
+                android:id="@+id/btnUpdatePhoto5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line1"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Upload Site Details"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <Button
+                android:id="@+id/btnUpdatePhoto6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnUpdatePhoto5"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Reset all fields"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+
+        </RelativeLayout>
+
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/abc"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:onClick="onPlusClick"
+            android:id="@+id/ivPlus"
+            android:src="@drawable/ic_add" />
+
+
+        <ImageView
+            android:id="@+id/ivAddClient"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_above="@id/ivPlus"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddClientClick"
+            android:src="@drawable/ic_addclient" />
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:id="@+id/ivRedo"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddVenderClick"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@id/ivPlus"
+            android:src="@drawable/ic_addvender" />
+
+
+        <ImageView
+            android:id="@+id/ivDeleteClient"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_toLeftOf="@id/ivPlus"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:scaleType="fitXY"
+            android:onClick="onDeleteClientClick"
+            android:visibility="gone"
+            android:src="@drawable/ic_deleteclient" />
+
+        <View
+            android:id= "@+id/abc"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+
+    </RelativeLayout>
+
+
+
+</layout>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.dashboard.AddClientActivity">
+
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/acmelogo" />
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/ic_notification" />
+
+
+        </RelativeLayout>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@id/topBar"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/_20sdp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/tvAddClientDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Add Client details"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+
+                <TextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Full Name:"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/tvAddClientDetail"
+                    android:onClick="liveCampaignClick"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <EditText
+                    android:id="@+id/etFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvFullName"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:hint="Enter Name"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/texthintcolor"
+                    android:textSize="@dimen/_12ssp" />
+
+
+
+
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Email Address"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/etFullName"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvEmail"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:hint="Enter Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/texthintcolor"
+                    android:textSize="@dimen/_12ssp" />
+
+
+
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Phone Number"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/etEmail"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvPhone"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:hint="Enter Phone"
+                    android:inputType="number"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/texthintcolor"
+                    android:textSize="@dimen/_12ssp" />
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/tvCompanyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Company Name"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/etPhone"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <EditText
+                    android:id="@+id/etCompanyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvCompanyName"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:hint="Enter Company Name"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/texthintcolor"
+                    android:textSize="@dimen/_12ssp" />
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/tvCompanyAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="Company Address"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/etCompanyName"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <EditText
+                    android:id="@+id/etCompanyAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvCompanyAddress"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:hint="Enter Company Address"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/texthintcolor"
+                    android:textSize="@dimen/_12ssp" />
+
+
+
+                <TextView
+                    android:id="@+id/tvGST"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
+                    android:text="GST NO."
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/etCompanyAddress"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <EditText
+                    android:id="@+id/etGst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvGST"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansregular"
+                    android:hint="Enter GST NO."
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/texthintcolor"
+                    android:textSize="@dimen/_12ssp" />
+
+
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etGst"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/primarystroke"
+                    android:fontFamily="@font/dmsansbold"
+                    android:onClick="btnSaveClick"
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_14ssp" />
+
+
+                <Button
+                    android:id="@+id/btnClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnSave"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/primaryround"
+                    android:fontFamily="@font/dmsansbold"
+                    android:onClick="btnCloseClick"
+                    android:text="Close"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.dashboard.CampaignListActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/acmelogo" />
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/ic_notification" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topBar"
+            android:padding="@dimen/_10sdp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_compaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellowround"
+                android:elevation="5dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_8sdp">
+
+
+                <TextView
+                    android:id="@+id/tvOldCampaign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/primaryround"
+                    android:fontFamily="@font/dmsansregular"
+                    android:onClick="oldCampaignClick"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Old Campaign"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <TextView
+                    android:id="@+id/tvLiveCampaign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/dmsansregular"
+                    android:onClick="liveCampaignClick"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Live Campaign"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp" />
+
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ll_compaign"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:id="@+id/rvCampaignList"/>
+
+
+        </RelativeLayout>
+
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:onClick="onPlusClick"
+            android:id="@+id/ivPlus"
+            android:src="@drawable/ic_add" />
+
+
+        <ImageView
+            android:id="@+id/ivAddSite"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_above="@id/ivPlus"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onAddSiteClick"
+            android:src="@drawable/ic_addnewsite" />
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:id="@+id/ivRedo"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onRedoClientClick"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@id/ivPlus"
+            android:src="@drawable/ic_redo" />
+
+
+        <ImageView
+            android:id="@+id/ivDeleteSite"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_toLeftOf="@id/ivPlus"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:onClick="onDeleteSiteClick"
+            android:src="@drawable/ic_delete_site" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+</layout>
