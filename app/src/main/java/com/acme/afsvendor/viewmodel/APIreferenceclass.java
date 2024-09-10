@@ -69,7 +69,7 @@ public class APIreferenceclass {
         if (vendorclientorcampaign == 0) {
             Log.d("tag21","1");
 
-            String url="https://acme.warburttons.com/api/campaigns";
+            String url="https://ooh.warburttons.com/api/project";
             querytype=0;
             String jsonPayload = "{\"Authorization\": \"" + logintoken +"\"}";
 
@@ -84,7 +84,7 @@ public class APIreferenceclass {
 
         //client
         else if (vendorclientorcampaign == 1) {
-            String url="https://acme.warburttons.com/api/clients";
+            String url="https://ooh.warburttons.com/api/get-client";
             querytype= 0;
 
             String jsonPayload= "{\"Authorization\":\"" +logintoken+"\"}";
@@ -100,7 +100,7 @@ public class APIreferenceclass {
 
         //vendor
         else if (vendorclientorcampaign == 2) {
-            String url="https://acme.warburttons.com/api/admin_vendors";
+            String url="https://ooh.warburttons.com/api/get-vendor";
 
             querytype=0; //GET
             String jsonPayload="{\"Authorization\":\"" +logintoken+"\"}";
@@ -117,8 +117,8 @@ public class APIreferenceclass {
 
     //get campaigns in client login
     public APIreferenceclass(int vendorclientorcampaign, String logintoken, Context context, int clientid, int b) {
-        String url="https://acme.warburttons.com/api/get_admin_client_campaigns/";
-        url= url+ clientid;
+        String url="https://ooh.warburttons.com/api/client-project";
+        //url= url+ clientid;
         querytype= 0;
 
         String jsonPayload= "{\"Authorization\":\"" +logintoken+"\"}";
@@ -358,7 +358,7 @@ public class APIreferenceclass {
 
         Log.d("tag41","8");
 
-        String url="https://acme.warburttons.com/api/get_site_by_id/"+ siteNumber;
+        String url="https://ooh.warburttons.com/api/project/"+ siteNumber;
 
         //String url="https://acme.warburttons.com/api/get_site_by_id/39";
 
@@ -388,7 +388,7 @@ public class APIreferenceclass {
 
         Log.d("tag58",id);
         //id="18";
-        String url="https://acme.warburttons.com/api/get_campaign_sites/"+id;
+        String url="https://ooh.warburttons.com/api/client-project";
         Log.d("tag58",url);
 
         String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
@@ -1058,8 +1058,8 @@ public class APIreferenceclass {
     public APIreferenceclass(int loginType, Context context, String email, String a){
 
 
-        String url="https://acme.warburttons.com/api/login";
-        Log.d("tag23", "logintype "+ loginType + " email " + email);
+        String url="https://ooh.warburttons.com/api/login";
+        Log.d("tag23", "url"+ "https://ooh.warburttons.com/api/login"+"logintype "+ loginType + " email " + email+ "in new login");
 
         String jsonPayload = "{\"email\": \""+ email +"\"}";
         Map<String, String> headers = new HashMap<>();
@@ -1076,8 +1076,8 @@ public class APIreferenceclass {
     public APIreferenceclass(String otp, Context context, String email, int a){
 
 
-        String url="https://acme.warburttons.com/api/verifyLogin";
-        //Log.d("tag23", "logintype "+ loginType + " email " + email);
+        String url="https://ooh.warburttons.com/api/verifyLogin";
+        Log.d("tag23", "in new login");
 
         String jsonPayload = "{\"email\": \"" + email +"\", \"password\": \"" + otp + "\"}";
         Log.d("tg4", jsonPayload);
@@ -1649,7 +1649,9 @@ public class APIreferenceclass {
             //String jsonPayload = "{\"email\":\"" + email + "\",\"password\":\"" + pass + "\"}";
 
             // Convert the JSON payload to bytes for uploading
-            Log.d("tag21",jsonPayload);
+
+            Log.d("tg21",jsonPayload);
+            Log.d("tag21", "wrkin");
             final byte[] postData = jsonPayload.getBytes(StandardCharsets.UTF_8);
 
             // Create an upload data provider to send the POST data

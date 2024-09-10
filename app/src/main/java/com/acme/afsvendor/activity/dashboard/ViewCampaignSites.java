@@ -39,7 +39,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
     private final Context ctxt= this;
     int vendorclientorcampaign=0; //campaign is 0, client is 1, vendor is 2
     String logintoken="";
-    String idofcampaign;
+    String clientid;
     boolean showedit;
 
     //todo access token save to memory add to api call
@@ -62,15 +62,18 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
         FileHelper fh= new FileHelper();
         logintoken= fh.readLoginToken(this);
 
-        idofcampaign=getIntent().getStringExtra("id");
-        Log.d("tag58", idofcampaign);
+        clientid=getIntent().getStringExtra("clientid");
+        //Log.d("tag58", clientid);
 
         try{
             if(getIntent().getStringExtra("camefrom").equals("ClientDashBoardActivity")){
                 binding.ivPlus.setVisibility(View.GONE);
                 showedit= false;
-            }
-        }catch(Exception e){
+            }else if(getIntent().getStringExtra("camefrom").equals("contentotp")){
+                binding.ivPlus.setVisibility(View.GONE);
+                showedit= false;
+
+        }}catch(Exception e){
             e.printStackTrace();
         }
 
@@ -78,7 +81,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
         jsonArray1= new JSONArray();
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, showedit);
         binding.rvCampaignList.setAdapter(adapter);
-        campaignList(idofcampaign);
+        campaignList(clientid);
     }
 
     //onresponsereceived from api
@@ -95,7 +98,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                 @Override
                 public void run() {
                     Toast.makeText(getApplicationContext(),"Site deleted successfully", Toast.LENGTH_SHORT).show();
-                    campaignList(idofcampaign);
+                    campaignList(clientid);
                 }
     });
 }
@@ -113,8 +116,8 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
 
 
             JSONObject jsonResponse = new JSONObject(response);
-            if(jsonResponse.getString("status").equals("success")) {
-                JSONArray dataArray = jsonResponse.getJSONArray("sites");
+            if(jsonResponse.getInt("status")== 200) {
+                JSONArray dataArray = jsonResponse.getJSONArray("data");
 
                 idarray= new String[dataArray.length()];
 
@@ -139,7 +142,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
                                 jsonObject.putOpt("uid", dataObject.optString("uid"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
-                                jsonObject.putOpt("name", dataObject.optString("name"));
+                                jsonObject.putOpt("name", dataObject.optString("project"));
                                 //siteDetail.setName(dataObject.optString("name"));
 
 
@@ -161,9 +164,9 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
 
 
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
-                                jsonObject.putOpt("company_name", dataObject.optString("company_name"));
-                                jsonObject.putOpt("image", dataObject.optString("logo"));
-                                jsonObject.putOpt("name", dataObject.optString("name"));
+                                jsonObject.putOpt("company_name", dataObject.optString("project"));
+                                jsonObject.putOpt("image", dataObject.optString("image"));
+                                jsonObject.putOpt("name", dataObject.optString("retail_name"));
 
 
 
@@ -296,7 +299,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
             // Start new activity and pass the retrieved data
             startActivity(new Intent(this, ViewSiteDetailActivity.class)
                     .putExtra("campaignType", "old")
-                    .putExtra("campaignId", idofcampaign)
+                    .putExtra("clientId", clientid)
                     .putExtra("camefrom", camefrom)
                     .putExtra("siteNumber", id)
                     .putExtra("logintoken", logintoken)
@@ -355,7 +358,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
 
         Log.d("tag20", "onplugtreehththtsclick");
         Intent intent= new Intent(ViewCampaignSites.this, AddSiteDetailActivity.class);
-        intent.putExtra("campaignId",idofcampaign);
+        //intent.putExtra("campaignId",idofcampaign);
         intent.putExtra("vendorId",vendorid);
         startActivity(intent);
     }

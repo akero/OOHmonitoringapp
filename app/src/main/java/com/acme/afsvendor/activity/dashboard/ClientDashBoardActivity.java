@@ -160,10 +160,10 @@ public class ClientDashBoardActivity extends AppCompatActivity implements ApiInt
                 jsonArray3= new JSONArray();
                 String ids[];
                 JSONObject jsonResponse = new JSONObject(response);
-                if(jsonResponse.getString("status").equals("success")) {
+                if(jsonResponse.getInt("status")== 200) {
 
                     if(live== 1){
-                    JSONArray dataArray = jsonResponse.getJSONArray("live_campaigns");
+                    JSONArray dataArray = jsonResponse.getJSONArray("data");
                     if(dataArray != null && dataArray.length() > 0) {
                        // if(vendorclientorcampaign==0){
 
@@ -176,8 +176,8 @@ public class ClientDashBoardActivity extends AppCompatActivity implements ApiInt
                                     //AdminCrudDataClass siteDetail = new AdminCrudDataClass();
                                     jsonObject.putOpt("id", dataObject.optInt("id"));
                                     jsonObject.putOpt("uid", dataObject.optString("uid"));
-                                    jsonObject.putOpt("image", dataObject.optString("logo"));
-                                    jsonObject.putOpt("name", dataObject.optString("name"));
+                                    jsonObject.putOpt("image", dataObject.optString("image"));
+                                    jsonObject.putOpt("name", dataObject.optString("project"));
 
                                     //siteDetail.setName(dataObject.optString("name"));
 
@@ -192,7 +192,7 @@ public class ClientDashBoardActivity extends AppCompatActivity implements ApiInt
                        // }
                         Log.d("JSONArrayContent", "JSONArray1: " + jsonArray1.toString());
                     }
-                }else{
+                }/*else{
                         JSONArray dataArray = jsonResponse.getJSONArray("old_campaigns");
                         if(dataArray != null && dataArray.length() > 0) {
                             // if(vendorclientorcampaign==0){
@@ -224,7 +224,7 @@ public class ClientDashBoardActivity extends AppCompatActivity implements ApiInt
                         }
 
 
-                    }
+                    } */
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -241,16 +241,16 @@ public class ClientDashBoardActivity extends AppCompatActivity implements ApiInt
                         //animation code
 
                         binding.clientid.setText(Integer.toString(clientid));
-                        try {
+                        /*try {
 
-                            String live_campaigns_count= jsonResponse.getString("live_campaigns_count");
-                            String old_campaigns_count= jsonResponse.getString("old_campaigns__count");
-                            binding.clientname.setText(jsonResponse.getString("client_name"));
-                            binding.title.setText(jsonResponse.getString("client_name"));
+                            String live_campaigns_count= "a";
+                            String old_campaigns_count= "a";
+                            binding.clientname.setText("a");
+                            binding.title.setText("a");
                             String formattedText = "Live :- " + live_campaigns_count + " - Old :- " + old_campaigns_count;
                             binding.campaign.setText(getColoredText(formattedText, Integer.parseInt(old_campaigns_count)));                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
+                            //throw new RuntimeException(e);
+                        }*/
 
                         binding.rvCampaignList.setAdapter(adapter);
                     }});

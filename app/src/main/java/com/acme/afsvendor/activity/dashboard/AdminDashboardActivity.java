@@ -125,7 +125,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             jsonArray3= new JSONArray();
             String ids[];
             JSONObject jsonResponse = new JSONObject(response);
-            if(jsonResponse.getBoolean("success")) {
+            if(jsonResponse.getInt("status")== 200) {
                 JSONArray dataArray = jsonResponse.getJSONArray("data");
                 if(dataArray != null && dataArray.length() > 0) {
                     if(vendorclientorcampaign==0){//cam
@@ -140,7 +140,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         jsonObject.putOpt("id", dataObject.optInt("id"));
                         jsonObject.putOpt("uid", dataObject.optString("uid"));
                         jsonObject.putOpt("image", dataObject.optString("image"));
-                        jsonObject.putOpt("name", dataObject.optString("name"));
+                        jsonObject.putOpt("name", dataObject.optString("project"));
                         String imageUrl = dataObject.optString("image"); // or "logo"
                         //imageUrl = "https://acme.warburttons.com/" + imageUrl;
                         jsonObject.putOpt("image", imageUrl); // Store the full image URL

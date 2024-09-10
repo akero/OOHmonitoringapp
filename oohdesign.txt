@@ -1,0 +1,93 @@
+1. Admin Panel: Access to all data. Create, edit delete access. Will be also made on web with more functionalities compared to the app.
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+2. Vendor Panel- Can view his own sites. (A new field "area" has to be specified at time to creation from web and app admin panel)
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+Any Damage -
+if yes then upload photo
+if no then upload photo
+
+3. Client Panel- Can view sites that belong to him. Ability to download reports.
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+all Images uploaded by Vendors
+
+
+4. ZO/ASM- Can view all sites in his zone. (zone has to be assigned from web admin panel)
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+Any Damage -
+if yes then upload photo
+if no then upload photo
+
+5. Outsource- Can see sites assigned to him in his area/zone. (area has to be specified at time of creation from web admin panel)
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+Any Damage -
+if yes then upload photo
+if no then upload photo

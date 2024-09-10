@@ -46,12 +46,17 @@ public class OTP extends AppCompatActivity implements ApiInterface {
         binding = ActivityOtpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Log.d("meme", "1");
+
+
         Log.d("whichclass", "OTP");
 
         int loginType= 1;
         userTypeCheck= "";
         logintoken= "";
         userid= "";
+        Log.d("tag24", "1");
+
 
         //animation code
         progressBar= findViewById(R.id.progressBar);
@@ -120,6 +125,8 @@ public class OTP extends AppCompatActivity implements ApiInterface {
 
                         Log.d("tag23", "1");
 
+
+                        Log.d("meme", "2");
                         //animation code
                         progressBar.setVisibility(View.VISIBLE);
                         progressBar.startAnimation(rotateAnimation);
@@ -154,6 +161,8 @@ public class OTP extends AppCompatActivity implements ApiInterface {
     @Override
     public void onResponseReceived(String response){
 
+
+        Log.d("meme", "3");
         Log.d("tag23", response);
 
         Intent intent = new Intent(OTP.this, ContentOtp.class);

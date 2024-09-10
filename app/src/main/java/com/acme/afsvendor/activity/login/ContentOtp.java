@@ -24,6 +24,7 @@ import com.acme.afsvendor.activity.dashboard.RecceAsmDashboard;
 import com.acme.afsvendor.activity.dashboard.RecceDashboardActivity;
 import com.acme.afsvendor.activity.dashboard.RecceHistory;
 import com.acme.afsvendor.activity.dashboard.RecceInstallation;
+import com.acme.afsvendor.activity.dashboard.ViewCampaignSites;
 import com.acme.afsvendor.activity.vender.VenderDashBoardActivity;
 import com.acme.afsvendor.viewmodel.APIreferenceclass;
 import com.acme.afsvendor.viewmodel.ApiInterface;
@@ -205,9 +206,12 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 startActivity(intent);
             }else if(loginType.equals("client")){
 
-                Intent intent= new Intent(ContentOtp.this, ClientDashBoardActivity.class);
+                Intent intent= new Intent(ContentOtp.this, ViewCampaignSites.class);
                 intent.putExtra("logintoken", token);
-                intent.putExtra("clientid", clientid);
+                intent.putExtra("clientid", Integer.toString(clientid));
+                intent.putExtra("vendorclientorcampaign", 1);
+                intent.putExtra("camefrom", "contentotp");
+
 
                 loadingSpinner();
                 startActivity(intent);

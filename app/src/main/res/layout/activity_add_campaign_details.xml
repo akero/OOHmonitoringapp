@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/dmsansregular"
-                    android:text="Add Campaign Details"
+                    android:text="Add Project Details"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16ssp" />

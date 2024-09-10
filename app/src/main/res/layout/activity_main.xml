@@ -93,7 +93,7 @@
                 android:background="@drawable/primaryround"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="@dimen/_2sdp"
-                android:text="Campaign"
+                android:text="Project"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp" />
@@ -159,6 +159,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/_50sdp"
             android:onClick="onPlusClick"
+            android:visibility="gone"
             android:id="@+id/ivPlus"
             android:src="@drawable/ic_add" />
 

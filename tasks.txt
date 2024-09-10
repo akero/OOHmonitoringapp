@@ -1,3 +1,153 @@
+rishabh@acmemedia.in - admin
+rish1994@gmail.com- client
+rish1994a@gmail.com- vendor
+rish1994c@gmail.com- asm
+rish1994g@gmail.com- zo
+
+https://ooh.warburttons.com/login
+management@acmemedia.in
+12345
+
+Name- OOH monitoring app
+Purpose- monitoring
+-----------
+
+>Client dash
+>edit xml for all fields in viewsitedetail
+attach code
+
+Admin dash
+
+implement project 
+//get
+/create
+edit
+delete
+
+clients
+//get
+/create
+edit
+delete
+
+vendor
+//get
+create
+edit
+delete
+
+
+There will be 5 logins-
+
+Admin- Access to all data. Create, edit delete access. Will be also made on web with more functionalities compared to the app.
+
+Client- Can view sites that belong to him. Ability to download reports.
+
+Vendor- Can view his own sites. (A new field "area" has to be specified at time to creation from web and app admin panel)
+
+Zonal officer- Can view all sites in his zone. (zone has to be assigned from web admin panel)
+
+ASM- Can view sites in his area.(area has to be specified at time of creation from web admin panel)
+
+//Outsource- Can see sites assigned to him in his area/zone. (area has to be specified at time of creation from web admin panel) - skip for now
+
+
+1. Admin Panel:
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+2. Vendor Panel
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+Any Damage -
+if yes then upload photo
+if no then upload photo
+
+3. Client Panel
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+all Images uploaded by Vendors
+
+
+4. ZO/ASM
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+Any Damage -
+if yes then upload photo
+if no then upload photo
+
+5. Outsource
+
+Outdoor Site Code
+Size (Width and Height ) SQFT also
+Vendor Name
+State
+Zone
+District
+City
+Date
+ASM/ZO Name
+Lat
+Long
+Remarks
+Photos
+Signature
+
+Any Damage -
+if yes then upload photo
+if no then upload photo
+
+
+-------------------------------------------
 DO GIT RESET HARD RESET
 
 Ship

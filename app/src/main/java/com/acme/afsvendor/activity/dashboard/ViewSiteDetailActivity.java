@@ -144,6 +144,10 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 binding1.btnNext.setVisibility(View.GONE);
             }
 
+            if(camefrom.equals("contentotp")){
+               binding.btnNext.setVisibility(View.GONE);
+            }
+
             Log.d("tg2", siteNumber);
         }
 
@@ -508,8 +512,8 @@ out.close();
             Log.d("tagresponse is", response);
             JSONObject jsonResponse = new JSONObject(response);
 
-            if(jsonResponse.getString("message").equals("Sites retrieved successfully.")) {
-                JSONObject dataArray = new JSONObject(jsonResponse.getString("site"));
+            if(jsonResponse.getInt("status")== 200) {
+                JSONObject dataArray = new JSONObject(jsonResponse.getString("data"));
                 if(dataArray != null && dataArray.length() > 0) {
                     JSONObject dataObject = dataArray;
                     jsonobj= dataObject;
