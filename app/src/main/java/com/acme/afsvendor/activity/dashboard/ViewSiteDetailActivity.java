@@ -522,22 +522,40 @@ out.close();
                         siteDetail.setId(dataObject.optInt("id"));
                         siteDetail.setVendorId(dataObject.optString("vendor_id"));
                         siteDetail.setLocation(dataObject.optString("location"));
-                        siteDetail.setCreatedAt(dataObject.optString("created_at"));
-                        siteDetail.setEndDate(dataObject.optString("end_date"));
-                        siteDetail.setLatitude(dataObject.optString("latitude"));
-                        siteDetail.setLongitude(dataObject.optString("longitute")); // Consider renaming "longitute" to "longitude" in your JSON or code for consistency
-                        siteDetail.setMediaType(dataObject.optString("media_type"));
-                        siteDetail.setIllumination(dataObject.optString("illumination"));
-                        siteDetail.setStartDate(dataObject.optString("start_date"));
-                        siteDetail.setEndDate(dataObject.optString("end_date"));
-                        siteDetail.setName(dataObject.optString("name"));
-                        siteDetail.setSiteNo(dataObject.optString("site_no"));
-                        siteDetail.setWidth(dataObject.optString("width"));
-                        siteDetail.setHeight(dataObject.optString("height"));
-                        siteDetail.setTotalArea(dataObject.optString("total_area"));
-                        siteDetail.setUpdatedAt(dataObject.optString("updated_at"));
 
-                        Log.d("SiteDetailLog",
+                        //new
+                        siteDetail.setState(dataObject.optString("state"));
+                        siteDetail.setDistrict(dataObject.optString("state"));
+                        siteDetail.setCity(dataObject.optString("state"));
+                        siteDetail.setName(dataObject.optString("retail_name"));
+                        siteDetail.setDate(dataObject.optString("state"));
+                        siteDetail.setOwnername(dataObject.optString("state"));
+                        siteDetail.setEmail(dataObject.optString("state"));
+                        siteDetail.setMobile(dataObject.optString("state"));
+                        siteDetail.setStatus(dataObject.optString("state"));
+                        siteDetail.setArea(dataObject.optString("state"));
+                        siteDetail.setAsmname(dataObject.optString("state"));
+                        siteDetail.setZone(dataObject.optString("state"));
+                        siteDetail.setAnydamage(dataObject.optString("state"));
+                        siteDetail.setVendorname(dataObject.optString("state"));
+                        siteDetail.setAddress(dataObject.optString("state"));
+
+                        //siteDetail.setCreatedAt(dataObject.optString("created_at"));
+                        //siteDetail.setEndDate(dataObject.optString("end_date"));
+                        siteDetail.setLatitude(dataObject.optString("lat"));
+                        siteDetail.setLongitude(dataObject.optString("long")); // Consider renaming "longitute" to "longitude" in your JSON or code for consistency
+                        //siteDetail.setMediaType(dataObject.optString("media_type"));
+                        //siteDetail.setIllumination(dataObject.optString("illumination"));
+                        //siteDetail.setStartDate(dataObject.optString("start_date"));
+                        //siteDetail.setEndDate(dataObject.optString("end_date"));
+                        siteDetail.setProject(dataObject.optString("project")); //this is project
+                        //siteDetail.setSiteNo(dataObject.optString("site_no"));
+                        siteDetail.setWidth(dataObject.optString("width"));
+                        siteDetail.setHeight(dataObject.optString("length"));
+                        siteDetail.setTotalArea(dataObject.optString("total"));
+                        //siteDetail.setUpdatedAt(dataObject.optString("updated_at"));
+
+                   /*     Log.d("SiteDetailLog",
                                 "ID: " + siteDetail.getId() +
                                         ", Vendor ID: " + siteDetail.getVendorId() +
                                         ", Location: " + siteDetail.getLocation() +
@@ -554,11 +572,11 @@ out.close();
                                         ", Height: " + siteDetail.getHeight() +
                                         ", Total Area: " + siteDetail.getTotalArea() +
                                         ", Updated At: " + siteDetail.getUpdatedAt());
-
+*/
 
                         try {
                             String imageUrl = dataObject.optString("image");
-                            imageUrl= "https://acme.warburttons.com/"+ imageUrl;
+                            imageUrl= "https://ooh.warburttons.com/"+ imageUrl;
                             Log.d("tag41", "imageurl is "+ imageUrl);
                             Log.d("tg2", "image code not executing 1");
 
@@ -582,13 +600,13 @@ out.close();
 
                                 TextView tvSiteId = findViewById(R.id.etSiteNo);
                                 //TODO after person implements site name then change this
-                                tvSiteId.setText(String.valueOf(siteDetail.getSiteNo()));
+                                tvSiteId.setText(String.valueOf(siteDetail.getName()));
 
                                 TextView tvLocation = findViewById(R.id.tvLocation);
-                                tvLocation.setText(siteDetail.getLocation());
+                                tvLocation.setText(siteDetail.getCity());
 
                                 TextView tvSiteName = findViewById(R.id.tvAddSiteDetail);
-                                tvSiteName.setText(siteDetail.getName());
+                                tvSiteName.setText(siteDetail.getProject());
 
                                 //TextView tvLastInspection = findViewById(R.id.tvStartDate);
                                 //tvLastInspection.setText(siteDetail.getCreatedAt());
@@ -599,21 +617,21 @@ out.close();
                                 TextView tvLongitude = findViewById(R.id.tvLongitude);
                                 tvLongitude.setText(siteDetail.getLongitude());
 
-                                TextView tvMediaType = findViewById(R.id.tvMediaType);
-                                tvMediaType.setText(siteDetail.getMediaType());
+                                //TextView tvMediaType = findViewById(R.id.tvMediaType);
+                                //tvMediaType.setText(siteDetail.getMediaType());
 
-                                TextView tvIllumination = findViewById(R.id.tvIllumination);
-                                tvIllumination.setText(siteDetail.getIllumination());
+                                //TextView tvIllumination = findViewById(R.id.tvIllumination);
+                                //tvIllumination.setText(siteDetail.getIllumination());
 
                                 TextView tvStartDate = findViewById(R.id.tvStartDate);
-                                tvStartDate.setText(siteDetail.getStartDate());
+                                tvStartDate.setText(siteDetail.getState());
 
                                 TextView tvEndDate = findViewById(R.id.tvEndDate);
-                                tvEndDate.setText(siteDetail.getEndDate());
+                                tvEndDate.setText(siteDetail.getDistrict());
 
                                 // Set the site number
-                                TextView tvSiteNo = findViewById(R.id.etSiteNo);
-                                tvSiteNo.setText(String.valueOf(siteDetail.getSiteNo())); // assuming getter method exists
+                                //TextView tvSiteNo = findViewById(R.id.etSiteNo);
+                                //tvSiteNo.setText(String.valueOf(siteDetail.getSiteNo())); // assuming getter method exists
 
                                 // Set the width
                                 TextView tvWidth = findViewById(R.id.tvWidth);
@@ -627,6 +645,42 @@ out.close();
                                 TextView tvTotalArea = findViewById(R.id.tvTotalArea);
                                 tvTotalArea.setText(siteDetail.getTotalArea()); // assuming getter method exists
                                 Log.d("tg2", "image code not executing");
+
+                                TextView tvHeight0 = findViewById(R.id.tvHeigh);
+                                tvHeight0.setText(siteDetail.getDate());
+
+                                TextView tvHeight1 = findViewById(R.id.tvWidt);
+                                tvHeight1.setText(siteDetail.getOwnername());
+
+                                TextView tvHeight2 = findViewById(R.id.tvHeigh1);
+                                tvHeight2.setText(siteDetail.getEmail());
+
+                                TextView tvHeight3 = findViewById(R.id.tvWidt1);
+                                tvHeight3.setText(siteDetail.getMobile());
+
+                                TextView tvHeight4 = findViewById(R.id.tvHeigh2);
+                                tvHeight4.setText(siteDetail.getStatus());
+
+                                TextView tvHeight5 = findViewById(R.id.tvWidt2);
+                                tvHeight5.setText(siteDetail.getLocation());
+
+                                TextView tvHeight6 = findViewById(R.id.tvHeigh3);
+                                tvHeight6.setText(siteDetail.getArea());
+
+                                TextView tvHeight7 = findViewById(R.id.tvWidt3);
+                                tvHeight7.setText(siteDetail.getAsmname());
+
+                                TextView tvHeight8 = findViewById(R.id.tvHeigh4);
+                                tvHeight8.setText(siteDetail.getZone());
+
+                                TextView tvHeight9 = findViewById(R.id.tvWidt4);
+                                tvHeight9.setText(siteDetail.getAnydamage());
+
+                                TextView tvHeight10 = findViewById(R.id.tvHeigh5);
+                                tvHeight10.setText(siteDetail.getVendorname());
+
+                                TextView tvHeight11 = findViewById(R.id.tvWidt5);
+                                tvHeight11.setText(siteDetail.getAddress());
 
                                 RoundRectCornerImageView tvImage = findViewById(R.id.ivCampaignImage);
                                 if(siteDetail.getImage()!=null) {

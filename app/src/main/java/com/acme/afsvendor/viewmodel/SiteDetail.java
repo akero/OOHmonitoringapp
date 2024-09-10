@@ -26,7 +26,144 @@ public class SiteDetail {
     private String created_at;
     private String updated_at;
 
+    private String project;
+    private String state;
+    private String district;
+    private String city;
+    private String date;
+    private String owner_name;
+    private String email;
+    private String mobile;
+    private String status;
+    private String area;
+    private String asm_name;
+    private String zone;
+    private String any_damage;
+    private String vendor_name;
+    private String address;
+
+
     // Getters and Setters for each field
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String id) {
+        this.state = id;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String id) {
+        this.district = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String id) {
+        this.city = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String id) {
+        this.date = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String id) {
+        this.email = id;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String id) {
+        this.mobile = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String id) {
+        this.status = id;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String id) {
+        this.area = id;
+    }
+
+    public String getAsmname() {
+        return asm_name;
+    }
+
+    public void setAsmname(String id) {
+        this.asm_name = id;
+    }
+
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String id) {
+        this.zone = id;
+    }
+
+    public String getAnydamage() {
+        return any_damage;
+    }
+
+    public void setAnydamage(String id) {
+        this.any_damage = id;
+    }
+
+    public String getVendorname() {
+        return vendor_name;
+    }
+
+    public void setVendorname(String id) {
+        this.vendor_name = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String id) {
+        this.address = id;
+    }
+
+    public String getOwnername() {
+        return owner_name;
+    }
+
+    public void setOwnername(String id) {
+        this.owner_name = id;
+    }
 
     public boolean isSuccess() {
         return success;

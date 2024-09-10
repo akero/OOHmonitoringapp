@@ -13,8 +13,10 @@ Purpose- monitoring
 -----------
 
 >Client dash
->edit xml for all fields in viewsitedetail
-attach code
+//edit xml for all fields in viewsitedetail
+//add 5 images
+//attach code
+>test
 
 Admin dash
 
