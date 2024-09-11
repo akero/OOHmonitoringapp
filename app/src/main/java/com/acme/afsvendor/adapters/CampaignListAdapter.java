@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.acme.afsvendor.R;
 import com.acme.afsvendor.activity.dashboard.AdminDashVendorSites;
 import com.acme.afsvendor.activity.dashboard.AdminDashboardActivity;
+import com.acme.afsvendor.activity.dashboard.AsmDashboardActivity;
 import com.acme.afsvendor.activity.dashboard.CampaignListActivity;
 import com.acme.afsvendor.activity.dashboard.ClientDashBoardActivity;
 import com.acme.afsvendor.activity.dashboard.ClientDashFirstPage;
@@ -19,6 +20,7 @@ import com.acme.afsvendor.activity.dashboard.RecceInstallation;
 import com.acme.afsvendor.activity.dashboard.ViewCampaignSites;
 import com.acme.afsvendor.activity.dashboard.ViewCampaignSitesClientDash;
 import com.acme.afsvendor.activity.dashboard.ViewVendorSites;
+import com.acme.afsvendor.activity.dashboard.ZoDashboardActivity;
 import com.acme.afsvendor.activity.vender.VenderDashBoardActivity;
 import com.bumptech.glide.Glide;
 
@@ -132,6 +134,10 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
                     ((RecceInstallation) context).onItemClick(position);
                 }else if (context instanceof AdminDashVendorSites) {
                 ((AdminDashVendorSites) context).onItemClick(position);
+            }else if (context instanceof AsmDashboardActivity) {
+                ((AsmDashboardActivity) context).onItemClick(position);
+            }else if (context instanceof ZoDashboardActivity) {
+                ((ZoDashboardActivity) context).onItemClick(position);
             }
             });
         } catch (Exception e) {

@@ -2,7 +2,7 @@ rishabh@acmemedia.in - admin
 rish1994@gmail.com- client
 rish1994a@gmail.com- vendor
 rish1994c@gmail.com- asm
-rish1994g@gmail.com- zo
+rish1994j@gmail.com- zo
 
 https://ooh.warburttons.com/login
 management@acmemedia.in
@@ -11,6 +11,13 @@ management@acmemedia.in
 Name- OOH monitoring app
 Purpose- monitoring
 -----------
+
+>profile all
+>admin
+vendor
+client
+zo
+asm
 
 /Client dash
 //edit xml for all fields in viewsitedetail
@@ -23,9 +30,12 @@ cosmetic
 //design
 add new changes
 cosmetic
+vendor login will change later
 
->asm dash
-design
+asm dash
+//design
+
+/zo dash
 
 /Admin dash
 

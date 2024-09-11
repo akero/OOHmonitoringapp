@@ -28,9 +28,17 @@
         android:theme="@style/Theme.TestingProject"
         tools:targetApi="31">
         <activity
-            android:name=".activity.dashboard.RecceInstallationLastPage"
+            android:name=".activity.dashboard.ZoDashboardActivity"
             android:exported="false"
             android:theme="@style/NoActTheme"/>
+        <activity
+            android:name=".activity.dashboard.AsmDashboardActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
+        <activity
+            android:name=".activity.dashboard.RecceInstallationLastPage"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
         <activity
             android:name=".activity.dashboard.RecceInstallation"
             android:exported="false"

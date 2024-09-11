@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.acme.afsvendor.R;
 import com.acme.afsvendor.activity.dashboard.AdminDashboardActivity;
+import com.acme.afsvendor.activity.dashboard.AsmDashboardActivity;
 import com.acme.afsvendor.activity.dashboard.ClientDashBoardActivity;
 import com.acme.afsvendor.activity.dashboard.FileHelper;
 import com.acme.afsvendor.activity.dashboard.RecceAsmDashboard;
@@ -26,6 +27,7 @@ import com.acme.afsvendor.activity.dashboard.RecceHistory;
 import com.acme.afsvendor.activity.dashboard.RecceInstallation;
 import com.acme.afsvendor.activity.dashboard.ViewCampaignSites;
 import com.acme.afsvendor.activity.dashboard.ViewVendorSites;
+import com.acme.afsvendor.activity.dashboard.ZoDashboardActivity;
 import com.acme.afsvendor.activity.vender.VenderDashBoardActivity;
 import com.acme.afsvendor.viewmodel.APIreferenceclass;
 import com.acme.afsvendor.viewmodel.ApiInterface;
@@ -179,6 +181,12 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
 
             if(loginType.equals("asm")){
                 recceasmid= jsonObject1.getInt("id");
+                area= jsonObject1.getString("area");
+            }
+
+            if(loginType.equals("zo")){
+                recceasmid= jsonObject1.getInt("id");
+                area= jsonObject1.getString("area");
             }
 
             Log.d("tg4", loginType);
@@ -237,9 +245,19 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
             //todo add installation login
             else if(loginType.equals("asm")){
 
-                Intent intent= new Intent(ContentOtp.this, RecceAsmDashboard.class);
+                Intent intent= new Intent(ContentOtp.this, AsmDashboardActivity.class);
                 intent.putExtra("logintoken", token);
                 intent.putExtra("recceasmid", recceasmid);
+                intent.putExtra("area", area);
+
+                loadingSpinner();
+                startActivity(intent);
+            }else if(loginType.equals("zo")){
+
+                Intent intent= new Intent(ContentOtp.this, ZoDashboardActivity.class);
+                intent.putExtra("logintoken", token);
+                intent.putExtra("recceasmid", recceasmid);
+                intent.putExtra("area", area);
 
                 loadingSpinner();
                 startActivity(intent);
