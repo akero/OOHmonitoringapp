@@ -585,6 +585,11 @@ Log.d("tag41", "click detected");
         //TODO ask dev what this does
     }
 
+    public void onProfileClick(View view){
+
+        
+    }
+
     public void onAddClientClick(View view) {
         startActivity(new Intent(this, AddSiteDetailActivity.class));
     }

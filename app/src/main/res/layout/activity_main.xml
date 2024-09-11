@@ -45,6 +45,16 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:src="@drawable/ic_notification" />
 
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onProfileClick"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/profile" />
+
 
         </RelativeLayout>
 

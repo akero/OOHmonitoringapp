@@ -12,32 +12,41 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
->profile all
+>profile all only on dash page
 >admin
 vendor
 client
 zo
 asm
 
-/Client dash
+change fields for all according to requirements
+
+Client dash
 //edit xml for all fields in viewsitedetail
 //add 5 images
 //attach code
 //test
 cosmetic
 
-/Vendor dash
+Vendor dash
 //design
-add new changes
+//add new changes
 cosmetic
 vendor login will change later
+Any Damage -
+if yes then upload photo
+if no then upload photo
+
 
 asm dash
 //design
 
-/zo dash
+zo dash
+Any Damage -
+if yes then upload photo
+if no then upload photo
 
-/Admin dash
+Admin dash
 
 implement project 
 //get
@@ -128,7 +137,7 @@ District
 City
 Date
 ASM/ZO Name
-all Images uploaded by Vendors
+/all Images uploaded by Vendors
 
 
 4. ZO/ASM
