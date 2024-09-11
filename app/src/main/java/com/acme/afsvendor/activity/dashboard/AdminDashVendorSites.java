@@ -54,6 +54,7 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
         String idofvendor;
         boolean showedit;
         boolean gettingcampaignids;
+        String area;
 
         String[] idarray;
         @Override
@@ -70,7 +71,7 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
             sitearray= new JSONArray();
             showedit= true;
             sitesretrieved= false;
-
+            area= "";
 
             //animation code
             progressBar= findViewById(R.id.progressBar);
@@ -82,6 +83,8 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
 
             idofvendor=getIntent().getStringExtra("id");
             Log.d("tag58", idofvendor);
+
+            area= getIntent().getStringExtra("area");
 
             try{
                 if(getIntent().getStringExtra("camefrom").equals("ClientDashBoardActivity")){
@@ -103,8 +106,17 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
             //view.setVisibility(View.VISIBLE);
             //animation code
 
-            getvendorcampaigns(idofvendor);
+            getprojects(area);
         }
+
+    void getprojects(String area){
+        gettingcampaignids= true;
+
+        Log.d("tag222", "1");
+        long a= 0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, this, area, a);
+
+    }
 
         void getvendorcampaigns(String id){
             gettingcampaignids= true;
@@ -125,7 +137,9 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
             Log.d("addbatest", "response is "+ response);
             Log.d("tag58","got response");
 
-            if(delete==0&&!gettingcampaignids&sitesretrieved) {
+            implementUi(response);
+
+           /* if(delete==0&&!gettingcampaignids&sitesretrieved) {
                 try{
                     JSONObject jsonobj= new JSONObject(response);
                     vendorname= jsonobj.getString("vendor_name");
@@ -177,7 +191,7 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
 
                     implementUInew(sitearray);
                 }
-            }
+            }*/
         }
 
     private void implementUInew(JSONArray sitearray){
@@ -331,8 +345,8 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
 
                 String ids[];
                 JSONObject jsonResponse = new JSONObject(response);
-                if(jsonResponse.getString("status").equals("success")) {
-                    JSONArray dataArray = jsonResponse.getJSONArray("sites");
+                if(jsonResponse.getInt("status")== 200) {
+                    JSONArray dataArray = jsonResponse.getJSONArray("data");
 
                     if(dataArray != null && dataArray.length() > 0) {
                         if(vendorclientorcampaign==0){
@@ -352,7 +366,7 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
                                     jsonObject.putOpt("id", dataObject.optInt("id"));
                                     jsonObject.putOpt("uid", dataObject.optString("uid"));
                                     jsonObject.putOpt("image", dataObject.optString("image"));
-                                    jsonObject.putOpt("name", dataObject.optString("name"));
+                                    jsonObject.putOpt("name", dataObject.optString("project"));
                                     //siteDetail.setName(dataObject.optString("name"));
 
 
@@ -508,7 +522,7 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
                         .putExtra("campaignType", "old")
                         //.putExtra("campaignId", idofcampaign)
                         .putExtra("camefrom", camefrom)
-                        .putExtra("siteNumber", id)
+                        .putExtra("sitenumber", id)
                         .putExtra("logintoken", logintoken)
                         .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                         .putExtra("idarray", idarray));

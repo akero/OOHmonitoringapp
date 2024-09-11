@@ -130,10 +130,10 @@ public class ClientDashFirstPage extends AppCompatActivity implements ApiInterfa
             jsonArray3= new JSONArray();
 
             JSONObject jsonResponse = new JSONObject(response);
-            if(jsonResponse.getString("status").equals("success")) {
+            if(jsonResponse.getInt("status")==200) {
 
                 if(liveold== 0){
-                JSONArray dataArray = jsonResponse.getJSONArray("live_campaigns");
+                JSONArray dataArray = jsonResponse.getJSONArray("data");
                 if(dataArray != null && dataArray.length() > 0) {
                     // if(vendorclientorcampaign==0){
 
@@ -146,8 +146,8 @@ public class ClientDashFirstPage extends AppCompatActivity implements ApiInterfa
 
                             jsonObject.putOpt("id", dataObject.optInt("id"));
                             jsonObject.putOpt("uid", dataObject.optString("uid"));
-                            jsonObject.putOpt("image", dataObject.optString("logo"));
-                            jsonObject.putOpt("name", dataObject.optString("name"));
+                            jsonObject.putOpt("image", dataObject.optString("image"));
+                            jsonObject.putOpt("name", dataObject.optString("project"));
 
                             jsonArray1.put(jsonObject);
                         }
@@ -242,9 +242,9 @@ public class ClientDashFirstPage extends AppCompatActivity implements ApiInterfa
             Log.d("tag122", id);
 
             // Start new activity and pass the retrieved data
-            startActivity(new Intent(this, ViewCampaignSitesClientDash.class)
+            startActivity(new Intent(this, ViewSiteDetailActivity.class)
                     .putExtra("campaignType", "old")
-                    .putExtra("id", id)
+                    .putExtra("sitenumber", id)
                     .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                     .putExtra("logintoken", loginToken)
                     .putExtra("apiresponse", jsonObject.toString()));

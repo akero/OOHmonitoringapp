@@ -25,6 +25,7 @@ import com.acme.afsvendor.activity.dashboard.RecceDashboardActivity;
 import com.acme.afsvendor.activity.dashboard.RecceHistory;
 import com.acme.afsvendor.activity.dashboard.RecceInstallation;
 import com.acme.afsvendor.activity.dashboard.ViewCampaignSites;
+import com.acme.afsvendor.activity.dashboard.ViewVendorSites;
 import com.acme.afsvendor.activity.vender.VenderDashBoardActivity;
 import com.acme.afsvendor.viewmodel.APIreferenceclass;
 import com.acme.afsvendor.viewmodel.ApiInterface;
@@ -38,6 +39,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
     ProgressBar progressBar;
     Animation rotateAnimation;
     Context context;
+    String area;
 
 
     @Override
@@ -61,6 +63,8 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
         progressBar= findViewById(R.id.progressBar);
         rotateAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
         //animation code
+
+        area= "";
 
         // Setup auto-advance
         setupAutoAdvance(otp1, otp2);
@@ -164,6 +168,8 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
             }
             if(loginType.equals("vendor")){
                 vendorid= jsonObject1.getInt("id");
+                area= jsonObject1.getString("area");
+                Log.d("tag58area",area);
             }
 
             if(loginType.equals("supervisor")){
@@ -197,10 +203,12 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
 
             }else if(loginType.equals("vendor")){
 
-                Intent intent= new Intent(ContentOtp.this, VenderDashBoardActivity.class);
+                Intent intent= new Intent(ContentOtp.this, ViewVendorSites.class);
                 intent.putExtra("logintoken", token);
+                Log.d("logintag", "correctvendorlogin");
                 intent.putExtra("vendorid", vendorid);
-
+                intent.putExtra("vendorclientorcampaign", 2);
+                intent.putExtra("area", area);
                 loadingSpinner();
 
                 startActivity(intent);

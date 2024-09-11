@@ -12,31 +12,46 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
->Client dash
+/Client dash
 //edit xml for all fields in viewsitedetail
 //add 5 images
 //attach code
->test
+//test
+cosmetic
 
-Admin dash
+/Vendor dash
+//design
+add new changes
+cosmetic
+
+>asm dash
+design
+
+/Admin dash
 
 implement project 
 //get
 /create
 edit
 delete
+//click
+edit after click
 
 clients
 //get
-/create
+//create
 edit
 delete
+//click
+click cosmetic
+click add project
 
 vendor
 //get
 create
 edit
 delete
+//click
 
 
 There will be 5 logins-

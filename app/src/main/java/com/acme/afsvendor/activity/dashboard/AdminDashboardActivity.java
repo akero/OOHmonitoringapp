@@ -222,6 +222,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                                 jsonObject2.putOpt("logo", dataObject.optString("logo"));
                                 jsonObject2.putOpt("created_at", dataObject.optString("created_at"));
                                 jsonObject2.putOpt("updated_at", dataObject.optString("updated_at"));
+                                jsonObject2.putOpt("area", dataObject.optString("area"));
                                 //siteDetail.setName(dataObject.optString("name"));
 
                                 jsonArray1.put(jsonObject);
@@ -495,9 +496,10 @@ Log.d("tag41", "click detected");
 
                 // Start new activity and pass the retrieved data
 
-                startActivity(new Intent(this, ViewCampaignSites.class)
+                Log.d("sitenumber", id);
+                startActivity(new Intent(this, ViewSiteDetailActivity.class)
                         .putExtra("campaignType", "old")
-                        .putExtra("id", id)
+                        .putExtra("sitenumber", id)
                         .putExtra("logintoken", logintoken)
                         .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                         .putExtra("apiresponse", jsonObject.toString()));
@@ -522,12 +524,13 @@ Log.d("tag41", "click detected");
             }else if(vendorclientorcampaign==2){//vendor
 
                 JSONObject jsonObject1 = jsonArray3.getJSONObject(position);
-
+                Log.d("jsn", jsonObject1.toString());
                 startActivity(new Intent(this, AdminDashVendorSites.class)
                         .putExtra("id", id)
                         .putExtra("logintoken", logintoken)
                         .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                         .putExtra("jsonArray", jsonObject1.toString())
+                        .putExtra("area", jsonObject1.getString("area"))
                 );
 
                /* startActivity(new Intent(this, AdminViewVendorDetails.class)
@@ -549,11 +552,11 @@ Log.d("tag41", "click detected");
         if (binding.rvCampaignList.getAdapter() != null) {
             CampaignListAdapter adapter = (CampaignListAdapter) binding.rvCampaignList.getAdapter();
             adapter.clearData(); // You'll need to implement a method 'clearData()' in your adapter class
-            if (vendorclientorcampaign == 0) {
+            if (vendorclientorcampaign == 0) {//campaign
                 jsonArray1 = new JSONArray();
-            } else if (vendorclientorcampaign == 1) {
+            } else if (vendorclientorcampaign == 1) {//client
                 jsonArray2 = new JSONArray();
-            } else if(vendorclientorcampaign == 2){
+            } else if(vendorclientorcampaign == 2){//vendor
                 jsonArray3= new JSONArray();
             }
         }
@@ -563,7 +566,7 @@ Log.d("tag41", "click detected");
     public void onPlusClick(View view) {
 
         Log.d("tag20", "onplusclick");
-    if(vendorclientorcampaign==1) {
+    if(vendorclientorcampaign==1) {//client
         Intent intent = new Intent(AdminDashboardActivity.this, AddClientActivity.class);
         intent.putExtra("logintoken", logintoken);
         startActivity(intent);

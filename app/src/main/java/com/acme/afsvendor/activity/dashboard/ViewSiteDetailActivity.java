@@ -76,7 +76,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             idarray= null;
             campaignId = getIntent().getExtras().getString("campaignId", "");
             campaignType = getIntent().getExtras().getString("campaignType", "");
-            siteNumber= getIntent().getExtras().getString("siteNumber", "");
+            siteNumber= getIntent().getExtras().getString("sitenumber", "");
             logintoken= getIntent().getExtras().getString("logintoken","");
             camefrom= getIntent().getExtras().getString("camefrom", "");
 
@@ -200,6 +200,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         Log.d("whichclass", "ViewSiteDetailActivity");
 
         Log.d("tag41", "4");
+        Log.d("sitenumber", siteNumber);
         apicall(logintoken, siteNumber);
         Log.d("tag41", "5");
     }
@@ -525,20 +526,20 @@ out.close();
 
                         //new
                         siteDetail.setState(dataObject.optString("state"));
-                        siteDetail.setDistrict(dataObject.optString("state"));
-                        siteDetail.setCity(dataObject.optString("state"));
+                        siteDetail.setDistrict(dataObject.optString("district"));
+                        siteDetail.setCity(dataObject.optString("city"));
                         siteDetail.setName(dataObject.optString("retail_name"));
-                        siteDetail.setDate(dataObject.optString("state"));
-                        siteDetail.setOwnername(dataObject.optString("state"));
-                        siteDetail.setEmail(dataObject.optString("state"));
-                        siteDetail.setMobile(dataObject.optString("state"));
-                        siteDetail.setStatus(dataObject.optString("state"));
-                        siteDetail.setArea(dataObject.optString("state"));
-                        siteDetail.setAsmname(dataObject.optString("state"));
-                        siteDetail.setZone(dataObject.optString("state"));
-                        siteDetail.setAnydamage(dataObject.optString("state"));
-                        siteDetail.setVendorname(dataObject.optString("state"));
-                        siteDetail.setAddress(dataObject.optString("state"));
+                        siteDetail.setDate(dataObject.optString("date"));
+                        siteDetail.setOwnername(dataObject.optString("owner_name"));
+                        siteDetail.setEmail(dataObject.optString("email"));
+                        siteDetail.setMobile(dataObject.optString("mobile"));
+                        siteDetail.setStatus(dataObject.optString("status"));
+                        siteDetail.setArea(dataObject.optString("area"));
+                        siteDetail.setAsmname(dataObject.optString("asm_name"));
+                        siteDetail.setZone(dataObject.optString("zone"));
+                        siteDetail.setAnydamage(dataObject.optString("any_damage"));
+                        siteDetail.setVendorname(dataObject.optString("vendor_name"));
+                        siteDetail.setAddress(dataObject.optString("address"));
 
                         //siteDetail.setCreatedAt(dataObject.optString("created_at"));
                         //siteDetail.setEndDate(dataObject.optString("end_date"));

@@ -64,6 +64,8 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
     ProgressBar progressBar;
     Animation rotateAnimation;
+    int vendorid;
+    String area;
 
     //todo access token save to memory add to api call
 
@@ -73,6 +75,8 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_vendor_sites);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         binding.rvCampaignList.setLayoutManager(layoutManager);
+        vendorid= 0;
+        area= "";
 
         Log.d("whichclass", "ViewVendorSites");
 
@@ -85,9 +89,13 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
         Log.d("tag97", "here");
 
-        idofcampaign=getIntent().getStringExtra("id");
-        Log.d("tag58", idofcampaign);
+        //idofcampaign=getIntent().getStringExtra("id");
+        //Log.d("tag58", idofcampaign);
+        vendorid= getIntent().getIntExtra("vendorid", 0);
+        Log.d("tag58", Integer.toString(vendorid));
 
+        area= getIntent().getStringExtra("area");
+        Log.d("tag58area", area);
 
         FileHelper fh= new FileHelper();
         logintoken= fh.readLoginToken(this);
@@ -96,7 +104,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         jsonArray1= new JSONArray();
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, false);
         binding.rvCampaignList.setAdapter(adapter);
-        campaignList(idofcampaign);
+        campaignList(area);
     }
 
 
@@ -140,10 +148,10 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
             JSONObject jsonResponse = new JSONObject(response);
 
             campaignName="";
-            campaignName= jsonResponse.getString("campaign_name");
+            //campaignName= jsonResponse.getString("campaign_name");
 
-            if(jsonResponse.getString("status").equals("success")) {
-                JSONArray dataArray = jsonResponse.getJSONArray("sites");
+            if(jsonResponse.getInt("status")== 200) {
+                JSONArray dataArray = jsonResponse.getJSONArray("data");
                 idarray= new String[dataArray.length()];
 
                 if(dataArray != null && dataArray.length() > 0) {
@@ -161,13 +169,13 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
                                 jsonObject.putOpt("uid", dataObject.optString("uid"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
-                                jsonObject.putOpt("name", dataObject.optString("name"));
+                                jsonObject.putOpt("name", dataObject.optString("project"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 
                                 try {
                                     String imageUrl = dataObject.optString("image");
-                                    imageUrl = "https://acme.warburttons.com/" + imageUrl;
+                                    imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -228,15 +236,15 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 idarray[i]= Integer.toString(dataObject.optInt("id"));
 
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
-                                jsonObject.putOpt("company_name", dataObject.optString("company_name"));
-                                jsonObject.putOpt("image", dataObject.optString("logo"));
-                                jsonObject.putOpt("name", dataObject.optString("name"));
+                                jsonObject.putOpt("company_name", dataObject.optString("retail_name"));
+                                jsonObject.putOpt("image", dataObject.optString("image"));
+                                jsonObject.putOpt("name", dataObject.optString("project"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 
                                 try {
-                                    String imageUrl = dataObject.optString("logo");
-                                    imageUrl = "https://acme.warburttons.com/" + imageUrl;
+                                    String imageUrl = dataObject.optString("image");
+                                    imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -287,8 +295,8 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         //view.setVisibility(View.VISIBLE);
         //animation code
 
-
-        APIreferenceclass api= new APIreferenceclass(logintoken, this, id);
+        long a= 1;
+        APIreferenceclass api= new APIreferenceclass(logintoken, this, id, a);
     }
 
 

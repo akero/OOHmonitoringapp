@@ -225,9 +225,9 @@ public class APIreferenceclass {
 
     //to fetch client's campaigns in clientdashfirstpage
     public APIreferenceclass(int clientId, int vendorclientorcampaign, String logintoken, Context context) {
-        String url="https://acme.warburttons.com/api/get_admin_client_campaigns";
+        String url="https://ooh.warburttons.com/api/client-project";
         querytype= 0;
-        url= url+"/"+clientId;
+        //url= url+"/"+clientId;
 
         String jsonPayload= "{\"Authorization\":\"" +logintoken+"\"}";
 
@@ -389,6 +389,26 @@ public class APIreferenceclass {
         Log.d("tag58",id);
         //id="18";
         String url="https://ooh.warburttons.com/api/client-project";
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
+    //for viewvendorprojects
+    public APIreferenceclass(String loginToken, Context context, String id, long a){
+
+
+        Log.d("tag58",id);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/vendor-project/"+ id;
         Log.d("tag58",url);
 
         String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
