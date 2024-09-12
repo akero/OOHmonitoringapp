@@ -150,6 +150,25 @@ public class APIreferenceclass {
 
     }
 
+    //profile
+    public APIreferenceclass(String logintoken, String userid, Context context, int a){
+        String url= "https://ooh.warburttons.com/api/userapi/"+ userid;
+        querytype= 0;
+
+        Log.d("tg01", "a");
+
+        String jsonPayload= "{\"Authorization\":\"" +logintoken+"\"}";
+
+        Map<String, String> headers= new HashMap<>();
+        headers.put("Authorization", "Bearer "+logintoken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("cldbatest","jsonpayload is "+ jsonPayload);
+
+        callapi(headers, jsonPayload, context, querytype, url);
+
+    }
+
     //recce history
     public APIreferenceclass(String logintoken, Context context, int id,  int i){
         String url= "https://acme.warburttons.com/api/supervisor-project/"+ id;

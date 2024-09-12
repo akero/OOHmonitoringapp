@@ -28,9 +28,13 @@
         android:theme="@style/Theme.TestingProject"
         tools:targetApi="31">
         <activity
-            android:name=".activity.dashboard.ZoDashboardActivity"
+            android:name=".activity.dashboard.ProfileActivity"
             android:exported="false"
             android:theme="@style/NoActTheme"/>
+        <activity
+            android:name=".activity.dashboard.ZoDashboardActivity"
+            android:exported="false"
+            android:theme="@style/NoActTheme" />
         <activity
             android:name=".activity.dashboard.AsmDashboardActivity"
             android:exported="false"

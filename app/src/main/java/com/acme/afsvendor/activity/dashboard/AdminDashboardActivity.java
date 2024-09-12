@@ -40,6 +40,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     JSONArray jsonArray3;//vendor array
     ProgressBar progressBar;
     Animation rotateAnimation;
+    String userid;
 
     //todo access token save to memory add to api call
     @Override
@@ -50,7 +51,10 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         binding.rvCampaignList.setLayoutManager(layoutManager);
         Log.d("whichclass", "AdminDashboardActivity");
         Log.d("tg5","2");
+        userid="";
+
         logintoken = FileHelper.readLoginToken(this);
+        userid= FileHelper.readUserId(this);
         Log.d("tg4", logintoken);
 
         //animation code
@@ -586,7 +590,9 @@ Log.d("tag41", "click detected");
     }
 
     public void onProfileClick(View view){
-
+        Intent intent= new Intent(AdminDashboardActivity.this, ProfileActivity.class);;
+        intent.putExtra("userid", userid);
+        startActivity(intent);
         
     }
 

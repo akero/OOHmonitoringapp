@@ -834,6 +834,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/llDimension6"
+
+                android:visibility="gone"
                 android:layout_below="@id/llDimension5"
                 android:orientation="horizontal">
 
@@ -909,6 +911,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/_2sdp">
 
                     <TextView
