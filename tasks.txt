@@ -12,14 +12,16 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
->profile all only on dash page
->admin
+profile all only on dash page
+admin
 vendor
 client
 zo
 asm
 
-change fields for all according to requirements
+check image upload
+
+//change fields for all according to requirements
 
 Client dash
 //edit xml for all fields in viewsitedetail
@@ -33,18 +35,18 @@ Vendor dash
 //add new changes
 cosmetic
 vendor login will change later
-Any Damage -
-if yes then upload photo
-if no then upload photo
+//Any Damage -
+//if yes then upload photo
+//if no then upload photo
 
 
 asm dash
 //design
 
-zo dash
-Any Damage -
-if yes then upload photo
-if no then upload photo
+//zo dash
+//Any Damage -
+//if yes then upload photo
+//if no then upload photo
 
 Admin dash
 
@@ -71,6 +73,7 @@ create
 edit
 delete
 //click
+//add gst, company name, company address along with others
 
 
 There will be 5 logins-
@@ -88,7 +91,7 @@ ASM- Can view sites in his area.(area has to be specified at time of creation fr
 //Outsource- Can see sites assigned to him in his area/zone. (area has to be specified at time of creation from web admin panel) - skip for now
 
 
-1. Admin Panel:
+//1. Admin Panel:
 
 Outdoor Site Code
 Size (Width and Height ) SQFT also
@@ -105,7 +108,7 @@ Remarks
 Photos
 Signature
 
-2. Vendor Panel
+//2. Vendor Panel
 
 Outdoor Site Code
 Size (Width and Height ) SQFT also
@@ -126,7 +129,7 @@ Any Damage -
 if yes then upload photo
 if no then upload photo
 
-3. Client Panel
+//3. Client Panel
 
 Outdoor Site Code
 Size (Width and Height ) SQFT also
@@ -140,7 +143,7 @@ ASM/ZO Name
 /all Images uploaded by Vendors
 
 
-4. ZO/ASM
+//4. ZO/ASM
 
 Outdoor Site Code
 Size (Width and Height ) SQFT also

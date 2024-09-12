@@ -41,6 +41,9 @@ public class SiteDetail {
     private String any_damage;
     private String vendor_name;
     private String address;
+    private String companyaddress;
+    private String companyname;
+    private String gst;
 
 
     // Getters and Setters for each field
@@ -155,6 +158,30 @@ public class SiteDetail {
 
     public void setAddress(String id) {
         this.address = id;
+    }
+
+    public String getCompanyAddress() {
+        return companyaddress;
+    }
+
+    public void setCompanyAddress(String id) {
+        this.companyaddress = id;
+    }
+
+    public String getCompanyName() {
+        return companyname;
+    }
+
+    public void setCompanyName(String id) {
+        this.companyname = id;
+    }
+
+    public String getGst() {
+        return gst;
+    }
+
+    public void setGst(String id) {
+        this.gst = id;
     }
 
     public String getOwnername() {

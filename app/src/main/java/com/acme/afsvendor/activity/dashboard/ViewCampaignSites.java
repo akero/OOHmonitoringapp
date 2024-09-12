@@ -301,7 +301,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                     .putExtra("campaignType", "old")
                     .putExtra("clientId", clientid)
                     .putExtra("camefrom", camefrom)
-                    .putExtra("siteNumber", id)
+                    .putExtra("sitenumber", id)
                     .putExtra("logintoken", logintoken)
                     .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                     .putExtra("idarray", idarray));

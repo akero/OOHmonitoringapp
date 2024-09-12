@@ -325,7 +325,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
             startActivity(new Intent(this, ViewSiteDetailActivity.class)
                     .putExtra("campaignType", "old")
                     .putExtra("sitenumber", id)
-                    .putExtra("camefrom", "AsmDashboartActivity")
+                    .putExtra("camefrom", "ZoDashboardActivity")
                     .putExtra("campaignId", idofcampaign)
                     .putExtra("logintoken", logintoken)
                     .putExtra("vendorclientorcampaign", vendorclientorcampaign)

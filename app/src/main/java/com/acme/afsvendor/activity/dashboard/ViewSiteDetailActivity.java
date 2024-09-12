@@ -29,6 +29,7 @@ import androidx.databinding.DataBindingUtil;
 import com.acme.afsvendor.R;
 import com.acme.afsvendor.databinding.ActivityViewSiteDetailBinding;
 import com.acme.afsvendor.databinding.ActivityViewSiteDetailVendorBinding;
+import com.acme.afsvendor.databinding.ActivityViewSiteDetailVendorRealBinding;
 import com.acme.afsvendor.utility.RoundRectCornerImageView;
 import com.acme.afsvendor.viewmodel.APIreferenceclass;
 import com.acme.afsvendor.viewmodel.ApiInterface;
@@ -59,6 +60,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
     String camefrom;
     private ActivityViewSiteDetailBinding binding;
     private ActivityViewSiteDetailVendorBinding binding1;
+
+    private ActivityViewSiteDetailVendorRealBinding binding2;
 
     //TODO populate all fields. pass api call data from prev activity
     //have to pass logintoken and siteid
@@ -101,10 +104,17 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
 
 
-        if(!camefrom.equals("ViewVendorSites")){
+        if(!camefrom.equals("ViewVendorSites")&&!camefrom.equals("AsmDashboardActivity")&&!camefrom.equals("ZoDashboardActivity")){
             binding = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail);
         }else{
-            binding1 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor);
+            if(!camefrom.equals("ViewVendorSites")) {
+                binding1 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor);
+            }else{
+
+
+                binding2 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor_real);
+
+            }
             Log.d("camera", "click registered");
 
             Button btn= findViewById(R.id.btnUpdatePhoto);
@@ -141,7 +151,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             }
 
             if(camefrom.equals("ViewVendorSites")){
-                binding1.btnNext.setVisibility(View.GONE);
+                binding2.btnNext.setVisibility(View.GONE);
             }
 
             if(camefrom.equals("contentotp")){
@@ -541,6 +551,13 @@ out.close();
                         siteDetail.setVendorname(dataObject.optString("vendor_name"));
                         siteDetail.setAddress(dataObject.optString("address"));
 
+                        if(camefrom.equals("ViewVendorSites")){
+                            siteDetail.setCompanyAddress(dataObject.optString("company_address"));
+                            siteDetail.setCompanyName(dataObject.optString("company_name"));
+                            siteDetail.setGst(dataObject.optString("gst"));
+
+                        }
+
                         //siteDetail.setCreatedAt(dataObject.optString("created_at"));
                         //siteDetail.setEndDate(dataObject.optString("end_date"));
                         siteDetail.setLatitude(dataObject.optString("lat"));
@@ -629,6 +646,21 @@ out.close();
 
                                 TextView tvEndDate = findViewById(R.id.tvEndDate);
                                 tvEndDate.setText(siteDetail.getDistrict());
+
+                                if(camefrom.equals("ViewVendorSites")){
+                                    try {
+                                        TextView companyname = findViewById(R.id.tvHeigh6);
+                                        companyname.setText(siteDetail.getCompanyName());
+
+                                        TextView companyaddress = findViewById(R.id.tvHeigh7);
+                                        companyaddress.setText(siteDetail.getCompanyAddress());
+
+                                        TextView gst = findViewById(R.id.tvWidt6);
+                                        gst.setText(siteDetail.getGst());
+                                    }catch (Exception e){
+                                        Log.d("adgd", e.toString());
+                                    }
+                                }
 
                                 // Set the site number
                                 //TextView tvSiteNo = findViewById(R.id.etSiteNo);

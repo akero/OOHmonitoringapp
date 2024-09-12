@@ -323,7 +323,7 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
             startActivity(new Intent(this, ViewSiteDetailActivity.class)
                     .putExtra("campaignType", "old")
                     .putExtra("sitenumber", id)
-                    .putExtra("camefrom", "AsmDashboartActivity")
+                    .putExtra("camefrom", "AsmDashboardActivity")
                     .putExtra("campaignId", idofcampaign)
                     .putExtra("logintoken", logintoken)
                     .putExtra("vendorclientorcampaign", vendorclientorcampaign)

@@ -96,7 +96,7 @@
                     android:background="@drawable/primarystroke"
                     android:fontFamily="@font/dmsansbold"
                     android:onClick="btnUpdateClick"
-                    android:text="Update Site Photograph"
+                    android:text="Any Damage?"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />

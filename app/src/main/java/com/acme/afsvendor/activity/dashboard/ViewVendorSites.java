@@ -321,7 +321,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
             // Start new activity and pass the retrieved data
             startActivity(new Intent(this, ViewSiteDetailActivity.class)
                     .putExtra("campaignType", "old")
-                    .putExtra("siteNumber", id)
+                    .putExtra("sitenumber", id)
                     .putExtra("camefrom", "ViewVendorSites")
                     .putExtra("campaignId", idofcampaign)
                     .putExtra("logintoken", logintoken)
