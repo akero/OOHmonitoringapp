@@ -117,7 +117,7 @@
             android:paddingRight="26dp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:fontFamily="@font/dmsansbold"
-            android:text="Welcome To\nAhaan Printing and Retail"
+            android:text="Welcome To\nDalmia Cement"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_20ssp" />
 

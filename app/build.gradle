@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.acme.afsvendor"
+        applicationId "com.acme.oohvendor"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -33,7 +33,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    namespace 'com.acme.afsvendor'
+    namespace 'com.acme.oohvendor'
 }
 
 dependencies {

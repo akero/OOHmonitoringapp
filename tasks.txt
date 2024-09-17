@@ -12,20 +12,41 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
+recce code
 images test
-change name
+//profile test
+cosmetics
+//asm zo vendor send name in login instead of area
+change site url, active urls are 1001 to 7
+
+//login
+//vendor profile add employee id
+//state and vendor name filter in admin. vendor/state name api
+//prefill data in add site vendor
 
 
->profile all only on dash page
->save button api call
+
+
+autologin all dash- optional
+load photos in dash- optional
+
+
+//change recce design
+
+
+//get dalmia logos
+//add the changes to vendor login
+//change name and graphics
+//change name
+//crud
+//profile all only on dash page
+//save button api call
 
 admin
 vendor
 client
 zo
 asm
-
-check image upload
 
 //change fields for all according to requirements
 
@@ -710,3 +731,13 @@ adding site POST not allowed- pending backend- need to add to formdata- pending
 //apireference continue in otp once backend is done
 //store token on login in loginactivity
 //performance optimizations
+//vendor
+//client
+//admin
+//asm
+//zo
+//all dash add title
+//logout all dash
+//back button all
+//no data on empty area
+//logo resize

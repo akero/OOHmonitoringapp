@@ -1,0 +1,13 @@
+/zone 
+/area 
+/vendor name
+/zo name
+/any damage?
+
+remove- 
+//shop name
+/owner name rename to vendor name
+/owner email mobile alternate alternate shop your name asm number
+/does owner approve change to any damage?
+//location
+/rename owner signature to Your signature

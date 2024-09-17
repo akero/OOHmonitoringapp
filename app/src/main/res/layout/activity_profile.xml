@@ -18,16 +18,27 @@
             <ImageView
                 android:layout_width="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/back"
+                android:src="@drawable/dalmia_logo" />
+
+            <ImageView
+                android:id= "@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/acmelogo" />
+                android:clickable="true"
+                android:onClick="back"
+                android:src="@drawable/back" />
+
 
             <ImageView
                 android:id="@+id/ivNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:onClick="onNotificationClick"
-                android:visibility="gone"
+                android:onClick="logout"
+                android:clickable="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:src="@drawable/ic_notification" />
@@ -81,7 +92,7 @@
                     android:layout_below="@id/tvAddSiteDetail"
                     android:layout_above="@id/llUnit"/>
 
-                <com.acme.afsvendor.utility.RoundRectCornerImageView
+                <com.acme.oohvendor.utility.RoundRectCornerImageView
                     android:id="@+id/ivCampaignImage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_120sdp"
@@ -396,7 +407,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/llDimension"
                     android:layout_below="@id/tvTotalArea"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -450,6 +461,40 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tvWidthTex"
                             android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/primarystroke"
+                            android:fontFamily="@font/dmsansregular"
+                            android:textColorHint="@color/texthintcolor"
+                            android:padding="@dimen/_8sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/_2sdp">
+
+                        <TextView
+                            android:id="@+id/tvEmployeeid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dmsansregular"
+                            android:text="Employee id"
+                            android:visibility="gone"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <EditText
+                            android:id="@+id/tvemployeeid1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvEmployeeid"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:visibility="gone"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
                             android:background="@drawable/primarystroke"
                             android:fontFamily="@font/dmsansregular"
                             android:textColorHint="@color/texthintcolor"

@@ -19,7 +19,7 @@
                 android:layout_width="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/acmelogo" />
+                android:src="@drawable/dalmia_logo" />
 
             <ImageView
                 android:id="@+id/ivNotification"
@@ -79,7 +79,7 @@
                     android:layout_below="@id/tvAddSiteDetail"
                     android:layout_above="@id/llUnit"/>
 
-                <com.acme.afsvendor.utility.RoundRectCornerImageView
+                <com.acme.oohvendor.utility.RoundRectCornerImageView
                     android:id="@+id/ivCampaignImage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_120sdp"

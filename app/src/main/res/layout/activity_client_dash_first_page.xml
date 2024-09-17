@@ -28,21 +28,57 @@
             <ImageView
                 android:layout_width="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/acmelogo" />
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/back"
+                android:src="@drawable/dalmia_logo" />
 
             <ImageView
-                android:id="@+id/ivNotification"
+                android:id= "@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:clickable="true"
+                android:onClick="back"
+                android:src="@drawable/back" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:visibility="gone"
-                android:onClick="onNotificationClick"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_centerVertical="true">
+                <ImageView
+                    android:id="@+id/ivAddSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="1dp"
+                    android:visibility="gone"
+                    android:onClick="onAddSiteClick"
+                    android:layout_toLeftOf="@+id/ivProfile"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/plus" />
 
-                android:src="@drawable/ic_notification" />
+                <ImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onProfileClick"
+
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/profile" />
+
+                <ImageView
+                    android:id="@+id/ivNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="logout"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="3dp"
+                    android:paddingStart="2dp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/ic_notification" />
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -56,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:id= "@+id/linearlayout"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
@@ -63,7 +100,7 @@
                     android:layout_width="57dp"
                     android:layout_height="70dp"
                     android:scaleType= "fitCenter"
-                    android:src= "@drawable/acmelogo"
+                    android:src= "@drawable/dalmia_logo"
                     />
 
                 <LinearLayout
@@ -194,6 +231,7 @@
                 android:layout_height="1dp"
                 android:elevation= "1dp"
                 android:id= "@+id/line"
+                android:visibility="gone"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#D9D9D9"
@@ -207,6 +245,7 @@
                 android:background="@drawable/yellowround"
                 android:layout_below= "@+id/line"
                 android:elevation="5dp"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/_3sdp"
                 android:paddingTop="@dimen/_5sdp"
@@ -248,11 +287,37 @@
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tvCampaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/dmsansregular"
+                android:layout_below="@id/ll_compaign"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="All Projects"
+                android:layout_marginStart="16dp"
+                android:textColor="#071116"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text= "No Data!"
+                android:visibility="gone"
+                android:elevation="2dp"
+                android:textColor="#D3D3D3"
+                android:textSize="24sp"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCampaignList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/ll_compaign"
+                android:layout_below="@+id/tvCampaign"
                 android:layout_marginBottom="@dimen/_5sdp" />
         </RelativeLayout>
 
@@ -263,6 +328,7 @@
             android:layout_above="@+id/abc"
             android:layout_marginBottom="@dimen/_50sdp"
             android:onClick="onPlusClick"
+            android:visibility="gone"
             android:id="@+id/ivPlus"
             android:src="@drawable/ic_add" />
 

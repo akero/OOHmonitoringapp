@@ -29,18 +29,57 @@
             <ImageView
                 android:layout_width="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/acmelogo" />
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/back"
+                android:src="@drawable/dalmia_logo" />
+
             <ImageView
-                android:id="@+id/ivNotification"
+                android:id= "@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:clickable="true"
+                android:onClick="back"
+                android:src="@drawable/back" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onNotificationClick"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:src="@drawable/ic_notification" />
+                android:layout_centerVertical="true">
+                <ImageView
+                    android:id="@+id/ivAddSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="1dp"
+                    android:visibility="gone"
+                    android:onClick="onAddSiteClick"
+                    android:layout_toLeftOf="@+id/ivProfile"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/plus" />
+
+                <ImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onProfileClick"
+
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/profile" />
+
+                <ImageView
+                    android:id="@+id/ivNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="logout"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="3dp"
+                    android:paddingStart="2dp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/ic_notification" />
+            </LinearLayout>
         </RelativeLayout>
 
         <TextView
@@ -53,7 +92,7 @@
             android:layout_below="@id/topBar"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginLeft="16dp"
-            android:text="All Sites"
+            android:text="ZO Dashboard"
             android:textColor="#071116"
             android:textSize="24sp" />
 
@@ -69,6 +108,17 @@
             android:layout_marginBottom="@dimen/_5sdp"
             >
 
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text= "No Data!"
+                android:visibility="gone"
+                android:elevation="2dp"
+                android:textColor="#D3D3D3"
+                android:textSize="24sp"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCampaignList"
