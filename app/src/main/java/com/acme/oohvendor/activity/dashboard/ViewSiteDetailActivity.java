@@ -49,15 +49,15 @@ import java.util.Date;
 import java.util.StringTokenizer;
 
 public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInterface, LocationCallback {
-    private final Context ctxt= this;
+    private final Context ctxt = this;
 
     private String campaignType = "";
     static final int REQUEST_TAKE_PHOTO = 1;
 
     private int position = 0;
-    String siteNumber= "";
-    String logintoken="";
-    String campaignId="";
+    String siteNumber = "";
+    String logintoken = "";
+    String campaignId = "";
     String camefrom;
     private ActivityViewSiteDetailBinding binding;
     private ActivityViewSiteDetailVendorBinding binding1;
@@ -77,124 +77,123 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         if (getIntent().getExtras() != null) {
             Log.d("tag41", "2");
 
-            idarray= null;
+            idarray = null;
             campaignId = getIntent().getExtras().getString("campaignId", "");
             campaignType = getIntent().getExtras().getString("campaignType", "");
-            siteNumber= getIntent().getExtras().getString("sitenumber", "");
-            logintoken= getIntent().getExtras().getString("logintoken","");
-            camefrom= getIntent().getExtras().getString("camefrom", "");
+            siteNumber = getIntent().getExtras().getString("sitenumber", "");
+            logintoken = getIntent().getExtras().getString("logintoken", "");
+            camefrom = getIntent().getExtras().getString("camefrom", "");
 
             Log.d("camefrom", camefrom);
             try {
                 idarray = getIntent().getExtras().getStringArray("idarray");
-                for(int i= 0; i<idarray.length; i++){
+                for (int i = 0; i < idarray.length; i++) {
                     Log.d("idarray", idarray[i]);
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 Log.d("tag22", e.toString());
             }
 
-            picturetaken= false;
-            latlong= "";
-            locationtaken= false;
+            picturetaken = false;
+            latlong = "";
+            locationtaken = false;
             locationHelper = new LocationHelper();
 
 
-            Log.d("tag1001", campaignType+" "+ campaignId+" "+ siteNumber+" "+ logintoken+" "+ camefrom);
+            Log.d("tag1001", campaignType + " " + campaignId + " " + siteNumber + " " + logintoken + " " + camefrom);
 
 
+            if (!camefrom.equals("ViewVendorSites") && !camefrom.equals("AsmDashboardActivity") && !camefrom.equals("ZoDashboardActivity")) {
+                binding = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail);
+            } else {
+                if (!camefrom.equals("ViewVendorSites")) {
+                    binding1 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor);
+                } else {
 
-        if(!camefrom.equals("ViewVendorSites")&&!camefrom.equals("AsmDashboardActivity")&&!camefrom.equals("ZoDashboardActivity")){
-            binding = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail);
-        }else{
-            if(!camefrom.equals("ViewVendorSites")) {
-                binding1 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor);
-            }else{
 
+                    binding2 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor_real);
 
-                binding2 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor_real);
-
-            }
-            Log.d("camera", "click registered");
-
-            Button btn= findViewById(R.id.btnUpdatePhoto);
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("camera", "click registered");
-                    if (ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
-
-                        Toast.makeText(ViewSiteDetailActivity.this, "Please give camera and location permissions", Toast.LENGTH_SHORT).show();
-
-                        ActivityCompat.requestPermissions(ViewSiteDetailActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
-                        Log.d("camera", "dont have permission");
-                    } else {
-
-                       // temporaryuploadchecker();
-                        latlong();
-                        Log.d("latlong", latlong);
-                        //TODO uncomment
-                        openCamera();
-                    }
                 }
+                Log.d("camera", "click registered");
 
-            });
-        }
+                Button btn = findViewById(R.id.btnUpdatePhoto);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("camera", "click registered");
+                        if (ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
 
-            if(camefrom.equals("ClientDashBoardActivity")){
+                            Toast.makeText(ViewSiteDetailActivity.this, "Please give camera and location permissions", Toast.LENGTH_SHORT).show();
+
+                            ActivityCompat.requestPermissions(ViewSiteDetailActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+                            Log.d("camera", "dont have permission");
+                        } else {
+
+                            // temporaryuploadchecker();
+                            latlong();
+                            Log.d("latlong", latlong);
+                            //TODO uncomment
+                            openCamera();
+                        }
+                    }
+
+                });
+            }
+
+            if (camefrom.equals("ClientDashBoardActivity")) {
                 binding.btnNext.setVisibility(View.GONE);
             }
 
-            if(camefrom.equals("admindashvendorsites")){
+            if (camefrom.equals("admindashvendorsites")) {
                 binding.btnNext.setVisibility(View.GONE);
 
             }
 
-            if(camefrom.equals("ViewVendorSites")){
+            if (camefrom.equals("ViewVendorSites")) {
                 binding2.btnNext.setVisibility(View.GONE);
             }
 
-            if(camefrom.equals("contentotp")){
-               binding.btnNext.setVisibility(View.GONE);
+            if (camefrom.equals("contentotp")) {
+                binding.btnNext.setVisibility(View.GONE);
             }
 
             Log.d("tg2", siteNumber);
         }
 
         //buttons to move to next or prev site
-        ImageView left= findViewById(R.id.lefticon);
-        left.setOnClickListener(new View.OnClickListener(){
+        ImageView left = findViewById(R.id.lefticon);
+        left.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
-                String prevSite= "";
-                for(int i=0; i<idarray.length;i++){
-                    if(idarray[i].equals(siteNumber)){
-                        if(!prevSite.equals("")){
-                            siteNumber= prevSite;
+            public void onClick(View v) {
+                String prevSite = "";
+                for (int i = 0; i < idarray.length; i++) {
+                    if (idarray[i].equals(siteNumber)) {
+                        if (!prevSite.equals("")) {
+                            siteNumber = prevSite;
                             apicall(logintoken, prevSite);
                             break;
                         }
-                    }else{
-                        prevSite= idarray[i];
+                    } else {
+                        prevSite = idarray[i];
                     }
                 }
             }
 
         });
 
-        ImageView right= findViewById(R.id.righticon);
-        right.setOnClickListener(new View.OnClickListener(){
+        ImageView right = findViewById(R.id.righticon);
+        right.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
-                String nextSite= "";
-                for(int i=0; i<idarray.length;i++){
-                    if(idarray[i].equals(siteNumber)){
-                        if(i!=idarray.length-1){
-                            nextSite= idarray[i+1];
-                            siteNumber= nextSite;
+            public void onClick(View v) {
+                String nextSite = "";
+                for (int i = 0; i < idarray.length; i++) {
+                    if (idarray[i].equals(siteNumber)) {
+                        if (i != idarray.length - 1) {
+                            nextSite = idarray[i + 1];
+                            siteNumber = nextSite;
                             apicall(logintoken, nextSite);
                             break;
                         }
@@ -203,7 +202,6 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             }
 
         });
-
 
 
         //= "";
@@ -220,26 +218,26 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
     @Override
     public void callback(String a) {
-        if(!locationtaken) {
+        if (!locationtaken) {
             latlong = a;
             locationtaken = true;
-            if(picturetaken) {
+            if (picturetaken) {
                 apicallforvendorimageupdate(latlong, imageUri);
             }
         }
-        Log.d("tag22", "inside callback, latlong "+ latlong+ "locationtaken"+ locationtaken);
+        Log.d("tag22", "inside callback, latlong " + latlong + "locationtaken" + locationtaken);
     }
 
     private static final String[] REQUIRED_PERMISSIONS = {
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_COARSE_LOCATION
             //Manifest.permission.MANAGE_EXTERNAL_STORAGE
-            ,Manifest.permission.READ_EXTERNAL_STORAGE
+            , Manifest.permission.READ_EXTERNAL_STORAGE
     };
 
     private static final int REQUEST_CODE_PERMISSIONS = 123;
 
-    void latlong(){
+    void latlong() {
 
         locationHelper.requestLocationPermission(this, this);
     }
@@ -253,7 +251,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             boolean cameraGranted = false;
             boolean locationGranted = false;
-            boolean storageGranted= false;
+            boolean storageGranted = false;
             for (int i = 0; i < permissions.length; i++) {
                 if (permissions[i].equals(Manifest.permission.CAMERA) && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     cameraGranted = true;
@@ -271,7 +269,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             if (cameraGranted && locationGranted) {
                 // Both permissions granted, proceed with your app logic
-               // temporaryuploadchecker();
+                // temporaryuploadchecker();
                 latlong();
                 Log.d("latlong", latlong);
                 //TODO uncomment
@@ -299,16 +297,18 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             }
         }
-    */}
+    */
+    }
+
     public static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
 
-    void temporaryuploadchecker(){
+    void temporaryuploadchecker() {
         File imageFile = new File("/storage/emulated/0/Pictures/image.jpg");
         //TODO handle image here
         Uri imageUri;
         try {
             imageUri = FileProvider.getUriForFile(this, "com.example.android.fileprovider", imageFile);
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("tag22", e.toString());
         }
 
@@ -328,11 +328,12 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
         }
     }
+
     Uri photoURI;
 
     private void openCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        photoURI= null;
+        photoURI = null;
         if (cameraIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
             try {
@@ -350,10 +351,10 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
             }
         } else {
-           Log.d("camera", "no permission1");
+            Log.d("camera", "no permission1");
             Toast.makeText(ViewSiteDetailActivity.this, "Don't have camera permissions", Toast.LENGTH_SHORT).show();
 
-    }
+        }
     }
 
 
@@ -390,7 +391,6 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 Log.d("tag222", imageUri.toString());
 
 
-
                 //String imageuristring= imageUri.toString();
                 //String[] a= imageuristring.split("Pictures/");
                 //imageuristring= a[1];
@@ -421,70 +421,70 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 */
 
 
-                picturetaken= true;
-                if(locationtaken){
+                picturetaken = true;
+                if (locationtaken) {
                     apicallforvendorimageupdate(latlong, imageUri);
                     Log.d("tag22", "activity result works.");
 
                 }
                 Log.d("tag22", "activity result works");
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Image update failed", Toast.LENGTH_SHORT).show();
             }
             // Do something with the imageUri, e.g., display the image or upload it
-        }else{
+        } else {
             Log.d("tag22", "something went wrong");
         }
     }
 
-    void apicallforvendorimageupdate(String latlong, Uri uri){
+    void apicallforvendorimageupdate(String latlong, Uri uri) {
 
-        String logintoken1= "";
+        String logintoken1 = "";
         //response is response1 (with site)
 
         try {
             FileHelper fh = new FileHelper();
             logintoken1 = fh.readLoginToken(this);
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("tag22", e.toString());
         }
-        String siteno= "";
+        String siteno = "";
 
-        try{
-            JSONObject jsonobj1= null;
+        try {
+            JSONObject jsonobj1 = null;
             Log.d("response1", response1);
-            JSONObject jsonobj= new JSONObject(response1);
+            JSONObject jsonobj = new JSONObject(response1);
             Log.d("tag44", jsonobj.toString());
-            if(jsonobj.has("site")) {
+            if (jsonobj.has("site")) {
                 jsonobj1 = jsonobj.getJSONObject("site");
-            }else if(jsonobj.has("datas")){
+            } else if (jsonobj.has("datas")) {
                 jsonobj1 = jsonobj.getJSONObject("datas");
                 latlong();
             }
             Log.d("tag44", jsonobj1.toString());
-            String latitude= "";
-            String longitude= "";
+            String latitude = "";
+            String longitude = "";
 
-            StringTokenizer str= new StringTokenizer(latlong, ",");
-            if(str!= null){
-                latitude= str.nextToken();
-                longitude= str.nextToken();
+            StringTokenizer str = new StringTokenizer(latlong, ",");
+            if (str != null) {
+                latitude = str.nextToken();
+                longitude = str.nextToken();
 
-                Log.d("tag44", "latitude"+ latitude+ "long"+ longitude);
+                Log.d("tag44", "latitude" + latitude + "long" + longitude);
             }
 
             jsonobj1.putOpt("latitude", latitude);
             jsonobj1.putOpt("longitute", longitude);
-            Log.d("tag511", "jsonobj"+jsonobj.toString()+ " jsonobj1"+ jsonobj1.toString()+ "siteno"+ siteno);
+            Log.d("tag511", "jsonobj" + jsonobj.toString() + " jsonobj1" + jsonobj1.toString() + "siteno" + siteno);
 
-            siteno= Integer.toString(jsonobj1.getInt("id"));
+            siteno = Integer.toString(jsonobj1.getInt("id"));
 
             jsonobj1.remove("image");
             jsonobj.putOpt("site", jsonobj1);
 
-            JSONObject jsonobj2= new JSONObject();
+            JSONObject jsonobj2 = new JSONObject();
             jsonobj2.putOpt("campaign_id", jsonobj1.getInt("campaign_id"));
             jsonobj2.putOpt("vendor_id", jsonobj1.getString("vendor_id"));
             jsonobj2.putOpt("site_id", jsonobj1.getString("id"));
@@ -493,7 +493,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
 
             Log.d("tag333", jsonobj.toString());
-            Log.d("livetest", jsonobj.toString()+ "site no"+ siteno+ uri + "jsonobj2"+ jsonobj2.toString());
+            Log.d("livetest", jsonobj.toString() + "site no" + siteno + uri + "jsonobj2" + jsonobj2.toString());
 
             /*compress photoURI here
             // Load the image from a file
@@ -505,10 +505,10 @@ bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out); // 50 is the quality param
 
 out.close();
             * */
-            APIreferenceclass api= new APIreferenceclass(1, ctxt, logintoken1, jsonobj2.toString(), photoURI);
+            APIreferenceclass api = new APIreferenceclass(1, ctxt, logintoken1, jsonobj2.toString(), photoURI);
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("tag41", e.toString());
             e.printStackTrace();
         }
@@ -524,12 +524,12 @@ out.close();
             Log.d("tagresponse is", response);
             JSONObject jsonResponse = new JSONObject(response);
 
-            if(jsonResponse.getInt("status")== 200) {
+            if (jsonResponse.getInt("status") == 200) {
                 JSONObject dataArray = new JSONObject(jsonResponse.getString("data"));
-                if(dataArray != null && dataArray.length() > 0) {
+                if (dataArray != null && dataArray.length() > 0) {
                     JSONObject dataObject = dataArray;
-                    jsonobj= dataObject;
-                    if(dataObject != null) {
+                    jsonobj = dataObject;
+                    if (dataObject != null) {
                         siteDetail = new SiteDetail();
                         siteDetail.setId(dataObject.optInt("id"));
                         siteDetail.setVendorId(dataObject.optString("vendor_id"));
@@ -552,7 +552,7 @@ out.close();
                         siteDetail.setVendorname(dataObject.optString("vendor_name"));
                         siteDetail.setAddress(dataObject.optString("address"));
 
-                        if(camefrom.equals("ViewVendorSites")){
+                        if (camefrom.equals("ViewVendorSites")) {
                             siteDetail.setCompanyAddress(dataObject.optString("company_address"));
                             siteDetail.setCompanyName(dataObject.optString("company_name"));
                             siteDetail.setGst(dataObject.optString("gst"));
@@ -595,11 +595,11 @@ out.close();
 
                         try {
                             String imageUrl = dataObject.optString("image");
-                            imageUrl= "https://ooh.warburttons.com/"+ imageUrl;
-                            Log.d("tag41", "imageurl is "+ imageUrl);
+                            imageUrl = "https://ooh.warburttons.com/" + imageUrl;
+                            Log.d("tag41", "imageurl is " + imageUrl);
                             Log.d("tg2", "image code not executing 1");
 
-                            if(imageUrl != "null" && !imageUrl.isEmpty()) {
+                            if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                 URL url = new URL(imageUrl);
                                 Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                                 Log.d("tg2", "image code executing");
@@ -607,7 +607,7 @@ out.close();
                             }
                         } catch (Exception e) {
                             Log.d("tg2", "image code not executing 2");
-                            Log.d("tag41", "error in implementui" +e.toString());
+                            Log.d("tag41", "error in implementui" + e.toString());
                             Log.e("tag41", "sdfdg", e);
                             // Handle error
                         }
@@ -648,7 +648,7 @@ out.close();
                                 TextView tvEndDate = findViewById(R.id.tvEndDate);
                                 tvEndDate.setText(siteDetail.getDistrict());
 
-                                if(camefrom.equals("ViewVendorSites")){
+                                if (camefrom.equals("ViewVendorSites")) {
                                     try {
                                         TextView companyname = findViewById(R.id.tvHeigh6);
                                         companyname.setText(siteDetail.getCompanyName());
@@ -658,7 +658,7 @@ out.close();
 
                                         TextView gst = findViewById(R.id.tvWidt6);
                                         gst.setText(siteDetail.getGst());
-                                    }catch (Exception e){
+                                    } catch (Exception e) {
                                         Log.d("adgd", e.toString());
                                     }
                                 }
@@ -717,49 +717,49 @@ out.close();
                                 tvHeight11.setText(siteDetail.getAddress());
 
                                 RoundRectCornerImageView tvImage = findViewById(R.id.ivCampaignImage);
-                                if(siteDetail.getImage()!=null) {
+                                if (siteDetail.getImage() != null) {
                                     Log.d("tg2", "image code executing");
                                     tvImage.setImageBitmap(siteDetail.getImage());
                                 }
-                                }
+                            }
                         });
                     }
                 } else {
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(ViewSiteDetailActivity.this, "Error retrieving or parsing data.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ViewSiteDetailActivity.this, "Error retrieving or parsing data.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                 }
-            }else if(jsonResponse.getString("message").equals("Data Saved successfully.")){
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ViewSiteDetailActivity.this, "Image updated successfully", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            }else {
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ViewSiteDetailActivity.this, "Error retrieving or parsing data..", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-            }
-        } catch (Exception e) {
+            } else if (jsonResponse.getString("message").equals("Data Saved successfully.")) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ViewSiteDetailActivity.this, "Image updated successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("tag123", e.toString());
-                        Toast.makeText(ViewSiteDetailActivity.this, "Error retrieving or parsing data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewSiteDetailActivity.this, "Error retrieving or parsing data..", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+            }
+        } catch (Exception e) {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("tag123", e.toString());
+                    Toast.makeText(ViewSiteDetailActivity.this, "Error retrieving or parsing data", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         // Assigning values and listeners to Buttons
@@ -776,59 +776,59 @@ out.close();
         });
 
 */
-            Button btnNext = findViewById(R.id.btnNext);
-            btnNext.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        Button btnNext = findViewById(R.id.btnNext);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    Intent intent= new Intent(ViewSiteDetailActivity.this, AddSiteDetailActivity.class);
-                    intent.putExtra("loginToken", logintoken);
-                    intent.putExtra("campaignId", campaignId);
-                    intent.putExtra("editingsite", "yes");
-                    Log.d("tag000", logintoken+ "| "+ campaignId+"| "+  siteNumber+ "| "+ jsonobj.toString());
-                    Log.d("tag000", siteNumber);
+                Intent intent = new Intent(ViewSiteDetailActivity.this, AddSiteDetailActivity.class);
+                intent.putExtra("loginToken", logintoken);
+                intent.putExtra("campaignId", campaignId);
+                intent.putExtra("editingsite", "yes");
+                Log.d("tag000", logintoken + "| " + campaignId + "| " + siteNumber + "| " + jsonobj.toString());
+                Log.d("tag000", siteNumber);
 
-                    intent.putExtra("siteNumber", siteNumber);
-                    intent.putExtra("siteDetail", jsonobj.toString());
-                    startActivity(intent);
-                }
-            });
+                intent.putExtra("siteNumber", siteNumber);
+                intent.putExtra("siteDetail", jsonobj.toString());
+                startActivity(intent);
+            }
+        });
 
-            Button btnDownload = findViewById(R.id.btnDownload);
-            btnDownload.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onDownloadClick(v);
-                    // Handle download button click
-                }
-            });
+        Button btnDownload = findViewById(R.id.btnDownload);
+        btnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDownloadClick(v);
+                // Handle download button click
+            }
+        });
 
-            Button btnClose = findViewById(R.id.btnClose);
-            btnClose.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Handle close button click
-                    finish();
-                }
-            });
-        }
+        Button btnClose = findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle close button click
+                finish();
+            }
+        });
+    }
 
-    void apicall(String logintoken, String siteNumber){
+    void apicall(String logintoken, String siteNumber) {
 
         Log.d("tag41", "6");
-        Context context= this;
-        APIreferenceclass api= new APIreferenceclass(logintoken, siteNumber, context);
+        Context context = this;
+        APIreferenceclass api = new APIreferenceclass(logintoken, siteNumber, context);
         Log.d("tag41", "7");
     }
 
-    public String response1="";
+    public String response1 = "";
 
     @Override
-    public void onResponseReceived(String response){
+    public void onResponseReceived(String response) {
 
-        response1= response;
+        response1 = response;
         Log.d("tag41 response is", response);
-        response1= response;
+        response1 = response;
         implementUI(response);
 
     }
@@ -842,7 +842,7 @@ out.close();
         // finish();
     }
 
-    public void onNotificationClick(View view){
+    public void onNotificationClick(View view) {
         //TODO ask dev what this does
     }
 
@@ -877,27 +877,26 @@ out.close();
         }
     }
 
-    void writeToFile(String response, Context context){
-        String name="logintoken";
-        String content= response;
-        FileOutputStream fostream= null;
+    void writeToFile(String response, Context context) {
+        String name = "logintoken";
+        String content = response;
+        FileOutputStream fostream = null;
 
-        try{
-            fostream= context.openFileOutput(name,Context.MODE_PRIVATE);
+        try {
+            fostream = context.openFileOutput(name, Context.MODE_PRIVATE);
             fostream.write(response.getBytes());
             fostream.close();
 
-        }catch(Exception e){
-            Log.d("tag24", "error-" +e.toString());
-        }
-        finally{
-            try{
+        } catch (Exception e) {
+            Log.d("tag24", "error-" + e.toString());
+        } finally {
+            try {
 
-                if(fostream!=null){
+                if (fostream != null) {
                     fostream.close();
                 }
-            }catch(Exception e){
-                Log.d("tag25","Closing outputstream failed");
+            } catch (Exception e) {
+                Log.d("tag25", "Closing outputstream failed");
             }
         }
     }
@@ -943,19 +942,19 @@ out.close();
 
     private static final int PERMISSION_REQUEST_CODE = 1;
 
- /*   private boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
-    }
+    /*   private boolean checkPermission() {
+           int result = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+           int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+           return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
+       }
 
-    private void requestPermission() {
+       private void requestPermission() {
 
-        Log.d("tag45","5");
-        View v= null;
-        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-    }
-*/
+           Log.d("tag45","5");
+           View v= null;
+           ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+       }
+   */
    /* private long downloadReference;
     private BroadcastReceiver onDownloadComplete;
 
@@ -991,20 +990,9 @@ out.close();
         super.onDestroy();
     }
 
- /*   @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            //Bundle extras = data.getExtras();
-            //Bitmap imageBitmap = (Bitmap) extras.get("data");
-            Uri imageUri = data.getData();
-            APIreferenceclass api= new APIreferenceclass(imageUri);
-
-        }
-    }*/
- public void back(View v){
-     onBackPressed();
- }
+    public void back(View v) {
+        onBackPressed();
+    }
 
     public void logout(View v) {
 
@@ -1012,12 +1000,23 @@ out.close();
             FileHelper fh = new FileHelper();
             fh.writeUserType(this, "");
 
-            Intent intent= new Intent(ViewSiteDetailActivity.this, OTP.class);
+            Intent intent = new Intent(ViewSiteDetailActivity.this, OTP.class);
             startActivity(intent);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void history(View v) {
+
+        try {
+            Intent intent = new Intent(ViewSiteDetailActivity.this, History.class);
+            intent.putExtra("siteNumber", siteNumber);
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

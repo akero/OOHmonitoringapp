@@ -15,6 +15,7 @@ import com.acme.oohvendor.activity.dashboard.AsmDashboardActivity;
 import com.acme.oohvendor.activity.dashboard.CampaignListActivity;
 import com.acme.oohvendor.activity.dashboard.ClientDashBoardActivity;
 import com.acme.oohvendor.activity.dashboard.ClientDashFirstPage;
+import com.acme.oohvendor.activity.dashboard.History;
 import com.acme.oohvendor.activity.dashboard.RecceHistory;
 import com.acme.oohvendor.activity.dashboard.RecceInstallation;
 import com.acme.oohvendor.activity.dashboard.ViewCampaignSites;
@@ -138,6 +139,8 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
                 ((AsmDashboardActivity) context).onItemClick(position);
             }else if (context instanceof ZoDashboardActivity) {
                 ((ZoDashboardActivity) context).onItemClick(position);
+            }else if (context instanceof History) {
+                ((History) context).onItemClick(position);
             }
             });
         } catch (Exception e) {

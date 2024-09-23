@@ -57,6 +57,19 @@
                     android:src="@drawable/profile" />
 
                 <ImageView
+                    android:id="@+id/ivHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="history"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="3dp"
+                    android:paddingStart="2dp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/history" />
+
+                <ImageView
                     android:id="@+id/ivNotification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
