@@ -2,7 +2,7 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path
         name="external_files"
-        path="Android/data/com.acme.afsvendor/files/" />
+        path="Android/data/com.acme.oohvendor/files/" />
     <files-path name="files" path="./" />
     <files-path name="my_images" path="." />
 </paths>

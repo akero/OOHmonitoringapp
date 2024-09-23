@@ -70,6 +70,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
     static final int REQUEST_TAKE_PHOTO = 1;
     private final Context ctxt = this;
     String selectedClient;
+    String userid;
 
     boolean pictureandlatlongready; //in imageUri and latlong
 
@@ -91,6 +92,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
     ProgressBar progressBar;
     Animation rotateAnimation;
     public static final int REQUEST_SIGN= 1;
+    String vendorid;
 
 
     @Override
@@ -104,6 +106,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             asm_name = savedInstanceState.getString("asm_name");
             asm_contact = savedInstanceState.getString("asm_contact");
             retailer_code= savedInstanceState.getString("retailer_code");
+
         }
 
         Log.d("whichclass", "addsiteactivity");
@@ -115,7 +118,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         asm_contact= "";
         currentDate= "";
         owneraltno= "";
-        ownerpermission= "Accepted";
+        ownerpermission= "Rejected";
         brand= "";
         wassendbuttonpressed= false;
         clientspinnerboolean= 0;
@@ -156,6 +159,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         try {
             FileHelper fh = new FileHelper();
             logintoken = fh.readLoginToken(this);
+            userid= fh.readUserId(this);
 
         } catch (Exception e) {
             Log.d("tg223", e.toString());
@@ -325,8 +329,8 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         binding.btnFetch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                APIreferenceclass api= new APIreferenceclass( ctxt, logintoken, binding.etFetch.getText().toString().toUpperCase());
+                Log.d("abcxyz", binding.etFetch.getText().toString()+ " "+ userid);
+                APIreferenceclass api= new APIreferenceclass( ctxt, logintoken, binding.etFetch.getText().toString().toUpperCase(), userid, "a");
             }
         });
 
@@ -490,7 +494,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
         try{
 
-            String vendorid= "";
+            vendorid= "";
             vendorid= getIntent().getStringExtra("vendorid");
             Log.d("xyz", vendorid);
             APIreferenceclass api= new APIreferenceclass(this, logintoken, vendorid, "a");
@@ -533,19 +537,36 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             jsonPayload.put("state", binding.etWidth1.getText().toString());
             jsonPayload.put("district", binding.etHeight2.getText().toString());
             jsonPayload.put("city", binding.etWidth2.getText().toString());
-            jsonPayload.put("retail_name", binding.etHeight3.getText().toString());
+            //jsonPayload.put("retail_name", binding.etHeight3.getText().toString());
             jsonPayload.put("length", binding.etHeight.getText().toString());
             jsonPayload.put("width", binding.etWidth.getText().toString());
             jsonPayload.put("code", binding.etFetch.getText().toString());
-            jsonPayload.put("shop_owner_status", ownerpermission);
-            jsonPayload.put("brand", binding.etBrand.getText().toString());
-            jsonPayload.put("owner_alt_num", binding.etOwnerAlternateNumber.getText().toString());
-            jsonPayload.put("alternate_shop_name", binding.etBrand.getText().toString());
+            //jsonPayload.put("shop_owner_status", ownerpermission);
+            //jsonPayload.put("brand", binding.etBrand.getText().toString());
+            //jsonPayload.put("owner_alt_num", binding.etOwnerAlternateNumber.getText().toString());
+            //jsonPayload.put("alternate_shop_name", binding.etBrand.getText().toString());
+
+
+            jsonPayload.put("zone", binding.etHeight22.getText().toString());
+            jsonPayload.put("area", binding.etWidth22.getText().toString());
+            jsonPayload.put("zo_name", binding.etHeight222.getText().toString());
+            jsonPayload.put("vendor_name", binding.etHeight4.getText().toString());
+            jsonPayload.put("vendor_id", vendorid);
+            if(ownerpermission.equals("Accepted")) {
+                jsonPayload.put("any_damage", "yes");
+            }else{
+                jsonPayload.put("any_damage", "no");
+            }
+
+            //TODO
+            jsonPayload.put("address", address);
+            jsonPayload.put("status", "");
+
 
             try {
                 double area= Double.parseDouble( binding.etHeight.getText().toString())*Double.parseDouble( binding.etWidth.getText().toString());
                 Log.d("area", String.valueOf(area));
-                jsonPayload.put("area", String.valueOf(area));
+                jsonPayload.put("total", String.valueOf(area));
 
             } catch (NumberFormatException e) {
                 // Handle the case where the input is not a valid double
@@ -555,23 +576,23 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
             //jsonPayload.put("area", binding.etWidth.getText().toString());
             jsonPayload.put("date", binding.etWidth3.getText().toString());
-            jsonPayload.put("owner_name", binding.etHeight4.getText().toString());
-            Log.d("owner name", binding.etHeight4.getText().toString());
-            jsonPayload.put("email", binding.etWidth4.getText().toString());
+            //jsonPayload.put("owner_name", binding.etHeight4.getText().toString());
+            //Log.d("owner name", binding.etHeight4.getText().toString());
+            //jsonPayload.put("email", binding.etWidth4.getText().toString());
 
-            Log.d("owner email", binding.etWidth4.getText().toString());
-            jsonPayload.put("mobile", binding.etHeight5.getText().toString());
-            Log.d("owner mobile", binding.etHeight5.getText().toString());
+            //Log.d("owner email", binding.etWidth4.getText().toString());
+            //jsonPayload.put("mobile", binding.etHeight5.getText().toString());
+            //Log.d("owner mobile", binding.etHeight5.getText().toString());
             jsonPayload.put("remarks", binding.etTotalArea.getText().toString());
-            jsonPayload.put("location", binding.etTotalArea1.getText().toString());
+            //jsonPayload.put("location", binding.etTotalArea1.getText().toString());
             //jsonPayload.put("area", binding.area.getText().toString());
             jsonPayload.put("lat", lat);
             //jsonPayload.put("client_id", selectedClient);
             jsonPayload.put("long", longitude);
-            jsonPayload.put("retailer_code", retailer_code);
+            //jsonPayload.put("retailer_code", retailer_code);
             jsonPayload.put("asm_name", asm_name);
-            jsonPayload.put("asm_mobile", asm_contact);
-            jsonPayload.put("division", division);
+            //jsonPayload.put("asm_mobile", asm_contact);
+            //jsonPayload.put("division", division);
 
 
             FileHelper fh = new FileHelper();
@@ -660,7 +681,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         }
         if (photoFile != null) {
             photoURI = FileProvider.getUriForFile(AddSiteActivity.this,
-                    "com.acme.afsvendor.fileprovider",
+                    "com.acme.oohvendor.fileprovider",
                     photoFile);
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
@@ -710,7 +731,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
             try {
                 imageUri = FileProvider.getUriForFile(this,
-                        "com.acme.afsvendor.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         createImageFile());
                 imageUri1= imageUri;
                 Log.d("tag222", imageUri.toString());
@@ -936,7 +957,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                         clientlist(response);
                     }
                 });
-            }else if(jsono.getString("message").equals("Data fetched successfully!")&& response.contains("site_code")){
+            }else if(jsono.getString("message").equals("Data fetched successfully!")&& response.contains("retailer_code")){
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -950,7 +971,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 });
 
             }
-            else if(jsono.getString("message").equals("Data fetched successfully!")&& !response.contains("site_code")){
+            else if(jsono.getString("message").equals("Data fetched successfully!")&& !response.contains("retailer_code")){
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -1125,6 +1146,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         retailer_code= savedInstanceState.getString("retailer_code");
     }
 
+    String address;
 
     void fillretailerdata(String response){
 
@@ -1133,10 +1155,12 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             JSONObject jsonobj = new JSONObject(response);
             JSONObject jsonobj1= jsonobj.getJSONObject("data");
 
+            address= "";
             retailer_code= jsonobj1.optString("retailer_code", "");
             division= jsonobj1.optString("division", "");
             asm_name= jsonobj1.optString("asm_name", "");
             asm_contact= jsonobj1.optString("asm_contact", "");
+            address= jsonobj1.optString("address", "");
 
             binding.etHeight3.setText(jsonobj1.getString("retailer_name"));
             if(!TextUtils.isEmpty(binding.etHeight3.getText())){
@@ -1270,7 +1294,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
 
         }catch (Exception e){
-            Log.d("tag333", e.toString());
+            Log.d("tag3334", e.toString());
         }
 
     }

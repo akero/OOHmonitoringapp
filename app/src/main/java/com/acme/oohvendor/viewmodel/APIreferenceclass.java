@@ -690,9 +690,9 @@ public class APIreferenceclass {
 
     //asm fetch data for retailer code
 
-    public APIreferenceclass(Context context, String logintoken, String retailercode){
+    public APIreferenceclass(Context context, String logintoken, String retailercode, String userid, String a){
         //TODO fill
-        String url= "https://ooh.warburttons.com/api/afs-rcode/"+ retailercode;
+        String url= "https://ooh.warburttons.com/api/get-site/"+ retailercode +"/"+ userid;
         querytype = 0; //get
 
         JSONObject jsonPayload;
@@ -715,6 +715,8 @@ public class APIreferenceclass {
 
 
     }
+
+
 
 
     //add recce details and site image

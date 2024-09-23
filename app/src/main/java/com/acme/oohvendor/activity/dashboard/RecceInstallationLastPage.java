@@ -276,7 +276,7 @@ public class RecceInstallationLastPage extends AppCompatActivity implements ApiI
         }
         if (photoFile != null) {
             photoURI = FileProvider.getUriForFile(RecceInstallationLastPage.this,
-                    "com.acme.afsvendor.fileprovider",
+                    "com.acme.oohvendor.fileprovider",
                     photoFile);
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
@@ -322,7 +322,7 @@ public class RecceInstallationLastPage extends AppCompatActivity implements ApiI
 
             try {
                 imageUri = FileProvider.getUriForFile(this,
-                        "com.acme.afsvendor.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         createImageFile());
                 imageUri1= imageUri;
                 Log.d("tag222", imageUri.toString());

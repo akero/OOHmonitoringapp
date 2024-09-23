@@ -12,26 +12,26 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
-//https://ooh.warburttons.com/api/project- new button history for every site in all //logins. shows every item in history for each site on the site details page
-
 add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
 
 notifications
 
 profile in menu admin dash optional
 
-recce code
-images test
+recce code- pending
+//images test
 //profile test
 cosmetics
 //asm zo vendor send name in login instead of area
 change site url, active urls are 1001 to 7
 
+
+//for fetch site code have to send siteid/userid
 //login
 //vendor profile add employee id
 //state and vendor name filter in admin. vendor/state name api
 //prefill data in add site vendor
-
+//https://ooh.warburttons.com/api/project- new button history for every site in all //logins. shows every item in history for each site on the site details page
 
 
 

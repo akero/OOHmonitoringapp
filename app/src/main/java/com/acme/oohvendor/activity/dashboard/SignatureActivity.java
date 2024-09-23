@@ -98,7 +98,7 @@ public class SignatureActivity extends AppCompatActivity {
                 fos.close();
 
                 signatureUri = FileProvider.getUriForFile(SignatureActivity.this,
-                        "com.acme.afsvendor.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         signatureFile);
 
                 Log.d("SignaturePad", "Signature file path: " + signatureFile.getAbsolutePath());

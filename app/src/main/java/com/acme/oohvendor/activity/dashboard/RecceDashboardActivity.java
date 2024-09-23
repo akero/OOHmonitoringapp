@@ -90,6 +90,7 @@ public class RecceDashboardActivity extends AppCompatActivity implements ApiInte
     ProgressBar progressBar;
     Animation rotateAnimation;
     public static final int REQUEST_SIGN= 1;
+    String userid;
 
 
     @Override
@@ -156,6 +157,7 @@ public class RecceDashboardActivity extends AppCompatActivity implements ApiInte
         try {
             FileHelper fh = new FileHelper();
             logintoken = fh.readLoginToken(this);
+            userid= fh.readUserId(this);
 
         } catch (Exception e) {
             Log.d("tg223", e.toString());
@@ -326,7 +328,7 @@ public class RecceDashboardActivity extends AppCompatActivity implements ApiInte
             @Override
             public void onClick(View view) {
 
-                APIreferenceclass api= new APIreferenceclass( ctxt, logintoken, binding.etFetch.getText().toString().toUpperCase());
+                APIreferenceclass api= new APIreferenceclass( ctxt, logintoken, binding.etFetch.getText().toString().toUpperCase(), userid,  "a");
             }
         });
 
@@ -647,7 +649,7 @@ public class RecceDashboardActivity extends AppCompatActivity implements ApiInte
             }
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(RecceDashboardActivity.this,
-                        "com.acme.afsvendor.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         photoFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
@@ -697,7 +699,7 @@ boolean allpicturestaken;
 
             try {
                 imageUri = FileProvider.getUriForFile(this,
-                        "com.acme.afsvendor.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         createImageFile());
                 imageUri1= imageUri;
                 Log.d("tag222", imageUri.toString());
