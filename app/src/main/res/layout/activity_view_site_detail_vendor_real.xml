@@ -64,7 +64,7 @@
                     android:onClick="history"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:paddingTop="3dp"
+                    android:paddingTop="2dp"
                     android:paddingStart="2dp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:src="@drawable/history" />
@@ -157,6 +157,21 @@
                 android:fontFamily="@font/dmsansregular"
                 android:text="Any Damage?"
                 android:textAllCaps="false"
+
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <Button
+                android:id="@+id/btnUpdatePhoto1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnUpdatePhoto"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Update Photo"
+                android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_14ssp" />
 
@@ -164,7 +179,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/llUnit"
-                    android:layout_below="@id/btnUpdatePhoto"
+                    android:layout_below="@id/btnUpdatePhoto1"
                     android:orientation="horizontal">
 
 

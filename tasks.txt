@@ -12,11 +12,20 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
-add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
+//add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
+//update photo button click
+//api calls for both
+//date
+//created by
+//image
 
-notifications
+>notification for update photo
 
 profile in menu admin dash optional
+change title location
+confirm backend pending
+
+any damage button click
 
 recce code- pending
 //images test

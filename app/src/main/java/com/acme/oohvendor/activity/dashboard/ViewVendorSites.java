@@ -438,6 +438,14 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
     }
 
+    public void onNotifClick(View view){
+        String userid= FileHelper.readUserId(this);
+        Intent intent= new Intent(ViewVendorSites.this, notifActivity.class);;
+        intent.putExtra("userid", userid);
+        startActivity(intent);
+
+    }
+
     public void back(View v){
         onBackPressed();
     }

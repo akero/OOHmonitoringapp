@@ -50,7 +50,7 @@ import java.util.StringTokenizer;
 
 public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInterface, LocationCallback {
     private final Context ctxt = this;
-
+    boolean anydamage, updatephoto;
     private String campaignType = "";
     static final int REQUEST_TAKE_PHOTO = 1;
 
@@ -77,6 +77,9 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         if (getIntent().getExtras() != null) {
             Log.d("tag41", "2");
 
+            responsetobeusedinupdateimage= "";
+            anydamage= false;
+            updatephoto= false;
             idarray = null;
             campaignId = getIntent().getExtras().getString("campaignId", "");
             campaignType = getIntent().getExtras().getString("campaignType", "");
@@ -122,6 +125,33 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                     @Override
                     public void onClick(View view) {
                         Log.d("camera", "click registered");
+
+                        anydamage= true;
+                        if (ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+
+                            Toast.makeText(ViewSiteDetailActivity.this, "Please give camera and location permissions", Toast.LENGTH_SHORT).show();
+
+                            ActivityCompat.requestPermissions(ViewSiteDetailActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+                            Log.d("camera", "dont have permission");
+                        } else {
+
+                            // temporaryuploadchecker();
+                            latlong();
+                            Log.d("latlong", latlong);
+                            //TODO uncomment
+                            openCamera();
+                        }
+                    }
+
+                });
+
+                Button btn1 = findViewById(R.id.btnUpdatePhoto1);
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        updatephoto= true;
+                        Log.d("camera", "click registered");
                         if (ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
 
                             Toast.makeText(ViewSiteDetailActivity.this, "Please give camera and location permissions", Toast.LENGTH_SHORT).show();
@@ -140,6 +170,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
                 });
             }
+
+
 
             if (camefrom.equals("ClientDashBoardActivity")) {
                 binding.btnNext.setVisibility(View.GONE);
@@ -307,7 +339,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         //TODO handle image here
         Uri imageUri;
         try {
-            imageUri = FileProvider.getUriForFile(this, "com.example.android.fileprovider", imageFile);
+            imageUri = FileProvider.getUriForFile(this, "com.acme.oohvendor.fileprovider", imageFile);
         } catch (Exception e) {
             Log.d("tag22", e.toString());
         }
@@ -343,7 +375,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             }
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(ViewSiteDetailActivity.this,
-                        "com.example.android.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         photoFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
@@ -386,7 +418,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             try {
                 imageUri = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
+                        "com.acme.oohvendor.fileprovider",
                         createImageFile());
                 Log.d("tag222", imageUri.toString());
 
@@ -423,7 +455,13 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
                 picturetaken = true;
                 if (locationtaken) {
-                    apicallforvendorimageupdate(latlong, imageUri);
+
+                    if (updatephoto){
+
+                        apicallforvendorimageupdate(latlong, imageUri);
+                    }else if(anydamage){
+                        apicallforvendorimageupdatedamage(latlong, imageUri);
+                    }
                     Log.d("tag22", "activity result works.");
 
                 }
@@ -456,44 +494,60 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             JSONObject jsonobj1 = null;
             Log.d("response1", response1);
             JSONObject jsonobj = new JSONObject(response1);
+
+
             Log.d("tag44", jsonobj.toString());
-            if (jsonobj.has("site")) {
-                jsonobj1 = jsonobj.getJSONObject("site");
-            } else if (jsonobj.has("datas")) {
-                jsonobj1 = jsonobj.getJSONObject("datas");
-                latlong();
-            }
+
+                jsonobj1 = jsonobj.getJSONObject("data");
+
             Log.d("tag44", jsonobj1.toString());
             String latitude = "";
             String longitude = "";
 
-            StringTokenizer str = new StringTokenizer(latlong, ",");
-            if (str != null) {
-                latitude = str.nextToken();
-                longitude = str.nextToken();
+           // StringTokenizer str = new StringTokenizer(latlong, ",");
+           // if (str != null) {
+           //     latitude = str.nextToken();
+           //     longitude = str.nextToken();
 
-                Log.d("tag44", "latitude" + latitude + "long" + longitude);
-            }
+           //     Log.d("tag44", "latitude" + latitude + "long" + longitude);
+            //}
 
-            jsonobj1.putOpt("latitude", latitude);
-            jsonobj1.putOpt("longitute", longitude);
+           // jsonobj1.putOpt("latitude", latitude);
+           // jsonobj1.putOpt("longitute", longitude);
             Log.d("tag511", "jsonobj" + jsonobj.toString() + " jsonobj1" + jsonobj1.toString() + "siteno" + siteno);
 
-            siteno = Integer.toString(jsonobj1.getInt("id"));
+          //  siteno = Integer.toString(jsonobj1.getInt("id"));
 
             jsonobj1.remove("image");
-            jsonobj.putOpt("site", jsonobj1);
+           // jsonobj.putOpt("site", jsonobj1);
+
+
 
             JSONObject jsonobj2 = new JSONObject();
-            jsonobj2.putOpt("campaign_id", jsonobj1.getInt("campaign_id"));
-            jsonobj2.putOpt("vendor_id", jsonobj1.getString("vendor_id"));
-            jsonobj2.putOpt("site_id", jsonobj1.getString("id"));
-            jsonobj2.putOpt("longitute", longitude);
-            jsonobj2.putOpt("latitude", latitude);
+          //  jsonobj2.putOpt("campaign_id", jsonobj1.getInt("campaign_id"));
+         //   jsonobj2.putOpt("vendor_id", jsonobj1.getString("vendor_id"));
+          //  jsonobj2.putOpt("site_id", jsonobj1.getString("id"));
+          //  jsonobj2.putOpt("longitute", longitude);
+          //  jsonobj2.putOpt("latitude", latitude);
 
+            String userid= "";
 
-            Log.d("tag333", jsonobj.toString());
-            Log.d("livetest", jsonobj.toString() + "site no" + siteno + uri + "jsonobj2" + jsonobj2.toString());
+            try{
+
+                FileHelper fh= new FileHelper();
+                userid= fh.readUserId(this);
+            }catch (Exception e){
+                Log.d("sads", e.toString());
+            }
+            jsonobj1.putOpt("created_by", userid);
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+            jsonobj1.putOpt("date", timeStamp);
+
+            String siteid= jsonobj1.getString("id");
+
+//            Log.d("tag333", jsonobj.toString());
+  //          Log.d("livetest", jsonobj.toString() + "site no" + siteno + uri + "jsonobj2" + jsonobj2.toString());
 
             /*compress photoURI here
             // Load the image from a file
@@ -505,7 +559,100 @@ bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out); // 50 is the quality param
 
 out.close();
             * */
-            APIreferenceclass api = new APIreferenceclass(1, ctxt, logintoken1, jsonobj2.toString(), photoURI);
+            APIreferenceclass api = new APIreferenceclass(1, ctxt, logintoken1, jsonobj1.toString(), photoURI, siteid);
+
+
+        } catch (Exception e) {
+            Log.d("tag41", e.toString());
+            e.printStackTrace();
+        }
+        //TODO handle response
+    }
+
+    void apicallforvendorimageupdatedamage(String latlong, Uri uri) {
+
+        String logintoken1 = "";
+        //response is response1 (with site)
+
+        try {
+            FileHelper fh = new FileHelper();
+            logintoken1 = fh.readLoginToken(this);
+        } catch (Exception e) {
+            Log.d("tag22", e.toString());
+        }
+        String siteno = "";
+
+        try {
+            JSONObject jsonobj1 = null;
+            Log.d("response1", response1);
+            JSONObject jsonobj = new JSONObject(response1);
+
+
+            Log.d("tag44", jsonobj.toString());
+
+            jsonobj1 = jsonobj.getJSONObject("data");
+
+            Log.d("tag44", jsonobj1.toString());
+            String latitude = "";
+            String longitude = "";
+
+            // StringTokenizer str = new StringTokenizer(latlong, ",");
+            // if (str != null) {
+            //     latitude = str.nextToken();
+            //     longitude = str.nextToken();
+
+            //     Log.d("tag44", "latitude" + latitude + "long" + longitude);
+            //}
+
+            // jsonobj1.putOpt("latitude", latitude);
+            // jsonobj1.putOpt("longitute", longitude);
+            Log.d("tag511", "jsonobj" + jsonobj.toString() + " jsonobj1" + jsonobj1.toString() + "siteno" + siteno);
+
+            //  siteno = Integer.toString(jsonobj1.getInt("id"));
+
+            jsonobj1.remove("image");
+            // jsonobj.putOpt("site", jsonobj1);
+
+
+
+            JSONObject jsonobj2 = new JSONObject();
+            //  jsonobj2.putOpt("campaign_id", jsonobj1.getInt("campaign_id"));
+            //   jsonobj2.putOpt("vendor_id", jsonobj1.getString("vendor_id"));
+            //  jsonobj2.putOpt("site_id", jsonobj1.getString("id"));
+            //  jsonobj2.putOpt("longitute", longitude);
+            //  jsonobj2.putOpt("latitude", latitude);
+
+            String userid= "";
+
+            try{
+
+                FileHelper fh= new FileHelper();
+                userid= fh.readUserId(this);
+            }catch (Exception e){
+                Log.d("sads", e.toString());
+            }
+            jsonobj1.putOpt("created_by", userid);
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+            jsonobj1.putOpt("date", timeStamp);
+            jsonobj1.putOpt("any_damage", "yes");
+
+            String siteid= jsonobj1.getString("id");
+
+//            Log.d("tag333", jsonobj.toString());
+            //          Log.d("livetest", jsonobj.toString() + "site no" + siteno + uri + "jsonobj2" + jsonobj2.toString());
+
+            /*compress photoURI here
+            // Load the image from a file
+Bitmap bitmap = BitmapFactory.decodeFile("/path/to/your/image.jpg");
+
+// Compress the image
+FileOutputStream out = new FileOutputStream("/path/to/compressed/image.jpg");
+bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out); // 50 is the quality parameter
+
+out.close();
+            * */
+            APIreferenceclass api = new APIreferenceclass(1, ctxt, logintoken1, jsonobj1.toString(), photoURI, siteid);
 
 
         } catch (Exception e) {
@@ -517,6 +664,7 @@ out.close();
 
     SiteDetail siteDetail;
     JSONObject jsonobj;
+    String responsetobeusedinupdateimage;
 
     private void implementUI(String response) {
         try {
@@ -524,7 +672,7 @@ out.close();
             Log.d("tagresponse is", response);
             JSONObject jsonResponse = new JSONObject(response);
 
-            if (jsonResponse.getInt("status") == 200) {
+            if (jsonResponse.getString("message").equals("Data fetched successfully!")) {
                 JSONObject dataArray = new JSONObject(jsonResponse.getString("data"));
                 if (dataArray != null && dataArray.length() > 0) {
                     JSONObject dataObject = dataArray;
@@ -734,7 +882,7 @@ out.close();
                     });
 
                 }
-            } else if (jsonResponse.getString("message").equals("Data Saved successfully.")) {
+            } else if (jsonResponse.getString("message").equals("Data saved successfully!")) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

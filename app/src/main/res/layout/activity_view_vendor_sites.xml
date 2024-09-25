@@ -68,6 +68,15 @@
                 android:src="@drawable/profile" />
 
                 <ImageView
+                    android:id="@+id/ivNotif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onNotifClick"
+
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/notificationicon" />
+
+                <ImageView
                     android:id="@+id/ivNotification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
