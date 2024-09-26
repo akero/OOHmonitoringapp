@@ -28,6 +28,10 @@
         android:theme="@style/Theme.TestingProject"
         tools:targetApi="31">
         <activity
+            android:name=".activity.dashboard.ProfileActivityAdminDash"
+            android:exported="false"
+            android:theme="@style/NoActTheme"/>
+        <activity
             android:name=".activity.dashboard.notifActivity"
             android:exported="false"
             android:theme="@style/NoActTheme" />

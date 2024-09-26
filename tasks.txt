@@ -12,6 +12,11 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
+notification for update photo- chck WhatsApp Radhika screenshot
+everyone except client can add sites
+create site problems fix
+spinner vendor finish
+
 //add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
 //update photo button click
 //api calls for both
@@ -19,13 +24,11 @@ Purpose- monitoring
 //created by
 //image
 
->notification for update photo
 
-profile in menu admin dash optional
-change title location
-confirm backend pending
+/profile in menu admin dash optional
+/change title location
+/confirm backend pending
 
-any damage button click
 
 recce code- pending
 //images test
@@ -34,7 +37,7 @@ cosmetics
 //asm zo vendor send name in login instead of area
 change site url, active urls are 1001 to 7
 
-
+//any damage button click
 //for fetch site code have to send siteid/userid
 //login
 //vendor profile add employee id

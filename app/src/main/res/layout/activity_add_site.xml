@@ -1241,6 +1241,7 @@
                         android:layout_above="@id/view"
                         android:layout_marginBottom="@dimen/_2sdp"
                         android:onClick="addImage"
+android:elevation= "2dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_gallery" />
 
@@ -1254,7 +1255,8 @@
                         android:text="Add Site Photograph"
                         android:onClick="addImage"
                         android:layout_centerHorizontal="true"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
+			android:elevation= "2dp"
                         android:textSize="@dimen/_10ssp" />
 
                     <com.acme.oohvendor.utility.RoundRectCornerImageView

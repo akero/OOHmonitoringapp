@@ -400,6 +400,15 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
         startActivity(intent);
     }
 
+    public void onAddSiteClick(View view){
+
+        Intent intent= new Intent(AsmDashboardActivity.this, AddSiteActivity.class);
+        //intent.putExtra("area", area);
+        //Log.d("xyz", String.valueOf(vendorid));
+        //intent.putExtra("vendorid", String.valueOf(vendorid));
+        startActivity(intent);
+    }
+
     public void onNotificationClick(View view){
         //TODO ask lodu what this does
     }

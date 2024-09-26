@@ -27,6 +27,7 @@ import com.acme.oohvendor.adapters.CampaignListAdapter;
 import com.acme.oohvendor.databinding.ActivityMainBinding;
 import com.acme.oohvendor.viewmodel.APIreferenceclass;
 import com.acme.oohvendor.viewmodel.ApiInterface;
+import com.google.android.gms.common.api.Api;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +59,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         Log.d("tg5","2");
         userid="";
         statespinnerselected= false;
+        populatevendorspinner= false;
+        fetchsitesaccordingtovendor= false;
 
         logintoken = FileHelper.readLoginToken(this);
         userid= FileHelper.readUserId(this);
@@ -80,7 +83,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         progressBar.setVisibility(View.VISIBLE);
         progressBar.startAnimation(rotateAnimation);
 
-        campaignList();
+        View view= null;
+        btnCompaignClick(view);
     }
 
     //onresponsereceived from api
@@ -125,6 +129,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         }else if(delete== 0&& statespinnerselected) {
             implementUi(response);
             statespinnerselected= false;
+        }else if(populatevendorspinner){
+            populatevendorspinner= false;
+            populatevendorspinner1(response);
+        }else if(fetchsitesaccordingtovendor){
+            fetchsitesaccordingtovendor= false;
+            implementUi(response);
         }
     }
 
@@ -320,47 +330,26 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         progressBar.setVisibility(View.VISIBLE);
         progressBar.startAnimation(rotateAnimation);
 
-
-        binding.llSpinner.setVisibility(View.GONE);
-        campaignList();
-        // ... your logic ...
-    }
-
-    @SuppressLint("ResourceAsColor")
-    public void btnVenderClick(View view) {
-        Log.d("tag20", "btnvenderclick");
-        clearUi();
-
-        binding.tvVender.setBackgroundResource(R.drawable.primaryround);
-        binding.tvVender.setTextColor(Color.WHITE);
-
-        binding.tvClient.setBackgroundResource(0);
-        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
-
-        binding.tvCompaign.setBackgroundResource(0);
-        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
-
         binding.llSpinner.setVisibility(View.VISIBLE);
 
         // Sample data for the spinners
         String[] states = {"Select a State", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"};
-        String[] vendors = {};
+
 
         // Finding the spinners
         Spinner spinnerState = findViewById(R.id.spinnerstate);
-        Spinner spinnerVendor = findViewById(R.id.spinnervendor);
+        populatevendorspinner();
+
+
 
         // Creating adapters for the spinners
         ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, states);
-        ArrayAdapter<String> vendorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, vendors);
 
         // Set the layout for dropdown options
         stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vendorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Attaching the adapters to the spinners
         spinnerState.setAdapter(stateAdapter);
-        spinnerVendor.setAdapter(vendorAdapter);
 
         // Setting up an OnItemSelectedListener for the first spinner
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -384,6 +373,92 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             }
         });
 
+        campaignList();
+        // ... your logic ...
+    }
+
+    boolean populatevendorspinner;
+
+    void populatevendorspinner(){
+
+        populatevendorspinner= true;
+        APIreferenceclass api= new APIreferenceclass(AdminDashboardActivity.this, logintoken, 1);
+
+    }
+
+    String vendorsid[]; //name
+
+    void populatevendorspinner1(String response){
+
+        String[] vendors;
+
+        try{
+
+            JSONObject jsonResponse = new JSONObject(response);
+            JSONArray dataArray = jsonResponse.getJSONArray("data");
+            vendors= new String[dataArray.length()];
+            vendorsid= new String[dataArray.length()];
+
+            vendors[0]= "Select a vendor";
+
+            for(int i=0; i< dataArray.length();i++){
+                JSONObject dataObject = dataArray.getJSONObject(i);
+                vendors[i+1]= dataObject.optString("name");
+                vendorsid[i]= dataObject.optString("name");
+            }
+            Spinner spinnerVendor = findViewById(R.id.spinnervendor);
+            ArrayAdapter<String> vendorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, vendors);
+            vendorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerVendor.setAdapter(vendorAdapter);
+
+            // Setting up an OnItemSelectedListener for the first spinner
+            spinnerVendor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    // This code runs when an item is selected
+                    String selectedState = parent.getItemAtPosition(position).toString();
+                    statespinnerselected= true;
+                    if (!selectedState.equals("Select a vendor")) {
+                        // Code to execute based on the selected state
+                        //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
+
+                        String idofselectedvendor= parent.getItemAtPosition(position).toString();//name
+
+                        // Add your custom logic here based on the selected state
+                        executeYourLogicBasedOnStateVendor(idofselectedvendor);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // This code runs when no item is selected (usually when the spinner starts)
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnVenderClick(View view) {
+        Log.d("tag20", "btnvenderclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(R.drawable.primaryround);
+        binding.tvVender.setTextColor(Color.WHITE);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        binding.llSpinner.setVisibility(View.GONE);
+
+
         venderList();
     }
 
@@ -392,6 +467,15 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         APIreferenceclass api= new APIreferenceclass(AdminDashboardActivity.this, logintoken, state, "a", 1);
 
     }
+
+    // Custom logic that executes based on the selected state
+    private void executeYourLogicBasedOnStateVendor(String idofvendor) {
+        fetchsitesaccordingtovendor= true;
+        APIreferenceclass api= new APIreferenceclass(AdminDashboardActivity.this, logintoken, idofvendor, "a", 1, 2, 2);
+
+    }
+
+    boolean fetchsitesaccordingtovendor;
 
     @SuppressLint("ResourceAsColor")
     public void btnClientClick(View view) {
@@ -600,8 +684,8 @@ Log.d("tag41", "click detected");
 
                 JSONObject jsonObject1 = jsonArray3.getJSONObject(position);
                 Log.d("jsn", jsonObject1.toString());
-                startActivity(new Intent(this, AdminDashVendorSites.class)
-                        .putExtra("id", id)
+                startActivity(new Intent(this, ProfileActivityAdminDash.class)
+                        .putExtra("userid", id)
                         .putExtra("logintoken", logintoken)
                         .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                         .putExtra("jsonArray", jsonObject1.toString())
@@ -687,6 +771,14 @@ Log.d("tag41", "click detected");
 
     }
 
+    public void onAddSiteClick(View view){
+
+        Intent intent= new Intent(AdminDashboardActivity.this, AddSiteActivity.class);
+        //intent.putExtra("area", area);
+        //Log.d("xyz", String.valueOf(vendorid));
+        //intent.putExtra("vendorid", String.valueOf(vendorid));
+        startActivity(intent);
+    }
 
     public void onAddClientClick(View view) {
         startActivity(new Intent(this, AddSiteDetailActivity.class));

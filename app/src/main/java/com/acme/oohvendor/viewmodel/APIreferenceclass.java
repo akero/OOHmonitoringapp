@@ -1399,8 +1399,46 @@ public class APIreferenceclass {
 
     //fetch vendors in state
     public APIreferenceclass(Context context, String logintoken, String state, String a, int b){
-        String url= "https://ooh.warburttons.com/api/vendor/";
+        String url= "https://ooh.warburttons.com/api/get-site-by-state/";
         url= url+ state;
+
+        String jsonPayload = "{\"Authorization\": \"" + logintoken + "\"}";
+        Log.d("tg4", jsonPayload);
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + logintoken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        querytype=0; //get
+
+        callapi(headers, jsonPayload, context, querytype ,url);
+    }
+
+    //fetch sites according to vendorname
+    public APIreferenceclass(Context context, String logintoken, String vendorname, String a, int b, int c, int d){
+        String url= "https://ooh.warburttons.com/api/vendor-project/";
+        url= url+ vendorname;
+
+        String jsonPayload = "{\"Authorization\": \"" + logintoken + "\"}";
+        Log.d("tg4", jsonPayload);
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + logintoken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        querytype=0; //get
+
+        callapi(headers, jsonPayload, context, querytype ,url);
+    }
+
+    //fetch sites in vendorcampaigmscreen
+    public APIreferenceclass(Context context, String logintoken, String vendorname, String a, int b, int c){
+        String url= "https://ooh.warburttons.com/api/vendor/";
+        url= url+ vendorname;
 
         String jsonPayload = "{\"Authorization\": \"" + logintoken + "\"}";
         Log.d("tg4", jsonPayload);

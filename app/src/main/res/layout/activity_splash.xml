@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_70sdp"
         android:layout_centerInParent="true"
-        android:src="@drawable/dalmia_logo" />
+        android:src="@drawable/dalmia_logo1" />
 
 
 </RelativeLayout>

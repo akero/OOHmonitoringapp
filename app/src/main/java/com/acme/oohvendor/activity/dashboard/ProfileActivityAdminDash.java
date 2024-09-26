@@ -10,33 +10,33 @@ import androidx.databinding.DataBindingUtil;
 
 import com.acme.oohvendor.R;
 import com.acme.oohvendor.activity.login.OTP;
-import com.acme.oohvendor.databinding.ActivityProfileBinding;
+import com.acme.oohvendor.databinding.ActivityProfileAdminDashBinding;
 import com.acme.oohvendor.viewmodel.APIreferenceclass;
 import com.acme.oohvendor.viewmodel.ApiInterface;
 
 import org.json.JSONObject;
 
 
-public class ProfileActivity extends AppCompatActivity implements ApiInterface {
+public class ProfileActivityAdminDash extends AppCompatActivity implements ApiInterface {
 
     String userid, logintoken;
-    ActivityProfileBinding binding;
+    ActivityProfileAdminDashBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_admin_dash);
         userid= "";
         logintoken= "";
         try{
-            userid= FileHelper.readUserId(this);
+            userid= getIntent().getStringExtra("userid");
             logintoken= FileHelper.readLoginToken(this);
         }catch (Exception e){
             Log.d("tag322", e.toString());
         }
 
-
+        Log.d("logintoken",  logintoken + "id "+ userid);
         APIreferenceclass api= new APIreferenceclass(logintoken, userid, this, 1);
 
 
@@ -131,7 +131,7 @@ public class ProfileActivity extends AppCompatActivity implements ApiInterface {
         }
 
 
-        }
+    }
 
     public void back(View v){
         onBackPressed();
@@ -143,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity implements ApiInterface {
             FileHelper fh = new FileHelper();
             fh.writeUserType(this, "");
 
-            Intent intent= new Intent(ProfileActivity.this, OTP.class);
+            Intent intent= new Intent(ProfileActivityAdminDash.this, OTP.class);
             startActivity(intent);
 
         } catch (Exception e) {

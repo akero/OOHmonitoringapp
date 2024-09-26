@@ -462,7 +462,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         uploadSignageDetails.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View view) {
-                                                        if (binding.etHeight.getText().toString().isEmpty() || binding.etWidth.getText().toString().isEmpty() ||  binding.etWidth1.getText().toString().isEmpty() || binding.etHeight2.getText().toString().isEmpty() || binding.etWidth2.getText().toString().isEmpty() || binding.etHeight3.getText().toString().isEmpty() || binding.etWidth3.getText().toString().isEmpty() || binding.etHeight4.getText().toString().isEmpty() ||  binding.etHeight5.getText().toString().isEmpty() || binding.etWidth5.getText().toString().isEmpty() ||  !pictureandlatlongready) {
+                                                        if (binding.etHeight.getText().toString().isEmpty() || binding.etWidth.getText().toString().isEmpty() ||  binding.etWidth1.getText().toString().isEmpty() || binding.etHeight2.getText().toString().isEmpty() || binding.etWidth2.getText().toString().isEmpty()  || binding.etWidth3.getText().toString().isEmpty() || binding.etHeight4.getText().toString().isEmpty()   ||  !pictureandlatlongready) {
                                                             Toast.makeText(ctxt, "Please fill all the fields", Toast.LENGTH_SHORT).show();
                                                             Log.d("tag222", "1"+ binding.etHeight.getText().toString()+ "2"+ binding.etWidth.getText().toString()+"3"+ "4"+ binding.etWidth1.getText().toString()+"5"+ binding.etHeight2.getText().toString()+"6"+ binding.etWidth2.getText().toString()+"7"+ binding.etHeight3.getText().toString()+"8"+ binding.etWidth3.getText().toString()+"9"+ binding.etHeight4.getText().toString()+"10"+ binding.etWidth4.getText().toString()+"11"+ binding.etHeight5.getText().toString()+"12"+ binding.etWidth5.getText().toString()+"13"+ "14"+"15"+ Boolean.toString(pictureandlatlongready));
                                                             wassendbuttonpressed= true;
@@ -1228,43 +1228,85 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
         try {
 
+            JSONObject jsonobj1;
             JSONObject jsonobj = new JSONObject(response);
+            try {
             JSONArray jsonobj2= jsonobj.getJSONArray(   "data");
-            JSONObject jsonobj1= jsonobj2.getJSONObject(0);
+                jsonobj1= jsonobj2.getJSONObject(0);
+            }catch (Exception e){
+                jsonobj1= jsonobj.getJSONObject("data");
+            }
 
             //retailer_code= jsonobj1.optString("retailer_code", "");
             //division= jsonobj1.optString("division", "");
             //asm_name= jsonobj1.optString("asm_name", "");
             //asm_contact= jsonobj1.optString("asm_contact", "");
-
-            binding.etHeight4.setText(jsonobj1.getString("name"));
-            if(!TextUtils.isEmpty(binding.etHeight4.getText())){
-                binding.etHeight4.setFocusable( View.NOT_FOCUSABLE);
-            }
-
-            binding.etWidth1.setText(jsonobj1.getString("state"));
+try {
+    binding.etHeight4.setText(jsonobj1.getString("vendor"));
+    if (!TextUtils.isEmpty(binding.etHeight4.getText())) {
+        binding.etHeight4.setFocusable(View.NOT_FOCUSABLE);
+    }
+}catch (Exception e){
+    binding.etHeight4.setText(jsonobj1.optString("name"));
+    if (!TextUtils.isEmpty(binding.etHeight4.getText())) {
+        binding.etHeight4.setFocusable(View.NOT_FOCUSABLE);
+    }
+}
+            binding.etWidth1.setText(jsonobj1.optString("state"));
             if(!TextUtils.isEmpty(binding.etWidth1.getText())){
                 //binding.etWidth1.setFocusable( View.NOT_FOCUSABLE);
             }
 
-            binding.etHeight2.setText(jsonobj1.getString("district"));
+            binding.etHeight2.setText(jsonobj1.optString("district"));
             if(!TextUtils.isEmpty(binding.etHeight2.getText())){
                 //binding.etHeight2.setFocusable( View.NOT_FOCUSABLE);
             }
 
-            binding.etWidth2.setText(jsonobj1.getString("city"));
+            binding.etWidth.setText(jsonobj1.optString("width"));
+            if(!TextUtils.isEmpty(binding.etHeight2.getText())){
+                //binding.etHeight2.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            binding.etHeight.setText(jsonobj1.optString("height"));
+            if(!TextUtils.isEmpty(binding.etHeight.getText())){
+                //binding.etHeight2.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            binding.etarea.setText(jsonobj1.optString("total"));
+            if(!TextUtils.isEmpty(binding.etHeight2.getText())){
+                //binding.etHeight2.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+
+
+            binding.etWidth2.setText(jsonobj1.optString("city"));
             if(!TextUtils.isEmpty(binding.etWidth2.getText())){
                 //binding.etWidth2.setFocusable( View.NOT_FOCUSABLE);
             }
 
-            binding.etHeight22.setText(jsonobj1.getString("zone"));
+            binding.etHeight22.setText(jsonobj1.optString("zone"));
             if(!TextUtils.isEmpty(binding.etHeight22.getText())){
                 binding.etHeight22.setFocusable( View.NOT_FOCUSABLE);
             }
 
-            binding.etWidth22.setText(jsonobj1.getString("area"));
+            binding.etWidth22.setText(jsonobj1.optString("district"));
             if(!TextUtils.isEmpty(binding.etWidth22.getText())){
                 binding.etWidth22.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            binding.etHeight222.setText(jsonobj1.optString("zo"));
+            if(!TextUtils.isEmpty(binding.etHeight222.getText())){
+                binding.etHeight222.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            binding.etWidth222.setText(jsonobj1.optString("site_code"));
+            if(!TextUtils.isEmpty(binding.etWidth222.getText())){
+                binding.etWidth222.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            binding.etHeight8.setText(jsonobj1.optString("asm"));
+            if(!TextUtils.isEmpty(binding.etHeight8.getText())){
+                binding.etHeight8.setFocusable( View.NOT_FOCUSABLE);
             }
 
 ///            binding.etHeight8.setText(asm_name);

@@ -3,6 +3,6 @@
 
     <item android:color="@color/white" android:state_pressed="true" />
 
-    <item android:color= "#0089BE" />
+    <item android:color= "#2200C9" />
 
 </selector>

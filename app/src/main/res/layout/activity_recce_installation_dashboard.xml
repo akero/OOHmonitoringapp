@@ -53,7 +53,7 @@
                     android:fontFamily="@font/dmsansregular"
                     android:text="Retail name"
                     android:textAlignment="viewStart"
-                    android:textColor="#0089BE"
+                    android:textColor="#2200C9"
                     android:textSize="16sp" />
 
                 <View
@@ -667,7 +667,7 @@
                     android:id="@+id/btnStartInstallation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#0089BE"
+                    android:background="#2200C9"
                     android:textSize="16sp"
                     android:text="Start Installation"
                     android:textColor="@color/white"

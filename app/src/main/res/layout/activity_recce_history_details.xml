@@ -53,7 +53,7 @@
                     android:fontFamily="@font/dmsansregular"
                     android:text="Retail name"
                     android:textAlignment="viewStart"
-                    android:textColor="#0089BE"
+                    android:textColor="#2200C9"
                     android:textSize="16sp" />
 
                 <View

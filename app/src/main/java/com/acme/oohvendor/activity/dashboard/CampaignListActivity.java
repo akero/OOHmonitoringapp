@@ -69,7 +69,7 @@ public class CampaignListActivity extends AppCompatActivity {
         binding.tvOldCampaign.setBackgroundResource(R.drawable.primaryround);
         binding.tvLiveCampaign.setBackgroundResource(R.color.coloryellow);
         binding.tvOldCampaign.setTextColor(Color.parseColor("#FFFFFF"));
-        binding.tvLiveCampaign.setTextColor(Color.parseColor("#0089BE"));
+        binding.tvLiveCampaign.setTextColor(Color.parseColor("#2200C9"));
     }
 
     public void liveCampaignClick(View view) {
@@ -77,7 +77,7 @@ public class CampaignListActivity extends AppCompatActivity {
         binding.tvLiveCampaign.setBackgroundResource(R.drawable.primaryround);
         binding.tvOldCampaign.setBackgroundResource(R.color.coloryellow);
         binding.tvLiveCampaign.setTextColor(Color.parseColor("#FFFFFF"));
-        binding.tvOldCampaign.setTextColor(Color.parseColor("#0089BE"));
+        binding.tvOldCampaign.setTextColor(Color.parseColor("#2200C9"));
     }
 
     public void onPlusClick(View view) {

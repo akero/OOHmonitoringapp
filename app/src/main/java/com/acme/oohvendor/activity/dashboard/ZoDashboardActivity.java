@@ -413,6 +413,15 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
         startActivity(new Intent(this, AddVenderActivity.class));
     }
 
+    public void onAddSiteClick(View view){
+
+        Intent intent= new Intent(ZoDashboardActivity.this, AddSiteActivity.class);
+        //intent.putExtra("area", area);
+        //Log.d("xyz", String.valueOf(vendorid));
+        //intent.putExtra("vendorid", String.valueOf(vendorid));
+        startActivity(intent);
+    }
+
     public void onDeleteClientClick(View view) {
         // ... your logic ...
     }
