@@ -195,7 +195,6 @@
             <Spinner
                 android:id="@+id/spinnervendor"
                 android:layout_width="0dp"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:dropDownWidth="match_parent"
                 android:layout_weight="1"/>

@@ -131,6 +131,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             statespinnerselected= false;
         }else if(populatevendorspinner){
             populatevendorspinner= false;
+            Log.d("vendr",response);
             populatevendorspinner1(response);
         }else if(fetchsitesaccordingtovendor){
             fetchsitesaccordingtovendor= false;

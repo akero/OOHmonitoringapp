@@ -16,6 +16,7 @@ notification for update photo- chck WhatsApp Radhika screenshot
 everyone except client can add sites
 create site problems fix
 spinner vendor finish
+admindash populating vendor spinner issue in onresponse
 
 //add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
 //update photo button click
