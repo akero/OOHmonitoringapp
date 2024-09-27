@@ -476,6 +476,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         Intent intent= new Intent(ViewVendorSites.this, AddSiteActivity.class);
         intent.putExtra("area", area);
         Log.d("xyz", String.valueOf(vendorid));
+        intent.putExtra("camefrom", "viewvendorsites");
         intent.putExtra("vendorid", String.valueOf(vendorid));
         startActivity(intent);
     }

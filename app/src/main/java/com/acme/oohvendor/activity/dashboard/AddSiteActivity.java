@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.acme.oohvendor.activity.login.OTP;
+import com.acme.oohvendor.utility.NetworkUtils;
 import com.acme.oohvendor.utility.RoundRectCornerImageView;
 import com.acme.oohvendor.viewmodel.APIreferenceclass;
 import com.acme.oohvendor.viewmodel.ApiInterface;
@@ -137,6 +139,17 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
         binding.etTotalArea.setText("");
 
+        try{
+            if(getIntent().getStringExtra("camefrom").equals("viewvendorsites")){
+                binding.tvHeight222.setVisibility(View.GONE);
+                binding.etHeight222.setVisibility(View.GONE);
+                binding.tvHeight8.setVisibility(View.GONE);
+                binding.etHeight8.setVisibility(View.GONE);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         try{
@@ -711,12 +724,64 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
     }
 
     //auto opens when addimage is clicked
-    public void addImage() {
+    public void addImage(View view) {
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            Toast.makeText(this, "Check your Internet Connection and Try Again", Toast.LENGTH_LONG).show();
+        } else {
+            if (!checkPermissions()) {
+                requestPermissions();
+            } else {
+                dispatchTakePictureIntent();
+            }
+        }
+    }
 
+    private boolean checkPermissions() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    }
+
+
+    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS_REQUEST_CODE);
+    }
+    private static final int PICK_IMAGE = 1;
+
+    public void dispatchTakePictureIntent() {
+        // For Android 10 (API 29) and above, use the system's media picker
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.setType("image/*");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            String[] mimeTypes = {"image/jpeg", "image/png"};
+            intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+            startActivityForResult(intent, PICK_IMAGE);
+        } else {
+            // Check if READ_EXTERNAL_STORAGE permission is granted for older versions
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                // Explain why the permission is needed and request it
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    // Show an explanation...
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                }
+            } else {
+                // Permission has already been granted, proceed with picking the image
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                String[] mimeTypes = {"image/jpeg", "image/png"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                startActivityForResult(intent, PICK_IMAGE);
+            }
+        }
     }
 
     Uri imageUri;
     boolean allpicturestaken;
+
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 102;
 
     @SuppressLint("ResourceAsColor")
     @Override

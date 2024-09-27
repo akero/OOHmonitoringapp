@@ -12,15 +12,13 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
-test add site in all dashboards
-create site problems fix
-see what Radhika texted and implement
+>see what Radhika texted and implement
 
-recce code- pending
 
 autologin all dash- optional
 load photos in dash- optional
-
+test add site in all dashboards
+create site problems fix
 
 admin
 vendor
@@ -38,6 +36,8 @@ Client dash
 //attach code
 //test
 cosmetic
+//recce code- pending
+
 
 Vendor dash
 //design
