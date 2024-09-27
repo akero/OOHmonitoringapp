@@ -13,8 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.acme.oohvendor.R;
@@ -42,7 +45,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
     String logintoken="";
     String clientid;
     boolean showedit;
-
+    boolean populatevendorspinner;
     //todo access token save to memory add to api call
 
     @Override
@@ -54,12 +57,25 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
         Log.d("whichclass", "ViewCampaignSites");
 
         showedit= true;
-
+        statespinnerselected= false;
+        populatevendorspinner= false;
+        fetchsitesaccordingtovendor= false;
         area= "";
         //animation code
         progressBar= findViewById(R.id.progressBar);
         rotateAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
         //animation code
+
+        try{
+
+            String name= getIntent().getStringExtra("name");
+            Log.d("abc", "1");
+            binding.title6.setText("Client"+ " - "+ name);
+            Log.d("abc", "2");
+
+        }catch (Exception e){
+            Log.d("abc", e.toString());
+        }
 
         FileHelper fh= new FileHelper();
         logintoken= fh.readLoginToken(this);
@@ -79,6 +95,47 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
             e.printStackTrace();
         }
 
+        // Sample data for the spinners
+        String[] states = {"Select a State", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"};
+
+
+        // Finding the spinners
+        Spinner spinnerState = findViewById(R.id.spinnerstate);
+        populatevendorspinner();
+
+
+
+        // Creating adapters for the spinners
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, states);
+
+        // Set the layout for dropdown options
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Attaching the adapters to the spinners
+        spinnerState.setAdapter(stateAdapter);
+
+        // Setting up an OnItemSelectedListener for the first spinner
+        spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // This code runs when an item is selected
+                String selectedState = parent.getItemAtPosition(position).toString();
+                statespinnerselected= true;
+                if (!selectedState.equals("Select a State")) {
+                    // Code to execute based on the selected state
+                    //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
+
+                    // Add your custom logic here based on the selected state
+                    executeYourLogicBasedOnState(selectedState);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // This code runs when no item is selected (usually when the spinner starts)
+            }
+        });
+
         //TODO remove after adding to ui
         jsonArray1= new JSONArray();
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, showedit);
@@ -86,13 +143,38 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
         campaignList(clientid);
     }
 
+    boolean statespinnerselected;
+
+    void populatevendorspinner(){
+
+        populatevendorspinner= true;
+        APIreferenceclass api= new APIreferenceclass(ViewCampaignSites.this, logintoken, 1);
+
+    }
+
+    // Custom logic that executes based on the selected state
+    private void executeYourLogicBasedOnState(String state) {
+        APIreferenceclass api= new APIreferenceclass(ViewCampaignSites.this, logintoken, state, "a", 1);
+
+    }
+
+    // Custom logic that executes based on the selected state
+    private void executeYourLogicBasedOnStateVendor(String idofvendor) {
+        fetchsitesaccordingtovendor= true;
+        APIreferenceclass api= new APIreferenceclass(ViewCampaignSites.this, logintoken, idofvendor, "a", 1, 2, 2);
+
+    }
+
+    boolean fetchsitesaccordingtovendor;
+
+
     //onresponsereceived from api
     public void onResponseReceived(String response){
 
         Log.d("addbatest", "response is "+ response);
         Log.d("tag58","got response");
 
-        if(delete==0) {
+        if(delete==0&&!statespinnerselected) {
             implementUi(response);
         }else if(delete==1){
             delete= 0;
@@ -103,7 +185,73 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                     campaignList(clientid);
                 }
     });
-}
+}else if(delete== 0&& statespinnerselected) {
+            implementUi(response);
+            statespinnerselected= false;
+        }else if(populatevendorspinner){
+            populatevendorspinner= false;
+            Log.d("vendr",response);
+            populatevendorspinner1(response);
+        }else if(fetchsitesaccordingtovendor){
+            fetchsitesaccordingtovendor= false;
+            implementUi(response);
+        }
+
+    }
+
+    String vendorsid[]; //name
+
+    void populatevendorspinner1(String response){
+
+        String[] vendors;
+
+        try{
+
+            JSONObject jsonResponse = new JSONObject(response);
+            JSONArray dataArray = jsonResponse.getJSONArray("data");
+            vendors= new String[dataArray.length()+1];
+            vendorsid= new String[dataArray.length()];
+
+            vendors[0]= "Select a Vendor";
+
+            for(int i=0; i< dataArray.length();i++){
+                JSONObject dataObject = dataArray.getJSONObject(i);
+                vendors[i+1]= dataObject.optString("name");
+                vendorsid[i]= dataObject.optString("name");
+            }
+            Spinner spinnerVendor = findViewById(R.id.spinnervendor);
+            ArrayAdapter<String> vendorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, vendors);
+            vendorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerVendor.setAdapter(vendorAdapter);
+
+            // Setting up an OnItemSelectedListener for the first spinner
+            spinnerVendor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    // This code runs when an item is selected
+                    String selectedState = parent.getItemAtPosition(position).toString();
+                    statespinnerselected= true;
+                    if (!selectedState.equals("Select a Vendor")) {
+                        // Code to execute based on the selected state
+                        //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
+
+                        String idofselectedvendor= parent.getItemAtPosition(position).toString();//name
+
+                        // Add your custom logic here based on the selected state
+                        executeYourLogicBasedOnStateVendor(idofselectedvendor);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // This code runs when no item is selected (usually when the spinner starts)
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -244,7 +392,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
 
                     try {
                         JSONObject jsonobject = new JSONObject(response);
-                        binding.title.setText(jsonobject.getString("campaign_name"));
+                        //binding.title.setText(jsonobject.getString("campaign_name"));
                         binding.clientid.setText(Integer.toString(jsonobject.getInt("client_id")));
                         binding.clientname.setText(jsonobject.getString("client_name"));
                         binding.campaign.setText(jsonobject.getString("campaign_name"));
@@ -253,9 +401,29 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                         Log.d("tag322121", e.toString());
                     }
                 }});
-        }catch (Exception e){
+        }catch (Exception e) {
             Log.d("tg222", e.toString());
-            runOnUiThread(new Runnable() {
+            try{
+
+                JSONObject jsonobject= new JSONObject(response);
+                if(jsonobject.getBoolean("success")&&populatevendorspinner){
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            populatevendorspinner= false;
+                            Log.d("vendr",response);
+                            populatevendorspinner1(response);
+                        }
+                    });
+
+
+                }
+
+            }catch (Exception f){
+                f.printStackTrace();
+            }
+            /*runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
 
@@ -266,9 +434,9 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                     //animation code
 
                     Toast.makeText(getApplicationContext(), "No sites.", Toast.LENGTH_SHORT).show();
-                }});}}
-
-
+                }});
+*/
+        }}
     ProgressBar progressBar;
     Animation rotateAnimation;
 

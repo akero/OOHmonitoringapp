@@ -99,6 +99,15 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
         area= getIntent().getStringExtra("area");
         Log.d("tag58area", area);
 
+        try{
+
+            String name= getIntent().getStringExtra("name");
+            binding.title.setText(binding.title.getText()+ " - "+ name);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         FileHelper fh= new FileHelper();
         logintoken= fh.readLoginToken(this);
 

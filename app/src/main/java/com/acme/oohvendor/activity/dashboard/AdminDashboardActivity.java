@@ -66,6 +66,15 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         userid= FileHelper.readUserId(this);
         Log.d("tg4", logintoken);
 
+        try{
+
+            String name= getIntent().getStringExtra("name");
+            binding.title.setText(binding.title.getText()+ " - "+ name);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         //animation code
         progressBar= findViewById(R.id.progressBar);
         rotateAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
@@ -421,7 +430,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             vendors= new String[dataArray.length()+1];
             vendorsid= new String[dataArray.length()];
 
-            vendors[0]= "Select a vendor";
+            vendors[0]= "Select a Vendor";
 
             for(int i=0; i< dataArray.length();i++){
                 JSONObject dataObject = dataArray.getJSONObject(i);
@@ -440,7 +449,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                     // This code runs when an item is selected
                     String selectedState = parent.getItemAtPosition(position).toString();
                     statespinnerselected= true;
-                    if (!selectedState.equals("Select a vendor")) {
+                    if (!selectedState.equals("Select a Vendor")) {
                         // Code to execute based on the selected state
                         //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
 

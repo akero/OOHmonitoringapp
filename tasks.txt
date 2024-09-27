@@ -12,8 +12,6 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
->see what Radhika texted and implement
-
 
 autologin all dash- optional
 load photos in dash- optional
@@ -29,6 +27,7 @@ asm
 //notification for update photo- chck WhatsApp Radhika screenshot
 //spinner vendor finish
 //admindash populating vendor spinner issue in onresponse
+//client dash
 //change fields for all according to requirements
 Client dash
 //edit xml for all fields in viewsitedetail
@@ -37,7 +36,7 @@ Client dash
 //test
 cosmetic
 //recce code- pending
-
+//see what Radhika texted and implement
 
 Vendor dash
 //design

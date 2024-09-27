@@ -40,7 +40,7 @@
                 android:src="@drawable/back" />
 
             <TextView
-                android:id= "@id/title"
+                android:id= "@+id/title6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor= "@color/white"
@@ -298,6 +298,39 @@
                 android:layout_below= "@+id/linearlayout"
                 />
 
+            <LinearLayout
+                android:id= "@+id/ll_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:orientation="horizontal"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="@dimen/_10sdp"
+
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_8sdp">
+
+                <Spinner
+                    android:id="@+id/spinnerstate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:dropDownWidth="match_parent"/>
+
+
+                <Spinner
+                    android:id="@+id/spinnervendor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:dropDownWidth="match_parent"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/noData"
                 android:layout_width="wrap_content"
@@ -314,7 +347,7 @@
                 android:id="@+id/rvCampaignList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/line"
+                android:layout_below="@id/ll_spinner"
                 android:layout_marginBottom="@dimen/_5sdp" />
 
         </RelativeLayout>

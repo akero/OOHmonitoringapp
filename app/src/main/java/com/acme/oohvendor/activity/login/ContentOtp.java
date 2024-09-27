@@ -142,6 +142,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
     String loginType;
     int clientid, vendorid, recceid, recceasmid;
 
+
     @Override
     public void onResponseReceived(String response){
         Log.d("tg4","otp response works" +response);
@@ -150,6 +151,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
         userid="";
         recceid= 0;
         recceasmid=0;
+        name= "";
 
         try {
         JSONObject jsonObject = new JSONObject(response);
@@ -199,6 +201,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
 
                 Intent intent= new Intent(ContentOtp.this, AdminDashboardActivity.class);
                 intent.putExtra("logintoken", token);
+                intent.putExtra("name", name);
 
 
 
@@ -212,6 +215,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 intent.putExtra("vendorid", vendorid);
                 intent.putExtra("vendorclientorcampaign", 2);
                 intent.putExtra("area", area);
+                intent.putExtra("name", name);
                 loadingSpinner();
 
                 startActivity(intent);
@@ -222,7 +226,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 intent.putExtra("clientid", Integer.toString(clientid));
                 intent.putExtra("vendorclientorcampaign", 1);
                 intent.putExtra("camefrom", "contentotp");
-
+                intent.putExtra("name", name);
 
                 loadingSpinner();
                 startActivity(intent);
@@ -233,6 +237,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
 
                 intent.putExtra("logintoken", token);
                 intent.putExtra("recceid", recceid);
+                intent.putExtra("name", name);
 
                 loadingSpinner();
                 startActivity(intent);
@@ -244,6 +249,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 intent.putExtra("logintoken", token);
                 intent.putExtra("recceasmid", recceasmid);
                 intent.putExtra("area", area);
+                intent.putExtra("name", name);
 
                 loadingSpinner();
                 startActivity(intent);
@@ -254,6 +260,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 intent.putExtra("recceasmid", recceasmid);
                 intent.putExtra("area", area);
 
+                intent.putExtra("name", name);
                 loadingSpinner();
                 startActivity(intent);
             }
