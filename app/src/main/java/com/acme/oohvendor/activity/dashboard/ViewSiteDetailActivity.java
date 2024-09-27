@@ -85,6 +85,11 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             campaignType = getIntent().getExtras().getString("campaignType", "");
             siteNumber = getIntent().getExtras().getString("sitenumber", "");
             logintoken = getIntent().getExtras().getString("logintoken", "");
+            if(logintoken.equals("")){
+                FileHelper fh= new FileHelper();
+                logintoken= fh.readLoginToken(this);
+            }
+
             camefrom = getIntent().getExtras().getString("camefrom", "");
 
             Log.d("camefrom", camefrom);

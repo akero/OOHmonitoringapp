@@ -132,6 +132,23 @@ public class APIreferenceclass {
         callapi(headers, jsonPayload, context, querytype, url);
     }
 
+    //get vendor notifications
+    public APIreferenceclass(String logintoken, Context context, String name, int a, String b) {
+        String url="https://ooh.warburttons.com/api/notification/";
+        url= url+ name;
+        querytype= 0;
+
+        String jsonPayload= "{\"Authorization\":\"" +logintoken+"\"}";
+
+        Map<String, String> headers= new HashMap<>();
+        headers.put("Authorization", "Bearer "+logintoken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("cldbatest","jsonpayload is "+ jsonPayload);
+
+        callapi(headers, jsonPayload, context, querytype, url);
+    }
+
     public APIreferenceclass(int id, String logintoken, Context context, boolean a){
         String url= "https://ooh.warburttons.com/api/clients/"+ id;
         querytype= 0;

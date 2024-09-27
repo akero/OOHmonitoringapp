@@ -12,11 +12,9 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
->notification for update photo- chck WhatsApp Radhika screenshot
 test add site in all dashboards
 create site problems fix
 see what Radhika texted and implement
-photos in icons
 
 recce code- pending
 
@@ -30,6 +28,7 @@ client
 zo
 asm
 
+//notification for update photo- chck WhatsApp Radhika screenshot
 //spinner vendor finish
 //admindash populating vendor spinner issue in onresponse
 //change fields for all according to requirements

@@ -117,7 +117,13 @@
             android:text="All Sites"
             android:textColor="#071116"
             android:textSize="24sp" />
-
+        <!-- res/layout/activity_main.xml -->
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="340dp"
+            android:elevation= "2dp"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content" />
 
         <RelativeLayout
             android:layout_width="match_parent"

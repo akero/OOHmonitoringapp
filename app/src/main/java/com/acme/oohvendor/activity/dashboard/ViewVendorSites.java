@@ -3,6 +3,8 @@ package com.acme.oohvendor.activity.dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
@@ -25,6 +27,7 @@ import com.acme.oohvendor.databinding.ActivityViewVendorSitesBinding;
 import com.acme.oohvendor.viewmodel.APIreferenceclass;
 import com.acme.oohvendor.viewmodel.ApiInterface;
 import com.acme.oohvendor.viewmodel.MainViewModel;
+import com.google.android.gms.common.api.Api;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -106,6 +109,8 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, false);
         binding.rvCampaignList.setAdapter(adapter);
         campaignList(area);
+
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this, area, 1, "a");
     }
 
 
@@ -152,7 +157,10 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
             campaignName="Vendor"; //changed to add title
             //campaignName= jsonResponse.getString("campaign_name");
 
-            if(jsonResponse.getInt("status")== 200) {
+            Object status= jsonResponse.get("status");
+
+            if(status instanceof Integer && (int) status== 200) {
+                Log.d("tag12345", "status= 200");
                 JSONArray dataArray = jsonResponse.getJSONArray("data");
                 idarray= new String[dataArray.length()];
 
@@ -265,6 +273,16 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                     }
                     Log.d("JSONArrayContent", "JSONArray1: " + jsonArray1.toString());
                 }
+            }else if(status instanceof String && ((String) status).equalsIgnoreCase("success")){
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Log.d("tag12345", "status= success");
+                        implementNotification(response);
+                    }
+                });
             }
             runOnUiThread(new Runnable() {
                 @Override
@@ -293,7 +311,39 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
                     binding.rvCampaignList.setAdapter(adapter);
                 }});
-        }catch (Exception e){}
+        }catch (Exception e){
+
+            Log.d("tag12345", e.toString());
+
+        }
+    }
+
+    void implementNotification(String response) {
+        // Log the response for debugging purposes
+        Log.d("tag231", response);
+
+        // Create a new instance of NotificationFragment
+        NotificationFragment notificationFragment = new NotificationFragment();
+
+        // Create a bundle to pass the response to the fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("response", response);
+
+        // Set the arguments for the fragment
+        notificationFragment.setArguments(bundle);
+
+        // Begin a fragment transaction to add/replace the fragment
+        FragmentManager fragmentManager = ((AppCompatActivity) ViewVendorSites.this).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the container (e.g., R.id.fragment_container) with the fragment
+        fragmentTransaction.replace(R.id.fragment_container, notificationFragment);
+
+        // Optional: Add to backstack to allow "back" navigation
+        fragmentTransaction.addToBackStack(null);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
     }
 
 
