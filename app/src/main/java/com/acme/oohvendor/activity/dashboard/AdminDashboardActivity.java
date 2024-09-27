@@ -281,6 +281,27 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                               }});
         }catch (Exception e){
             Log.d("tag40",e.toString());
+            try{
+
+                JSONObject jsonobject= new JSONObject(response);
+                if(jsonobject.getBoolean("success")){
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            populatevendorspinner= false;
+                            Log.d("vendr",response);
+                            populatevendorspinner1(response);
+                        }
+                    });
+
+
+                }
+
+            }catch (Exception f){
+                f.printStackTrace();
+            }
+
         }
     }
 
@@ -397,7 +418,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
 
             JSONObject jsonResponse = new JSONObject(response);
             JSONArray dataArray = jsonResponse.getJSONArray("data");
-            vendors= new String[dataArray.length()];
+            vendors= new String[dataArray.length()+1];
             vendorsid= new String[dataArray.length()];
 
             vendors[0]= "Select a vendor";

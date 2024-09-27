@@ -12,56 +12,17 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
-notification for update photo- chck WhatsApp Radhika screenshot
-everyone except client can add sites
+>notification for update photo- chck WhatsApp Radhika screenshot
+test add site in all dashboards
 create site problems fix
-spinner vendor finish
-admindash populating vendor spinner issue in onresponse
-
-//add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
-//update photo button click
-//api calls for both
-//date
-//created by
-//image
-
-
-/profile in menu admin dash optional
-/change title location
-/confirm backend pending
-
+see what Radhika texted and implement
+photos in icons
 
 recce code- pending
-//images test
-//profile test
-cosmetics
-//asm zo vendor send name in login instead of area
-change site url, active urls are 1001 to 7
-
-//any damage button click
-//for fetch site code have to send siteid/userid
-//login
-//vendor profile add employee id
-//state and vendor name filter in admin. vendor/state name api
-//prefill data in add site vendor
-//https://ooh.warburttons.com/api/project- new button history for every site in all //logins. shows every item in history for each site on the site details page
-
-
 
 autologin all dash- optional
 load photos in dash- optional
 
-
-//change recce design
-
-
-//get dalmia logos
-//add the changes to vendor login
-//change name and graphics
-//change name
-//crud
-//profile all only on dash page
-//save button api call
 
 admin
 vendor
@@ -69,8 +30,9 @@ client
 zo
 asm
 
+//spinner vendor finish
+//admindash populating vendor spinner issue in onresponse
 //change fields for all according to requirements
-
 Client dash
 //edit xml for all fields in viewsitedetail
 //add 5 images
@@ -266,6 +228,7 @@ pixellation
 
 asm login
 
+//everyone except client can add sites
 
 //auto login
 //logout
@@ -492,7 +455,7 @@ This asks for a uid. But as we are creating a new campaign a campaign id does no
 //vendor dropdown not showing, sometimes client not show
 //notification icon- remove it
 //add icons to dropdown
-//client dashboard, campaigns added are showing as old
+//Client, campaigns added are showing as old
 //change date type When creating campaign for a client, the campaign type is automatically assigned as old. Fix this also
 //pls use start date and end date format like 2024-01-17 bcoz od date format you are not getting correct data
 //see which class
@@ -762,3 +725,32 @@ adding site POST not allowed- pending backend- need to add to formdata- pending
 //back button all
 //no data on empty area
 //logo resize
+//add update photo option to viewsitedetails in vendor login. it will be updated 4 times a month.
+//update photo button click
+//api calls for both
+//date
+//created by
+//image
+//profile in menu admin dash optional
+//change title location
+//any damage button click
+//for fetch site code have to send siteid/userid
+//login
+//vendor profile add employee id
+//state and vendor name filter in admin. vendor/state name api
+//prefill data in add site vendor
+//https://ooh.warburttons.com/api/project- new button history for every site in all //logins. shows every item in history for each site on the site details page
+//confirm backend pending
+//images test
+//profile test
+//cosmetics
+//asm zo vendor send name in login instead of area
+//change site url, active urls are 1001 to 7
+//change recce design
+//get dalmia logos
+//add the changes to vendor login
+//change name and graphics
+//change name
+//crud
+//profile all only on dash page
+//save button api call

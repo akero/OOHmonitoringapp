@@ -53,7 +53,7 @@
             android:layout_below="@id/topBar"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginLeft="16dp"
-            android:text="ASM Dashboard"
+            android:text="ASM"
             android:textColor="#071116"
             android:textSize="24sp" />
 

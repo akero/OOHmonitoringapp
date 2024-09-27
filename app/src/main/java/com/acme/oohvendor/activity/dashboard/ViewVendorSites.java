@@ -149,7 +149,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
             JSONObject jsonResponse = new JSONObject(response);
 
             campaignName="";
-            campaignName="Vendor Dashboard"; //changed to add title
+            campaignName="Vendor"; //changed to add title
             //campaignName= jsonResponse.getString("campaign_name");
 
             if(jsonResponse.getInt("status")== 200) {

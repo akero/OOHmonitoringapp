@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:textColor= "@color/white"
                 android:textSize="14sp"
-                android:text= "Vendor Dashboard"
+                android:text= "Vendor"
                 android:fontFamily="@font/dmsansregular"
                 android:layout_centerInParent="true"
 

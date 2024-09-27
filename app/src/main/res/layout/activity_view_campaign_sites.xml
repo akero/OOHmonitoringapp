@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:textColor= "@color/white"
                 android:textSize="14sp"
-                android:text= "Client Dashboard"
+                android:text= "Client"
                 android:fontFamily="@font/dmsansregular"
                 android:layout_centerInParent="true"
 
@@ -102,7 +102,7 @@
             android:layout_below="@id/topBar"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginLeft="16dp"
-            android:text="Client Dashboard"
+            android:text="Client"
             android:textColor="#071116"
             android:textSize="24sp" />
 
