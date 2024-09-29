@@ -44,31 +44,35 @@ public class NotificationFragment extends Fragment {
             parseResponse(response);
         }
 
+        //TODO CHANGE
         // Add buttons to GridLayout
         for (String code : codeList) {
-            Button codeButton = new Button(getContext());
-            codeButton.setText(code);
-            codeButton.setBackgroundResource(R.drawable.code_button_background); // Custom background if needed
-            codeButton.setTextColor(Color.BLUE);
+            if(code.equals("1")) {
+                Button codeButton = new Button(getContext());
+                codeButton.setText(code);
+                codeButton.setBackgroundResource(R.drawable.code_button_background); // Custom background if needed
+                codeButton.setTextColor(Color.BLUE);
 
-            // Set adjusted fixed width and height
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics()); // Increased width
-            params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics()); // Increased height
-            params.setMargins(8, 8, 8, 8); // Set margins between buttons
-            codeButton.setLayoutParams(params);
+                // Set adjusted fixed width and height
+                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                params.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics()); // Increased width
+                params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics()); // Increased height
+                params.setMargins(8, 8, 8, 8); // Set margins between buttons
+                codeButton.setLayoutParams(params);
 
-            codeButton.setOnClickListener(v -> {
-                // Handle code click event
-                Intent intent = new Intent(getActivity(), ViewSiteDetailActivity.class);
-                intent.putExtra("sitenumber", code);
-                intent.putExtra("camefrom", "ViewVendorSites");
-                startActivity(intent);
-            });
+                codeButton.setOnClickListener(v -> {
+                    // Handle code click event
+                    Intent intent = new Intent(getActivity(), ViewSiteDetailActivity.class);
+                    intent.putExtra("sitenumber", code);
+                    intent.putExtra("camefrom", "ViewVendorSites");
+                    startActivity(intent);
+                });
 
-            // Add button to GridLayout
-            codeGrid.addView(codeButton);
-        }
+                // Add button to GridLayout
+                codeGrid.addView(codeButton);
+
+            }
+            }
 
 
         // Handle cancel button click

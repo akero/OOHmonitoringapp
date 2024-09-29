@@ -12,6 +12,7 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
+in vendor dash sites load slow sometimes
 
 autologin all dash- optional
 load photos in dash- optional
@@ -23,6 +24,10 @@ vendor
 client
 zo
 asm
+
+todo after demo
+notification fragment change when backend fixed
+make code visible in addsite
 
 //notification for update photo- chck WhatsApp Radhika screenshot
 //spinner vendor finish

@@ -145,6 +145,8 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 binding.etHeight222.setVisibility(View.GONE);
                 binding.tvHeight8.setVisibility(View.GONE);
                 binding.etHeight8.setVisibility(View.GONE);
+                //TODO make code visible after demo
+                binding.llDimensions222.setVisibility(View.GONE);
             }
 
         }catch (Exception e){
@@ -724,17 +726,27 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
     }
 
     //auto opens when addimage is clicked
-    public void addImage(View view) {
-        if (!NetworkUtils.isNetworkAvailable(this)) {
-            Toast.makeText(this, "Check your Internet Connection and Try Again", Toast.LENGTH_LONG).show();
+    /*public void addImage(View view) {
+
+        Log.d("camera", "click registered");
+        if (ContextCompat.checkSelfPermission(AddSiteActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(AddSiteActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+
+            Toast.makeText(AddSiteActivity.this, "Please give camera permissions", Toast.LENGTH_SHORT).show();
+
+            ActivityCompat.requestPermissions(AddSiteActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            Log.d("camera", "dont have permission");
         } else {
-            if (!checkPermissions()) {
-                requestPermissions();
-            } else {
-                dispatchTakePictureIntent();
-            }
+
+            // temporaryuploadchecker();
+            //latlong();
+            Log.d("latlong", latlong);
+
+            storephoto= 1;
+            piccounter= 4;
+            openCamera();
         }
-    }
+
+    }*/
 
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&

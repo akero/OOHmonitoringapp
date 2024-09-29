@@ -1240,7 +1240,7 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@id/view"
                         android:layout_marginBottom="@dimen/_2sdp"
-                        android:onClick="addImage"
+
 android:elevation= "2dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_gallery" />
@@ -1253,9 +1253,9 @@ android:elevation= "2dp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/dmsansregular"
                         android:text="Add Site Photograph"
-                        android:onClick="addImage"
+
                         android:layout_centerHorizontal="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimary"
 			android:elevation= "2dp"
                         android:textSize="@dimen/_10ssp" />
 
@@ -1267,8 +1267,8 @@ android:elevation= "2dp"
                         android:layout_marginTop="@dimen/_1sdp"
                         android:layout_marginEnd="@dimen/_1sdp"
                         android:layout_marginBottom="@dimen/_1sdp"
-                        android:background="@color/colorPrimarylight"
-                        android:onClick="addImage"
+                        android:background="@color/gray"
+
                         android:scaleType="fitXY" />
                 </RelativeLayout>
 
