@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.acme.oohvendor.databinding.ActivityOtpBinding;
@@ -42,8 +43,7 @@ public class OTP extends AppCompatActivity implements ApiInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityOtpBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_otp);
 
         Log.d("meme", "1");
 
@@ -117,7 +117,7 @@ public class OTP extends AppCompatActivity implements ApiInterface {
                         progressBar.startAnimation(rotateAnimation);
                         //view.setVisibility(View.VISIBLE);
                         //animation code
-
+                        Log.d("tag234", "1");
                         APIreferenceclass api= new APIreferenceclass(loginType, context, emailInput, "");
 
                     } else if (loginType == 1) {//admin
@@ -132,7 +132,7 @@ public class OTP extends AppCompatActivity implements ApiInterface {
                         //view.setVisibility(View.VISIBLE);
                         //animation code
 
-
+                        Log.d("tag234", "2");
                             APIreferenceclass api = new APIreferenceclass(loginType, context, emailInput, "");
 
                         //startActivity(new Intent(OTP.this, AdminDashboardActivity.class));
@@ -144,7 +144,7 @@ public class OTP extends AppCompatActivity implements ApiInterface {
                         progressBar.startAnimation(rotateAnimation);
                         //view.setVisibility(View.VISIBLE);
                         //animation code
-
+                        Log.d("tag234", "3");
                         APIreferenceclass api= new APIreferenceclass(loginType, context, emailInput, "");
                     }
 
