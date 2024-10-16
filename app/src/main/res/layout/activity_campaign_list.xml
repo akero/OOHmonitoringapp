@@ -16,7 +16,7 @@
         <RelativeLayout
             android:id="@+id/topBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="60dp"
             android:background="@color/colorPrimary"
             android:padding="@dimen/_5sdp">
 

@@ -104,7 +104,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         try{
 
             String name= getIntent().getStringExtra("name");
-            binding.title.setText(binding.title.getText()+ " - "+ name);
+            binding.title.setText(binding.title.getText()+ " -\n"+ name);
 
         }catch (Exception e){
             e.printStackTrace();

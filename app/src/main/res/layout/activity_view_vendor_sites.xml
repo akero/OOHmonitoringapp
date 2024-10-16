@@ -23,7 +23,7 @@
         <RelativeLayout
             android:id="@+id/topBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="60dp"
             android:background="@color/colorPrimary"
             android:padding="@dimen/_5sdp">
 
@@ -31,6 +31,7 @@
                 android:layout_width="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_height="wrap_content"
+                android:id="@+id/logo"
                 android:layout_toEndOf="@id/back"
                 android:src="@drawable/dalmia_logo" />
 
@@ -50,56 +51,104 @@
                 android:textColor= "@color/white"
                 android:textSize="14sp"
                 android:text= "Vendor"
+                android:layout_toEndOf="@id/logo"
+                android:layout_toStartOf="@id/icons"
+                android:gravity="center"
                 android:fontFamily="@font/dmsansregular"
                 android:layout_centerInParent="true"
 
                 />
 
             <LinearLayout
+                android:id="@+id/icons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true">
-            <ImageView
-                android:id="@+id/ivAddSite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="1dp"
-                android:onClick="onAddSiteClick"
-                android:layout_toLeftOf="@+id/ivProfile"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:src="@drawable/plus" />
 
-            <ImageView
-                android:id="@+id/ivProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onProfileClick"
-
-                android:layout_marginRight="@dimen/_10sdp"
-                android:src="@drawable/profile" />
-
-                <ImageView
-                    android:id="@+id/ivNotif"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onNotifClick"
-                    android:visibility="gone"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/notificationicon" />
+                    android:gravity="center"
 
-                <ImageView
-                    android:id="@+id/ivNotification"
+                    android:layout_marginRight="4dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/ivAddSite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="1dp"
+                        android:onClick="onAddSiteClick"
+                        android:layout_toLeftOf="@+id/ivProfile"
+                        android:src="@drawable/plus" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Site"
+                        android:onClick="onAddSiteClick"
+
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/dmsansregular"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+
+                    android:layout_marginRight="4dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onProfileClick"
+
+                        android:src="@drawable/profile" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onProfileClick"
+
+                        android:text="Profile"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/dmsansregular"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:onClick="logout"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:paddingTop="3dp"
-                    android:paddingStart="2dp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/ic_notification" />
+                    android:layout_marginRight="4dp"
+                    android:gravity="center"
+                    android:layout_marginTop="1.3dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/ivNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:onClick="logout"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="3dp"
+                        android:paddingStart="2dp"
+                        android:src="@drawable/ic_notification" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:onClick="logout"
+
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/dmsansregular"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 

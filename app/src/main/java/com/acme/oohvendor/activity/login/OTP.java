@@ -84,8 +84,6 @@ public class OTP extends AppCompatActivity implements ApiInterface {
             Intent intent= new Intent(OTP.this, RecceInstallation.class);
             intent.putExtra("logintoken", logintoken);
             intent.putExtra("recceid", userid);
-
-
             startActivity(intent);
         }
 
@@ -93,7 +91,6 @@ public class OTP extends AppCompatActivity implements ApiInterface {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 emailInput = email.getText().toString().trim();
 
                 // Check if the input is empty
@@ -123,8 +120,6 @@ public class OTP extends AppCompatActivity implements ApiInterface {
                     } else if (loginType == 1) {//admin
 
                         Log.d("tag23", "1");
-
-
                         Log.d("meme", "2");
                         //animation code
                         progressBar.setVisibility(View.VISIBLE);
@@ -147,20 +142,13 @@ public class OTP extends AppCompatActivity implements ApiInterface {
                         Log.d("tag234", "3");
                         APIreferenceclass api= new APIreferenceclass(loginType, context, emailInput, "");
                     }
-
                 }
             }
-
         });
-
-
-
     }
 
     @Override
     public void onResponseReceived(String response){
-
-
         Log.d("meme", "3");
         Log.d("tag23", response);
 
@@ -179,7 +167,6 @@ public class OTP extends AppCompatActivity implements ApiInterface {
             }
         });
         //animation code
-
         startActivity(intent);
     }
 }

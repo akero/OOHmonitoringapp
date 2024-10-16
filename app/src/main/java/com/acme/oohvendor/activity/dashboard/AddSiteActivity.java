@@ -550,6 +550,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
             //jsonPayload.put("project", binding.etHeight1.getText().toString());
             jsonPayload.put("state", binding.etWidth1.getText().toString());
+            jsonPayload.put("site_name", binding.etname.getText().toString()); //sitename
             jsonPayload.put("district", binding.etHeight2.getText().toString());
             jsonPayload.put("city", binding.etWidth2.getText().toString());
             //jsonPayload.put("retail_name", binding.etHeight3.getText().toString());
@@ -637,23 +638,6 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         locationHelper.requestLocationPermission(this, this);
     }
 
-    public void resetFields(View view) {
-        // Reset all EditText fields except "recce" and "signage board"
-        resetEditTextFields(R.id.etFetch, R.id.etHeight, R.id.etWidth, R.id.etWidth1,
-                R.id.etHeight2, R.id.etWidth2, R.id.etHeight3, R.id.etWidth3, R.id.etHeight4,
-                R.id.etWidth4, R.id.etHeight5, R.id.etWidth5, R.id.etTotalArea, R.id.etTotalArea1,
-                R.id.area);
-
-        // Reset all Button backgrounds
-        //resetButtonBackgrounds(R.id.btnFetch, R.id.btnUpdatePhoto, R.id.btnUpdatePhoto1, R.id.btnUpdatePhoto2,
-        //      R.id.btnUpdatePhoto3, R.id.btnUpdatePhoto4, R.id.btnUpdatePhoto5);
-
-        // Change background resource of all buttons and "rlAddImage" to "drawable/primarystroke"
-        int[] viewIds = {R.id.btnFetch, R.id.btnUpdatePhoto, R.id.btnUpdatePhoto1, R.id.btnUpdatePhoto2,
-                R.id.btnUpdatePhoto3, R.id.btnUpdatePhoto4, R.id.btnUpdatePhoto5, R.id.rlAddImage};
-        setBackgroundResource(viewIds, R.drawable.primarystroke);
-    }
-
     private void resetEditTextFields(int... editTextIds) {
         for (int id : editTextIds) {
             EditText editText = findViewById(id);
@@ -662,25 +646,6 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             }
         }
     }
-
-    private void resetButtonBackgrounds(int... buttonIds) {
-        for (int id : buttonIds) {
-            View view = findViewById(id);
-            if (view != null) {
-                view.setBackgroundResource(android.R.drawable.btn_default);
-            }
-        }
-    }
-
-    private void setBackgroundResource(int[] viewIds, int backgroundResource) {
-        for (int id : viewIds) {
-            View view = findViewById(id);
-            if (view != null) {
-                view.setBackgroundResource(backgroundResource);
-            }
-        }
-    }
-
 
     Uri photoURI;
 
@@ -725,28 +690,6 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         return imageFile;
     }
 
-    //auto opens when addimage is clicked
-    /*public void addImage(View view) {
-
-        Log.d("camera", "click registered");
-        if (ContextCompat.checkSelfPermission(AddSiteActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(AddSiteActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
-
-            Toast.makeText(AddSiteActivity.this, "Please give camera permissions", Toast.LENGTH_SHORT).show();
-
-            ActivityCompat.requestPermissions(AddSiteActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
-            Log.d("camera", "dont have permission");
-        } else {
-
-            // temporaryuploadchecker();
-            //latlong();
-            Log.d("latlong", latlong);
-
-            storephoto= 1;
-            piccounter= 4;
-            openCamera();
-        }
-
-    }*/
 
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -1009,10 +952,6 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
     }
 
-    void apicallmain(){
-
-    }
-
     String response1;
 
 
@@ -1244,6 +1183,13 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 binding.etHeight3.setFocusable( View.NOT_FOCUSABLE);
             }
 
+            binding.etname.setText(jsonobj1.getString("site_name"));
+            if(!TextUtils.isEmpty(binding.etname.getText())){
+                //binding.etname.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+
+
             binding.etHeight5.setText(jsonobj1.getString("contact"));
             if(!TextUtils.isEmpty(binding.etHeight5.getText())){
                 binding.etHeight5.setFocusable( View.NOT_FOCUSABLE);
@@ -1384,6 +1330,11 @@ try {
             binding.etHeight8.setText(jsonobj1.optString("asm"));
             if(!TextUtils.isEmpty(binding.etHeight8.getText())){
                 binding.etHeight8.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            binding.etname.setText(jsonobj1.optString("site_name"));
+            if(!TextUtils.isEmpty(binding.etname.getText())){
+                //binding.etname.setFocusable( View.NOT_FOCUSABLE);
             }
 
 ///            binding.etHeight8.setText(asm_name);
