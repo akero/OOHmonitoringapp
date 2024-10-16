@@ -33,6 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashSet;
+
 public class AdminDashboardActivity extends AppCompatActivity implements ApiInterface {
     ActivityMainBinding binding;
     boolean showMenus = false;
@@ -47,6 +49,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     Animation rotateAnimation;
     String userid;
     boolean statespinnerselected;
+    String cityid[];
 
     //todo access token save to memory add to api call
     @Override
@@ -102,6 +105,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         Log.d("tag21","5");
         if(delete== 0&& !statespinnerselected) {
             implementUi(response);
+            populatecityspinner(response);
+
         }else if(delete== 1 && vendorclientorcampaign== 0){
             delete= 0;
             runOnUiThread(new Runnable() {
@@ -146,6 +151,94 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             fetchsitesaccordingtovendor= false;
             implementUi(response);
         }
+    }
+
+    public void populatecityspinner(String response){
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String[] cities;
+
+                try{
+
+                    JSONObject jsonResponse = new JSONObject(response);
+                    JSONArray dataArray = jsonResponse.getJSONArray("data");
+                    cities= new String[dataArray.length()+1];
+                    //cityid= new String[dataArray.length()];
+
+                    cities[0]= "Select a City";
+
+                    for(int i=0; i< dataArray.length();i++){
+                        JSONObject dataObject = dataArray.getJSONObject(i);
+                        cities[i+1]= dataObject.optString("city");
+                        Log.d("tag209", cities[i+1]);
+                        //cityid[i]= dataObject.optString("name");
+                    }
+
+                    // Using a HashSet to remove duplicates
+                    HashSet<String> set = new HashSet<>();
+                    for (String num : cities) {
+                        set.add(num);  // HashSet automatically ignores duplicates
+                    }
+
+                    // Convert set back to array
+                    String[] uniqueArray = new String[set.size()];
+                    int i = 0;
+                    for (String num : set) {
+                        uniqueArray[i++] = num;
+                    }
+
+                    for(int k=0; k<uniqueArray.length; k++){
+
+                        if(uniqueArray[k].equals("Select a City")){
+
+                            String temp= uniqueArray[0];
+                            uniqueArray[0]= "Select a City";
+                            uniqueArray[k]= temp;
+
+                        }
+
+                    }
+
+                    Spinner spinnerCity = findViewById(R.id.spinnercity);
+                    ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(AdminDashboardActivity.this, android.R.layout.simple_spinner_item, uniqueArray);
+                    cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerCity.setAdapter(cityAdapter);
+
+                    // Setting up an OnItemSelectedListener for the first spinner
+                    spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            // This code runs when an item is selected
+                            String selectedState = parent.getItemAtPosition(position).toString();
+                            statespinnerselected= true;
+                            if (!selectedState.equals("Select a City")) {
+                                // Code to execute based on the selected state
+                                //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
+
+                                String idofselectedcity= parent.getItemAtPosition(position).toString();//name
+
+                                // Add your custom logic here based on the selected state
+                                executeYourLogicBasedOnCity(idofselectedcity, response);
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                            // This code runs when no item is selected (usually when the spinner starts)
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+
+
     }
 
     private void implementUi(String response){
@@ -496,6 +589,59 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     // Custom logic that executes based on the selected state
     private void executeYourLogicBasedOnState(String state) {
         APIreferenceclass api= new APIreferenceclass(AdminDashboardActivity.this, logintoken, state, "a", 1);
+
+    }
+
+    private void executeYourLogicBasedOnCity(String city, String response) {
+
+        try{
+
+            JSONObject jsonobj= new JSONObject(response);
+            JSONArray dataArray= jsonobj.getJSONArray("data");
+            String cityname= city;
+
+            JSONArray jsonArray= new JSONArray();// will be sent to ui
+
+            for(int i= 0; i<dataArray.length(); i++){
+
+                if(dataArray.getJSONObject(i).optString("city").equals(cityname)){
+
+                    jsonArray.put(dataArray.getJSONObject(i));
+                }
+
+            }
+
+            JSONArray jsonarr= new JSONArray();
+            JSONObject jsonObject= new JSONObject();
+            JSONObject dataObject= new JSONObject();
+
+            for(int i=0; i<jsonArray.length(); i++){
+                dataObject= jsonArray.getJSONObject(i);
+                jsonObject= new JSONObject();
+                Log.d("tag23232", jsonArray.getJSONObject(i).toString());
+                jsonObject.putOpt("id", dataObject.optInt("id"));
+                jsonObject.putOpt("uid", dataObject.optString("uid"));
+                jsonObject.putOpt("image", dataObject.optString("image"));
+                jsonObject.putOpt("name", dataObject.optString("project"));
+                String imageUrl = dataObject.optString("image"); // or "logo"
+                //imageUrl = "https://acme.warburttons.com/" + imageUrl;
+                jsonObject.putOpt("image", imageUrl); // Store the full image URL
+
+                jsonarr.put(jsonObject);
+            }
+
+            //send array to ui
+
+            GridLayoutManager layoutManager = new GridLayoutManager(ctxt, 2);
+            binding.rvCampaignList.setLayoutManager(layoutManager);
+            binding.noData.setVisibility(View.GONE);
+
+            CampaignListAdapter adapter = new CampaignListAdapter(ctxt, jsonarr, true);
+            binding.rvCampaignList.setAdapter(adapter);
+
+        }catch (Exception e){
+            Log.d("dsd", e.toString());
+        }
 
     }
 
