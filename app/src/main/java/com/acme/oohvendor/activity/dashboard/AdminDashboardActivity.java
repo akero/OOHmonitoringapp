@@ -50,6 +50,10 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     String userid;
     boolean statespinnerselected;
     String cityid[];
+    Spinner spinnerCity;
+    Spinner spinnerVendor;
+    boolean populatecity;
+
 
     //todo access token save to memory add to api call
     @Override
@@ -64,6 +68,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         statespinnerselected= false;
         populatevendorspinner= false;
         fetchsitesaccordingtovendor= false;
+        allsitedata= "";
+        spinnerCity = findViewById(R.id.spinnercity);
+        spinnerVendor = findViewById(R.id.spinnervendor);
+        aftercityvendorspinnerapicall= false;
+        populatecity= true;
+
 
         logintoken = FileHelper.readLoginToken(this);
         userid= FileHelper.readUserId(this);
@@ -103,9 +113,44 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     public void onResponseReceived(String response){
         Log.d("addbatest", "response is "+ response);
         Log.d("tag21","5");
-        if(delete== 0&& !statespinnerselected) {
+
+        if(aftercityvendorspinnerapicall){
+            aftercityvendorspinnerapicall= false;
+            populatecity= true;
+            try{
+                JSONObject jso= new JSONObject(response);
+                JSONArray jsona= jso.getJSONArray("data");
+                String vendornames[]= new String[jsona.length()+1];
+                vendornames[0]= "Select a Vendor";
+                for(int i=0; i< jsona.length();i++){
+                    JSONObject dataObject = jsona.getJSONObject(i);
+                    vendornames[i+1]= dataObject.optString("vendor");
+                }
+
+                for(int i=0; i<vendornames.length; i++){
+                    Log.d("yub", vendornames[i]);
+
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayAdapter<String> vendorAdapter = new ArrayAdapter<>(AdminDashboardActivity.this, android.R.layout.simple_spinner_item, vendornames);
+                        vendorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerVendor.setAdapter(vendorAdapter);
+
+                    }
+                });
+
+            }catch (Exception e){
+                Log.d("ff", e.toString());
+            }
+
+
+        }
+        else if(delete== 0&& !statespinnerselected ) {
             implementUi(response);
-            populatecityspinner(response);
+
 
         }else if(delete== 1 && vendorclientorcampaign== 0){
             delete= 0;
@@ -166,29 +211,34 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                     JSONArray dataArray = jsonResponse.getJSONArray("data");
                     cities= new String[dataArray.length()+1];
                     //cityid= new String[dataArray.length()];
+                    Log.d("xyz", "1");
 
                     cities[0]= "Select a City";
+
+
+                    Log.d("xyz", "2"+ dataArray.toString());
 
                     for(int i=0; i< dataArray.length();i++){
                         JSONObject dataObject = dataArray.getJSONObject(i);
                         cities[i+1]= dataObject.optString("city");
                         Log.d("tag209", cities[i+1]);
+                        Log.d("xyz", "2"+ dataArray.getJSONObject(i));
                         //cityid[i]= dataObject.optString("name");
                     }
-
+                    Log.d("xyz", "3");
                     // Using a HashSet to remove duplicates
                     HashSet<String> set = new HashSet<>();
                     for (String num : cities) {
                         set.add(num);  // HashSet automatically ignores duplicates
                     }
-
+                    Log.d("xyz", "4");
                     // Convert set back to array
                     String[] uniqueArray = new String[set.size()];
                     int i = 0;
                     for (String num : set) {
                         uniqueArray[i++] = num;
                     }
-
+                    Log.d("xyz", "5");
                     for(int k=0; k<uniqueArray.length; k++){
 
                         if(uniqueArray[k].equals("Select a City")){
@@ -200,12 +250,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         }
 
                     }
+                    Log.d("xyz", "6");
 
-                    Spinner spinnerCity = findViewById(R.id.spinnercity);
                     ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(AdminDashboardActivity.this, android.R.layout.simple_spinner_item, uniqueArray);
                     cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerCity.setAdapter(cityAdapter);
-
+                    Log.d("xyz", "7");
                     // Setting up an OnItemSelectedListener for the first spinner
                     spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -231,7 +281,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                     });
 
                 }catch (Exception e){
-                    e.printStackTrace();
+                    Log.d("xyz", e.toString());
                 }
 
             }
@@ -240,6 +290,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
 
 
     }
+
+    String allsitedata;
 
     private void implementUi(String response){
         try {
@@ -252,6 +304,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             String ids[];
             JSONObject jsonResponse = new JSONObject(response);
             if(jsonResponse.getInt("status")== 200) {
+
                 JSONArray dataArray = jsonResponse.getJSONArray("data");
                 if(dataArray != null && dataArray.length() > 0) {
                     if(vendorclientorcampaign==0){//cam
@@ -358,6 +411,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         }
                     }
                     Log.d("JSONArrayContent", "JSONArray1: " + jsonArray1.toString());
+                }
+
+                allsitedata= response;
+
+                if(populatecity) {
+                    populatecityspinner(response);
                 }
             }
             runOnUiThread(new Runnable() {
@@ -530,7 +589,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                 vendors[i+1]= dataObject.optString("name");
                 vendorsid[i]= dataObject.optString("name");
             }
-            Spinner spinnerVendor = findViewById(R.id.spinnervendor);
+            //Spinner spinnerVendor = findViewById(R.id.spinnervendor);
             ArrayAdapter<String> vendorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, vendors);
             vendorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerVendor.setAdapter(vendorAdapter);
@@ -546,6 +605,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         // Code to execute based on the selected state
                         //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
 
+                        populatecity= false;
                         String idofselectedvendor= parent.getItemAtPosition(position).toString();//name
 
                         // Add your custom logic here based on the selected state
@@ -590,8 +650,51 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     private void executeYourLogicBasedOnState(String state) {
         APIreferenceclass api= new APIreferenceclass(AdminDashboardActivity.this, logintoken, state, "a", 1);
 
+        String response= allsitedata;
+
+        //changing cityspinner
+        try{
+            JSONObject jsonobj= new JSONObject(response);
+            JSONArray jsonarr= jsonobj.getJSONArray("data");
+
+            JSONObject jsonob;
+            String cityArray[];
+            HashSet<String> set = new HashSet<>();
+
+            for(int i=0; i< jsonarr.length(); i++){
+                jsonob= jsonarr.getJSONObject(i);
+
+                if(jsonob.optString("state").equals(state)){
+
+
+                        set.add(jsonob.optString("city"));  // HashSet automatically ignores duplicates
+
+
+                }
+            }
+
+            Log.d("xyz", "4");
+            // Convert set back to array
+            String[] uniqueArray = new String[set.size()];
+            int i = 1;
+            uniqueArray[0]= "Select a City";
+
+            for (String num : set) {
+                uniqueArray[i++] = num;
+            }
+
+
+            ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(AdminDashboardActivity.this, android.R.layout.simple_spinner_item, uniqueArray);
+            cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerCity.setAdapter(cityAdapter);
+
+
+        }catch (Exception e){
+            Log.d("tag2", e.toString());
+        }
     }
 
+    boolean aftercityvendorspinnerapicall;
     private void executeYourLogicBasedOnCity(String city, String response) {
 
         try{
@@ -642,6 +745,10 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         }catch (Exception e){
             Log.d("dsd", e.toString());
         }
+
+        //populating vendor spinner
+        aftercityvendorspinnerapicall= true;
+        APIreferenceclass api= new APIreferenceclass(logintoken, AdminDashboardActivity.this, city, 1, 1, 1);
 
     }
 
@@ -931,6 +1038,30 @@ Log.d("tag41", "click detected");
 
     public void back(View v){
         onBackPressed();
+    }
+
+    public void reset(View v){
+
+        // Step 1: Get the original intent data
+        Intent oldIntent = getIntent();
+        Bundle bundle = oldIntent.getExtras();  // Get all extras from the previous intent
+
+// Step 2: Create a new intent and pass the data
+        Intent newIntent = new Intent(this, AdminDashboardActivity.class);
+        if (bundle != null) {
+            newIntent.putExtras(bundle);  // Pass all the previous data to the new intent
+        }
+
+// Step 3: Clear the task and start the new activity
+        newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(newIntent);
+
+        // Step 5: Disable animation (Skip transition animation)
+        overridePendingTransition(0, 0);
+
+// Step 4: Finish the current activity
+        finish();
+
     }
 
     public void logout(View v) {
