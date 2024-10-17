@@ -1207,6 +1207,27 @@ public class APIreferenceclass {
         callapi(headers, jsonPayload, context, querytype ,url);
     }
 
+    //for otp enter
+    public APIreferenceclass(Context context, String otp, String email, boolean y){
+
+
+        String url="https://ooh.warburttons.com/api/verifyLogin";
+        Log.d("tag23", "in new login");
+
+        String jsonPayload = "{\"email\": \"" + email +"\", \"password\": \"" + otp + "\"}";
+        Log.d("tg4", jsonPayload);
+
+        Map<String, String> headers = new HashMap<>();
+        //headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        querytype=1; //post
+
+        callapi(headers, jsonPayload, context, querytype ,url);
+    }
+
     //update profile
     public APIreferenceclass(String logintoken, String userid, Context context, int b, JSONObject json){
 

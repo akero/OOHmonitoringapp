@@ -28,6 +28,9 @@ import com.acme.oohvendor.databinding.ActivityOtpBinding;
 
 import com.acme.oohvendor.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class OTP extends AppCompatActivity implements ApiInterface {
 
     private AppBarConfiguration appBarConfiguration;
@@ -151,22 +154,55 @@ public class OTP extends AppCompatActivity implements ApiInterface {
     public void onResponseReceived(String response){
         Log.d("meme", "3");
         Log.d("tag23", response);
+        Intent intent;
 
-        Intent intent = new Intent(OTP.this, ContentOtp.class);
+        try{
 
-        intent.putExtra("email", emailInput);
-        //intent.putExtra("loginType", loginType);
+            JSONObject jsonobj= new JSONObject(response);
+            JSONObject js= jsonobj.getJSONObject("data");
 
-        //animation code
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.clearAnimation();
-                progressBar.setVisibility(View.GONE);
-                //view.setVisibility(View.GONE);
+
+            if(js.optString("user_type").equals("vendor")){
+                intent = new Intent(OTP.this, ContentOtpVendor.class);
+                intent.putExtra("email", emailInput);
+                //intent.putExtra("loginType", loginType);
+
+                //animation code
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.clearAnimation();
+                        progressBar.setVisibility(View.GONE);
+                        //view.setVisibility(View.GONE);
+                    }
+                });
+                //animation code
+                startActivity(intent);
+            }else{
+                intent = new Intent(OTP.this, ContentOtp.class);
+                intent.putExtra("email", emailInput);
+                //intent.putExtra("loginType", loginType);
+
+                //animation code
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.clearAnimation();
+                        progressBar.setVisibility(View.GONE);
+                        //view.setVisibility(View.GONE);
+                    }
+                });
+                //animation code
+                startActivity(intent);
             }
-        });
-        //animation code
-        startActivity(intent);
+
+        }catch (Exception e){
+            Log.d("asds", e.toString());
+        }
+
+
+
+
+
     }
 }

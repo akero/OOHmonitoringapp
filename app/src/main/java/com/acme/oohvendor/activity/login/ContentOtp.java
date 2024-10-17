@@ -71,13 +71,6 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
         setupAutoAdvance(otp4, null);
 
         email= getIntent().getStringExtra("email");
-
-       // btnNext.setOnClickListener(new View.OnClickListener() {
-           // @Override
-         //   public void onClick(View v) {
-              //  validateAndContinue();
-          //  }
-       // });
     }
 
     private void setupAutoAdvance(final EditText currentEditText, final EditText nextEditText) {
@@ -123,11 +116,6 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
             APIreferenceclass api= new APIreferenceclass(otp, context, email, 1);
             Log.d("tg4","otp works");
 
-            //Intent intent = new Intent(ContentOtp.this, ContentOtp.class);
-            // Add any other data to send to the next activity
-            // intent.putExtra("email", emailInput);
-            // intent.putExtra("loginType", loginType);
-            //startActivity(intent);
         } else {
             Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
 
@@ -310,7 +298,6 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
             public void run() {
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.GONE);
-                //view.setVisibility(View.GONE);
             }
         });
         //animation code

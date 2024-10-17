@@ -892,6 +892,8 @@ out.close();
                     @Override
                     public void run() {
                         Toast.makeText(ViewSiteDetailActivity.this, "Image updated successfully", Toast.LENGTH_SHORT).show();
+                        apicall(logintoken, siteNumber);
+
                     }
                 });
             } else {
