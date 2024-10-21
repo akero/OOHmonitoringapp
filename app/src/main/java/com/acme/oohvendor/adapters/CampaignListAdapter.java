@@ -97,7 +97,7 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
 
             String imageUrl = jsonObject.optString("image");
             if(imageUrl != null && !imageUrl.isEmpty() && !imageUrl.equals("null")) {
-                imageUrl = "https://acme.warburttons.com/" + imageUrl;
+                imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                 Glide.with(context)
                         .load(imageUrl)
                         .placeholder(R.drawable.temp_campaign) // Placeholder image while loading

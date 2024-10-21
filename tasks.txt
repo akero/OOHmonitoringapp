@@ -4,6 +4,12 @@ rish1994a@gmail.com- vendor
 rish1994c@gmail.com- asm
 rish1994j@gmail.com- zo
 
+state city filter in vendor login
+//correct pics
+>refresh after add site- line 472
+swipe pics
+null change vendor dash
+
 https://ooh.warburttons.com/login
 management@acmemedia.in
 12345

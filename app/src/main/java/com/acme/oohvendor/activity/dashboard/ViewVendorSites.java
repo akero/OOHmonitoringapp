@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.acme.oohvendor.R;
 import com.acme.oohvendor.activity.login.OTP;
@@ -121,6 +122,8 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
         APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this, area, 1, "a");
     }
+
+
 
 
     //onresponsereceived from api
@@ -454,12 +457,30 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         return dataStrings;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        Log.d("tag3343", "result ok");
+        if (requestCode == 1) {
+            Log.d("tag3343", "result ok");
+
+                Log.d("tagback", "back pressed in SecondActivity");
+
+                // Do something when returning from SecondActivity
+                //APIreferenceclass api = new APIreferenceclass(logintoken, ViewVendorSites.this, area, 1, "a");
+
+        }
+    }
+
+
     public void onPlusClick(View view) {
         //TODO here
         Log.d("tag20", "onplusclick1");
 
         Intent intent= new Intent(ViewVendorSites.this, AddSiteDetailActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void onNotificationClick(View view){
@@ -488,7 +509,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         Log.d("xyz", String.valueOf(vendorid));
         intent.putExtra("camefrom", "viewvendorsites");
         intent.putExtra("vendorid", String.valueOf(vendorid));
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
 
     public void onProfileClick(View view){

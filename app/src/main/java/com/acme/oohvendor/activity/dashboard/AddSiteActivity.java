@@ -656,6 +656,16 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         imageUri = null;
     }
 
+    @Override
+    public void onBackPressed() {
+        // Create an Intent and set a flag or extra
+        Log.d("tagback", "back pressed");
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("cameFromSecondActivity", true);  // Add a flag or extra
+        setResult(RESULT_OK, returnIntent);  // Optional: Set result code
+        super.onBackPressed();  // Call the original method to handle the back press
+    }
+
 
     private LocationHelper locationHelper;
 
