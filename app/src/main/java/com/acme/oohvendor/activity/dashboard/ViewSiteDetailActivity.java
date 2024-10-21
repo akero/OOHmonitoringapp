@@ -113,13 +113,14 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
 
             if (!camefrom.equals("ViewVendorSites") && !camefrom.equals("AsmDashboardActivity") && !camefrom.equals("ZoDashboardActivity")) {
+                Log.d("tag22", "1");
                 binding = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail);
             } else {
                 if (!camefrom.equals("ViewVendorSites")) {
+                    Log.d("tag22", "2");
                     binding1 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor);
                 } else {
-
-
+                    Log.d("tag22", "3");
                     binding2 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor_real);
 
                 }

@@ -129,7 +129,7 @@
                     android:background="@drawable/primarystroke"
                     android:clickable= "true"
                     android:fontFamily="@font/dmsansregular"
-                    android:text="Store Photo 1"
+                    android:text="Long Shot"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />
@@ -143,7 +143,7 @@
                     android:background="@drawable/primarystroke"
                     android:clickable= "true"
                     android:fontFamily="@font/dmsansregular"
-                    android:text="Store Photo 2"
+                    android:text="Short shot"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />
@@ -157,7 +157,7 @@
                     android:background="@drawable/primarystroke"
                     android:clickable= "true"
                     android:fontFamily="@font/dmsansregular"
-                    android:text="Store Photo 3"
+                    android:text="Left shot"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />
@@ -171,7 +171,7 @@
                     android:background="@drawable/primarystroke"
                     android:clickable= "true"
                     android:fontFamily="@font/dmsansregular"
-                    android:text="Store Photo 4"
+                    android:text="Right shot"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />
@@ -188,7 +188,7 @@
                     android:background="@drawable/primarystroke"
                     android:clickable= "true"
                     android:fontFamily="@font/dmsansregular"
-                    android:text="Your signature"
+                    android:text="Your Selfie"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />
@@ -891,7 +891,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/llDimensions10"
-                    android:visibility="gone"
                     android:layout_below="@id/llDimensions5"
                     android:orientation="horizontal">
 
@@ -899,6 +898,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:layout_marginRight="@dimen/_2sdp">
 
                         <TextView

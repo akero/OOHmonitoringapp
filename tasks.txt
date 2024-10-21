@@ -12,7 +12,8 @@ Name- OOH monitoring app
 Purpose- monitoring
 -----------
 
->update photo vendor resend api call after upload
+password make enter press next
+//update photo vendor resend api call after upload
 
 in vendor dash sites load slow sometimes
 

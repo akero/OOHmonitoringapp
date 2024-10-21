@@ -807,7 +807,7 @@ public class APIreferenceclass {
 
             // Add photosign
             if (photosign != null) {
-                addPhotoToMultipart(multipartOutputStream, boundary, photosign, "owner_signature", context);
+                addPhotoToMultipart(multipartOutputStream, boundary, photosign, "racce_person_image", context);
             }
 
             // Add photosite

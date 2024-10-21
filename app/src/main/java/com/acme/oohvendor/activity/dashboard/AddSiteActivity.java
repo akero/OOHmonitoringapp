@@ -309,8 +309,31 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             }
         });
 
-
         ownerSignButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("camera", "click registered");
+                if (ContextCompat.checkSelfPermission(AddSiteActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(AddSiteActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//||ContextCompat.checkSelfPermission(ViewSiteDetailActivity.this, WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+
+                    Toast.makeText(AddSiteActivity.this, "Please give camera permissions", Toast.LENGTH_SHORT).show();
+
+                    ActivityCompat.requestPermissions(AddSiteActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+                    Log.d("camera", "dont have permission");
+                } else {
+
+                    // temporaryuploadchecker();
+                    //latlong();
+                    Log.d("latlong", latlong);
+
+                    storephoto= 2;
+                    piccounter= 5;
+                    openCameraFront();
+                }
+            }
+        });
+
+
+     /*   ownerSignButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("signature", "click registered");
@@ -338,7 +361,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             }
 
 
-        });
+        });*/
 
         //fetch retailer details and populate automatically
         binding.btnFetch.setOnClickListener(new View.OnClickListener() {
@@ -557,6 +580,8 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             jsonPayload.put("length", binding.etHeight.getText().toString());
             jsonPayload.put("width", binding.etWidth.getText().toString());
             jsonPayload.put("code", binding.etFetch.getText().toString());
+            jsonPayload.put("racce_person_name", binding.etWidth5.getText().toString());
+
             //jsonPayload.put("shop_owner_status", ownerpermission);
             //jsonPayload.put("brand", binding.etBrand.getText().toString());
             //jsonPayload.put("owner_alt_num", binding.etOwnerAlternateNumber.getText().toString());
@@ -675,6 +700,34 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         //   }
     }
 
+    private void openCameraFront() {
+        //Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent cameraIntent = new Intent(this, CustomCameraActivity.class);
+
+        photoURI = null;
+        // if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException ex) {
+            // Handle error
+        }
+        if (photoFile != null) {
+            photoURI = FileProvider.getUriForFile(AddSiteActivity.this,
+                    "com.acme.oohvendor.fileprovider",
+                    photoFile);
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+            Log.d("opencamerauri", photoURI.toString());
+            startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
+        }
+        //   } else {
+        //         Log.d("camera", "no permission1");
+        //        Toast.makeText(AddSiteActivity.this, "Don't have camera permissions", Toast.LENGTH_SHORT).show();
+
+        //   }
+    }
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -759,37 +812,41 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 if(piccounter== 1){
                     Log.d("pic", "1");
                     pic1taken= true;
-                    binding.btnUpdatePhoto.setText("Retake Store Photo 1");
+                    binding.btnUpdatePhoto.setText("Retake Long Shot");
                     binding.btnUpdatePhoto.setBackgroundResource(R.drawable.primarystrokegreen);
                     pic1takenURI= photoURI;
                 }else if(piccounter== 2){
                     pic2taken= true;
-                    binding.btnUpdatePhoto1.setText("Retake Store Photo 2");
+                    binding.btnUpdatePhoto1.setText("Retake Short Shot");
                     binding.btnUpdatePhoto1.setBackgroundResource(R.drawable.primarystrokegreen);
 
                     Log.d("pic", "2");
                     pic2takenURI= photoURI;
                 }else if(piccounter== 3){
                     pic3taken= true;
-                    binding.btnUpdatePhoto2.setText("Retake Store Photo 3");
+                    binding.btnUpdatePhoto2.setText("Retake Left Shot");
                     binding.btnUpdatePhoto2.setBackgroundResource(R.drawable.primarystrokegreen);
 
                     Log.d("pic", "3");
                     pic3takenURI= photoURI;
                 }else if(piccounter== 4){
                     pic4taken= true;
-                    binding.btnUpdatePhoto3.setText("Retake Store Photo 4");
+                    binding.btnUpdatePhoto3.setText("Retake Right Shot");
                     binding.btnUpdatePhoto3.setBackgroundResource(R.drawable.primarystrokegreen);
+                    Log.d("tagxx", photoURI.toString());
 
                     Log.d("pic", "4");
                     pic4takenURI= photoURI;
                 }else if(piccounter== 5){
                     picsigntaken= true;
-                    binding.btnUpdatePhoto4.setText("Retake Signature");
+                    binding.btnUpdatePhoto4.setText("Retake Selfie");
                     binding.btnUpdatePhoto4.setBackgroundResource(R.drawable.primarystrokegreen);
 
                     Log.d("pic", "5");
-                    //picsigntakenURI= photoURI;
+                    photoURI = data.getData();
+                    Log.d("tagxx", photoURI.toString());
+
+                    picsigntakenURI= photoURI;
                 }else if(piccounter== 6){
                     picsitetaken= true;
                     binding.tvAddSite.setText("Retake Site Photograph");
@@ -846,7 +903,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    binding.btnUpdatePhoto4.setText("Retake Signature");
+                    binding.btnUpdatePhoto4.setText("Retake Selfie");
                     binding.btnUpdatePhoto4.setBackgroundResource(R.drawable.primarystrokegreen);
                     Toast.makeText(AddSiteActivity.this, "Signature saved", Toast.LENGTH_LONG).show();
                 }
