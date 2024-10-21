@@ -337,6 +337,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         // Create a bundle to pass the response to the fragment
         Bundle bundle = new Bundle();
         bundle.putString("response", response);
+        Log.d("tagxy", response);
 
         // Set the arguments for the fragment
         notificationFragment.setArguments(bundle);

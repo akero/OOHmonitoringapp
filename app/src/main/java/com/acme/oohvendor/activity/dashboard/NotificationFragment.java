@@ -44,10 +44,17 @@ public class NotificationFragment extends Fragment {
             parseResponse(response);
         }
 
+        boolean firstrun= false;
+
         //TODO CHANGE
         // Add buttons to GridLayout
         for (String code : codeList) {
             if(code.equals("1")) {
+
+               // if(!firstrun){
+                 //   continue;
+                //}
+                firstrun= true;
                 Button codeButton = new Button(getContext());
                 codeButton.setText(code);
                 codeButton.setBackgroundResource(R.drawable.code_button_background); // Custom background if needed

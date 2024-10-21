@@ -581,6 +581,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             jsonPayload.put("width", binding.etWidth.getText().toString());
             jsonPayload.put("code", binding.etFetch.getText().toString());
             jsonPayload.put("racce_person_name", binding.etWidth5.getText().toString());
+            jsonPayload.put("location", binding.etTotalArea1.getText().toString());
 
             //jsonPayload.put("shop_owner_status", ownerpermission);
             //jsonPayload.put("brand", binding.etBrand.getText().toString());

@@ -420,7 +420,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             // Image captured successfully
             // Access the image file using the Uri you provided earlier
 
-            Log.d("tag22", data.toString());
+            //Log.d("tag22", data.toString());
 
             try {
                 imageUri = FileProvider.getUriForFile(this,
@@ -565,6 +565,8 @@ bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out); // 50 is the quality param
 
 out.close();
             * */
+
+            Log.d("tag22222", siteid);
             APIreferenceclass api = new APIreferenceclass(1, ctxt, logintoken1, jsonobj1.toString(), photoURI, siteid);
 
 
