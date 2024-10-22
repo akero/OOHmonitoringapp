@@ -54,8 +54,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     Spinner spinnerVendor;
     boolean populatecity;
 
-
-    //todo access token save to memory add to api call
+    //TODO access token save to memory add to api call
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,17 +72,13 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         spinnerVendor = findViewById(R.id.spinnervendor);
         aftercityvendorspinnerapicall= false;
         populatecity= true;
-
-
         logintoken = FileHelper.readLoginToken(this);
         userid= FileHelper.readUserId(this);
         Log.d("tg4", logintoken);
 
         try{
-
             String name= getIntent().getStringExtra("name");
             binding.title.setText(binding.title.getText()+ " -\n"+ name);
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -129,7 +124,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
 
                 for(int i=0; i<vendornames.length; i++){
                     Log.d("yub", vendornames[i]);
-
                 }
 
                 runOnUiThread(new Runnable() {
@@ -138,19 +132,14 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         ArrayAdapter<String> vendorAdapter = new ArrayAdapter<>(AdminDashboardActivity.this, android.R.layout.simple_spinner_item, vendornames);
                         vendorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinnerVendor.setAdapter(vendorAdapter);
-
                     }
                 });
-
             }catch (Exception e){
                 Log.d("ff", e.toString());
             }
-
-
         }
         else if(delete== 0&& !statespinnerselected ) {
             implementUi(response);
-
 
         }else if(delete== 1 && vendorclientorcampaign== 0){
             delete= 0;
@@ -159,7 +148,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                 public void run() {
                     Toast.makeText(getApplicationContext(),"Campaign deleted successfully", Toast.LENGTH_SHORT).show();
                     campaignList();
-
                 }
             });
 
@@ -199,14 +187,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
     }
 
     public void populatecityspinner(String response){
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 String[] cities;
 
                 try{
-
                     JSONObject jsonResponse = new JSONObject(response);
                     JSONArray dataArray = jsonResponse.getJSONArray("data");
                     cities= new String[dataArray.length()+1];
@@ -286,9 +272,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
 
             }
         });
-
-
-
     }
 
     String allsitedata;
@@ -389,7 +372,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                                 //imageUrl = "https://acme.warburttons.com/" + imageUrl;
                                 //jsonObject.putOpt("image", imageUrl); // Store the full image URL
 
-
                                 //to pass to client class
                                 jsonObject2.putOpt("id", dataObject.optInt("id"));
                                 jsonObject2.putOpt("name", dataObject.optString("name"));
@@ -455,14 +437,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                             populatevendorspinner1(response);
                         }
                     });
-
-
                 }
 
             }catch (Exception f){
                 f.printStackTrace();
             }
-
         }
     }
 
@@ -518,12 +497,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         // Sample data for the spinners
         String[] states = {"Select a State", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "TN1","Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"};
 
-
         // Finding the spinners
         Spinner spinnerState = findViewById(R.id.spinnerstate);
         populatevendorspinner();
-
-
 
         // Creating adapters for the spinners
         ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, states);

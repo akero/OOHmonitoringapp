@@ -4,16 +4,6 @@ rish1994a@gmail.com- vendor
 rish1994c@gmail.com- asm
 rish1994j@gmail.com- zo
 
-autofill for zo asm add site
-vendor name required for asm and zo dash add site- inform dev
-
-state city filter in vendor login
-//correct pics
->refresh after add site- line 472
-swipe pics
-//null change vendor dash
-remove selfie from admin dash add site
-
 https://ooh.warburttons.com/login
 management@acmemedia.in
 12345
@@ -21,6 +11,31 @@ management@acmemedia.in
 Name- OOH monitoring app
 Purpose- monitoring
 -----------
+
+
+latlong 300 m check for all pictures taken where latlong are available, if not in 300 m radius show error
+
+Vendor update pic-
+take 4 pics for update
+vendor separate login for 1 person- where he approves of all pictures taken in other vendor login
+
+client login-
+two columns approved and to be approved
+client login add approval for pics sent by vendor update pic
+if rejected send back to vendor
+
+>slider pics in all
+
+autofill for zo asm add site
+vendor name required for asm and zo dash add site- inform dev
+state city filter in vendor login
+//correct pics
+>refresh after add site- line 472
+swipe pics
+//null change vendor dash
+remove selfie from admin dash add site
+
+
 
 password make enter press next
 //update photo vendor resend api call after upload
