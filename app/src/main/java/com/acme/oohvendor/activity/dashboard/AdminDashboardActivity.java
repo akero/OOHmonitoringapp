@@ -298,7 +298,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
             JSONObject jsonObject = new JSONObject();
             JSONObject jsonObject1= new JSONObject();
             JSONObject jsonObject2= new JSONObject();
-            jsonArray1= new JSONArray();
+            //jsonArray1= new JSONArray();
             jsonArray2= new JSONArray();
             jsonArray3= new JSONArray();
             String ids[];
@@ -516,7 +516,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         binding.llSpinner.setVisibility(View.VISIBLE);
 
         // Sample data for the spinners
-        String[] states = {"Select a State", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"};
+        String[] states = {"Select a State", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "TN1","Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"};
 
 
         // Finding the spinners
@@ -920,18 +920,21 @@ Log.d("tag41", "click detected");
 
     public void onItemClick(int position) {
         try {
-            Log.d("tag51", Integer.toString(position));
+            Log.d("tag222", "11");
+
+            // Log.d("tag51", Integer.toString(position));
             // Retrieve JSONObject from your jsonArray at position
             JSONObject jsonObject = jsonArray1.getJSONObject(position);
-            Log.d("tag51", jsonArray1.getJSONObject(position).toString());
+            //Log.d("tag51", jsonArray1.getJSONObject(position).toString());
+            Log.d("tag222", "22");
 
             //TODO add correct login token here
             //logintoken="Bearer 322|7Dor2CuPXz4orJV5GUleBAUcmgYnbswVMLQ5EUNM";
 
             // Get site id or site no from the JSONObject
             String id = jsonObject.getString("id"); // Or get an id if you have that
-            Log.d("tag51", jsonObject.getString("id"));
-            Log.d("tag60", jsonObject.toString());
+            //Log.d("tag51", jsonObject.getString("id"));
+            //Log.d("tag60", jsonObject.toString());
 
             // String siteId = jsonObject.getString("siteId"); // If you have a site id.
 
@@ -949,12 +952,15 @@ Log.d("tag41", "click detected");
 
             }else if(vendorclientorcampaign==1){//client
 
+                Log.d("tag222", "1");
                 JSONObject jsonObject1 = jsonArray2.getJSONObject(position);
-                Log.d("tag91", jsonArray2.getJSONObject(position).toString());
-                Log.d("tag91",jsonArray2.toString());
-                Log.d("tag91",jsonObject1.toString());
-                Log.d("tag91",Integer.toString(position));
-                Log.d("tg11", id);
+                Log.d("tag222", "2");
+
+                //Log.d("tag91", jsonArray2.getJSONObject(position).toString());
+                //Log.d("tag91",jsonArray2.toString());
+               // Log.d("tag91",jsonObject1.toString());
+                //Log.d("tag91",Integer.toString(position));
+               // Log.d("tg11", id);
 
                 startActivity(new Intent(this, ClientDashFirstPage.class)
                         .putExtra("id", id)
@@ -1082,7 +1088,7 @@ Log.d("tag41", "click detected");
     public void onAddSiteClick(View view){
 
         Intent intent= new Intent(AdminDashboardActivity.this, AddSiteActivity.class);
-        //intent.putExtra("area", area);
+        intent.putExtra("camefrom", "admindash");
         //Log.d("xyz", String.valueOf(vendorid));
         //intent.putExtra("vendorid", String.valueOf(vendorid));
         startActivity(intent);

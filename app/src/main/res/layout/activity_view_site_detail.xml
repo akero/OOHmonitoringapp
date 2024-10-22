@@ -194,13 +194,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/dmsansregular"
-                            android:text="Retailer name"
+                            android:text="Vendor name"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/_10ssp" />
 
                         <TextView
-                            android:id="@+id/etSiteNo"
+                            android:id="@+id/tvHeigh5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tvSiteno"
@@ -509,6 +509,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/_2sdp">
 
                     <TextView
@@ -541,6 +542,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/llDimension1"
                 android:layout_below="@id/llDimension"
+
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -615,6 +618,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/_2sdp">
 
                     <TextView
@@ -713,6 +717,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/_2sdp">
 
                     <TextView
@@ -819,6 +825,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/_2sdp">
 
                     <TextView
@@ -832,7 +839,7 @@
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
-                        android:id="@+id/tvHeigh5"
+                        android:id="@+id/etSiteNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvHeightTex5"

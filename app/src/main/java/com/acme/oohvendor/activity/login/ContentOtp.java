@@ -129,6 +129,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
     String userid;
     String loginType;
     int clientid, vendorid, recceid, recceasmid;
+    String realarea;
 
 
     @Override
@@ -140,6 +141,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
         recceid= 0;
         recceasmid=0;
         name= "";
+        realarea= "";
 
         try {
         JSONObject jsonObject = new JSONObject(response);
@@ -167,11 +169,13 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
             if(loginType.equals("asm")){
                 recceasmid= jsonObject1.getInt("id");
                 area= jsonObject1.getString("name");
+                realarea= jsonObject1.getString("state");
             }
 
             if(loginType.equals("zo")){
                 recceasmid= jsonObject1.getInt("id");
                 area= jsonObject1.getString("name");
+                realarea= jsonObject1.getString("zone");
             }
 
             Log.d("tg4", loginType);
@@ -238,6 +242,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 intent.putExtra("recceasmid", recceasmid);
                 intent.putExtra("area", area);
                 intent.putExtra("name", name);
+                intent.putExtra("realarea", realarea);
 
                 loadingSpinner();
                 startActivity(intent);
@@ -247,8 +252,9 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 intent.putExtra("logintoken", token);
                 intent.putExtra("recceasmid", recceasmid);
                 intent.putExtra("area", area);
-
+                intent.putExtra("realarea", realarea);
                 intent.putExtra("name", name);
+
                 loadingSpinner();
                 startActivity(intent);
             }

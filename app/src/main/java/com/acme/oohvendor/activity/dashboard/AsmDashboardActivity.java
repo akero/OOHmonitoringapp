@@ -67,7 +67,7 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
     ProgressBar progressBar;
     Animation rotateAnimation;
     int vendorid;
-    String area;
+    String area, realarea;
 
     //todo access token save to memory add to api call
 
@@ -79,6 +79,7 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
         binding.rvCampaignList.setLayoutManager(layoutManager);
         vendorid= 0;
         area= "";
+        realarea= "";
 
         Log.d("whichclass", "ActivityAsmDashbo");
 
@@ -97,6 +98,8 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
         Log.d("tag58", Integer.toString(vendorid));
 
         area= getIntent().getStringExtra("area");
+        realarea= getIntent().getStringExtra("realarea");
+
         Log.d("tag58area", area);
 
         try{
@@ -115,7 +118,7 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
         jsonArray1= new JSONArray();
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, false);
         binding.rvCampaignList.setAdapter(adapter);
-        campaignList(area);
+        campaignList(realarea);
     }
 
 

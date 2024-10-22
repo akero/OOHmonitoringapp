@@ -111,6 +111,17 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
         }
 
+
+        try{
+            String camefrom= getIntent().getStringExtra("camefrom");
+            if(camefrom.equals("admindash")){
+                binding.yourname.setVisibility(View.GONE);
+            }
+
+        }catch (Exception e){
+
+        }
+
         Log.d("whichclass", "addsiteactivity");
 
         binding.etBrand.setText("");
@@ -571,7 +582,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         JSONObject jsonPayload = new JSONObject();
         try {
 
-            //jsonPayload.put("project", binding.etHeight1.getText().toString());
+            jsonPayload.put("project", binding.etTotalArea1.getText().toString());
             jsonPayload.put("state", binding.etWidth1.getText().toString());
             jsonPayload.put("site_name", binding.etname.getText().toString()); //sitename
             jsonPayload.put("district", binding.etHeight2.getText().toString());
@@ -823,26 +834,26 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 if(piccounter== 1){
                     Log.d("pic", "1");
                     pic1taken= true;
-                    binding.btnUpdatePhoto.setText("Retake Long Shot");
+                    binding.btnUpdatePhoto.setText("Retake Far Shot");
                     binding.btnUpdatePhoto.setBackgroundResource(R.drawable.primarystrokegreen);
                     pic1takenURI= photoURI;
                 }else if(piccounter== 2){
                     pic2taken= true;
-                    binding.btnUpdatePhoto1.setText("Retake Short Shot");
+                    binding.btnUpdatePhoto1.setText("Retake Near Shot");
                     binding.btnUpdatePhoto1.setBackgroundResource(R.drawable.primarystrokegreen);
 
                     Log.d("pic", "2");
                     pic2takenURI= photoURI;
                 }else if(piccounter== 3){
                     pic3taken= true;
-                    binding.btnUpdatePhoto2.setText("Retake Left Shot");
+                    binding.btnUpdatePhoto2.setText("Retake Left Angle");
                     binding.btnUpdatePhoto2.setBackgroundResource(R.drawable.primarystrokegreen);
 
                     Log.d("pic", "3");
                     pic3takenURI= photoURI;
                 }else if(piccounter== 4){
                     pic4taken= true;
-                    binding.btnUpdatePhoto3.setText("Retake Right Shot");
+                    binding.btnUpdatePhoto3.setText("Retake Right Angle");
                     binding.btnUpdatePhoto3.setBackgroundResource(R.drawable.primarystrokegreen);
                     Log.d("tagxx", photoURI.toString());
 
@@ -1249,6 +1260,13 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             binding.etHeight3.setText(jsonobj1.getString("retailer_name"));
             if(!TextUtils.isEmpty(binding.etHeight3.getText())){
                 binding.etHeight3.setFocusable( View.NOT_FOCUSABLE);
+            }
+
+            try{
+                binding.etTotalArea1.setText(jsonobj1.getString("project"));
+
+            }catch (Exception e){
+                Log.d("tag332",e.toString());
             }
 
             binding.etname.setText(jsonobj1.getString("site_name"));

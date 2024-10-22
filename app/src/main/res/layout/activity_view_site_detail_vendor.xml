@@ -195,6 +195,21 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_14ssp" />
 
+            <Button
+                android:id="@+id/btnUpdatePhoto1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivCampaignImage"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/primarystroke"
+                android:clickable= "true"
+                android:visibility="gone"
+                android:fontFamily="@font/dmsansregular"
+                android:text="Any Damage?"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -214,7 +229,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/dmsansregular"
-                            android:text="Retailer name"
+                            android:text="Vendor name"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/_10ssp" />

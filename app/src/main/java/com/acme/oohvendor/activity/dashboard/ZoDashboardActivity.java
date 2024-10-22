@@ -68,7 +68,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
     ProgressBar progressBar;
     Animation rotateAnimation;
     int vendorid;
-    String area;
+    String area, realarea;
 
     //todo access token save to memory add to api call
 
@@ -80,6 +80,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
         binding.rvCampaignList.setLayoutManager(layoutManager);
         vendorid= 0;
         area= "";
+        realarea= "";
 
         Log.d("whichclass", "ActivityzoDashbo");
 
@@ -98,6 +99,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
         Log.d("tag58", Integer.toString(vendorid));
 
         area= getIntent().getStringExtra("area");
+        realarea= getIntent().getStringExtra("realarea");
         Log.d("tag58area", area);
 
         try{
@@ -116,7 +118,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
         jsonArray1= new JSONArray();
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, false);
         binding.rvCampaignList.setAdapter(adapter);
-        campaignList(area);
+        campaignList(realarea);
     }
 
 
