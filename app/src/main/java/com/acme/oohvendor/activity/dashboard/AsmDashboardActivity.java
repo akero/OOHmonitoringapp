@@ -183,7 +183,7 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
                                 jsonObject.putOpt("uid", dataObject.optString("uid"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
-                                jsonObject.putOpt("name", dataObject.optString("project"));
+                                jsonObject.putOpt("name", dataObject.optString("location"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 
@@ -252,7 +252,7 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
                                 jsonObject.putOpt("company_name", dataObject.optString("retail_name"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
-                                jsonObject.putOpt("name", dataObject.optString("project"));
+                                jsonObject.putOpt("name", dataObject.optString("location"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 

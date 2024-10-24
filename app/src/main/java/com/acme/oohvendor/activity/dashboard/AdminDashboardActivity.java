@@ -302,7 +302,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         jsonObject.putOpt("id", dataObject.optInt("id"));
                         jsonObject.putOpt("uid", dataObject.optString("uid"));
                         jsonObject.putOpt("image", dataObject.optString("image"));
-                        jsonObject.putOpt("name", dataObject.optString("project"));
+                        jsonObject.putOpt("name", dataObject.optString("location"));
                         String imageUrl = dataObject.optString("image"); // or "logo"
                         //imageUrl = "https://acme.warburttons.com/" + imageUrl;
                         jsonObject.putOpt("image", imageUrl); // Store the full image URL
@@ -701,7 +701,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                 jsonObject.putOpt("id", dataObject.optInt("id"));
                 jsonObject.putOpt("uid", dataObject.optString("uid"));
                 jsonObject.putOpt("image", dataObject.optString("image"));
-                jsonObject.putOpt("name", dataObject.optString("project"));
+                jsonObject.putOpt("name", dataObject.optString("location"));
                 String imageUrl = dataObject.optString("image"); // or "logo"
                 //imageUrl = "https://acme.warburttons.com/" + imageUrl;
                 jsonObject.putOpt("image", imageUrl); // Store the full image URL

@@ -17,7 +17,7 @@ latlong 300 m check for all pictures taken where latlong are available, if not i
 
 Vendor update pic-
 take 4 pics for update
-vendor separate login for 1 person- where he approves of all pictures taken in other vendor login
+>vendor separate login for 1 person- where he approves of all pictures taken in other vendor login
 
 client login-
 two columns approved and to be approved

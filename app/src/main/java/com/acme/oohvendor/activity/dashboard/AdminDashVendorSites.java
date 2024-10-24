@@ -367,7 +367,7 @@ public class AdminDashVendorSites extends AppCompatActivity implements ApiInterf
                                     jsonObject.putOpt("id", dataObject.optInt("id"));
                                     jsonObject.putOpt("uid", dataObject.optString("uid"));
                                     jsonObject.putOpt("image", dataObject.optString("image"));
-                                    jsonObject.putOpt("name", dataObject.optString("project"));
+                                    jsonObject.putOpt("name", dataObject.optString("location"));
                                     //siteDetail.setName(dataObject.optString("name"));
 
 
