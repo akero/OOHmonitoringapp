@@ -22,6 +22,7 @@ import com.acme.oohvendor.activity.dashboard.AsmDashboardActivity;
 import com.acme.oohvendor.activity.dashboard.FileHelper;
 import com.acme.oohvendor.activity.dashboard.RecceDashboardActivity;
 import com.acme.oohvendor.activity.dashboard.ViewCampaignSites;
+import com.acme.oohvendor.activity.dashboard.ViewRhmSites;
 import com.acme.oohvendor.activity.dashboard.ViewVendorSites;
 import com.acme.oohvendor.activity.dashboard.ZoDashboardActivity;
 import com.acme.oohvendor.viewmodel.APIreferenceclass;
@@ -160,6 +161,14 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 area= jsonObject1.getString("name");
                 Log.d("tag58area",area);
             }
+            if(loginType.equals("rhm")){
+                vendorid= jsonObject1.getInt("id");
+                area= jsonObject1.getString("zone");
+                Log.d("tag58area",area);
+            }
+
+
+
 
             if(loginType.equals("supervisor")){
                 recceid= jsonObject1.getInt("id");
@@ -202,6 +211,18 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
             }else if(loginType.equals("vendor")){
 
                 Intent intent= new Intent(ContentOtp.this, ViewVendorSites.class);
+                intent.putExtra("logintoken", token);
+                Log.d("logintag", "correctvendorlogin");
+                intent.putExtra("vendorid", vendorid);
+                intent.putExtra("vendorclientorcampaign", 2);
+                intent.putExtra("area", area);
+                intent.putExtra("name", name);
+                loadingSpinner();
+
+                startActivity(intent);
+            }else if(loginType.equals("rhm")){
+
+                Intent intent= new Intent(ContentOtp.this, ViewRhmSites.class);
                 intent.putExtra("logintoken", token);
                 Log.d("logintag", "correctvendorlogin");
                 intent.putExtra("vendorid", vendorid);

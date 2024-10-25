@@ -349,6 +349,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:layout_below="@id/llcompaign"
 
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_3sdp"
@@ -370,6 +371,75 @@
                     android:layout_height="wrap_content"
                     android:dropDownWidth="match_parent"
                     android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llcompaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellowround"
+                android:elevation="5dp"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_8sdp">
+
+
+
+                <TextView
+                    android:id="@+id/tvClient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:onClick="btnClientClick"
+                    android:visibility="gone"
+                    android:fontFamily="@font/dmsansregular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Client"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/_14ssp" />
+
+
+
+                <TextView
+                    android:id="@+id/tvCompaign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:onClick="btnCompaignClick"
+                    android:background="@drawable/primaryround"
+                    android:fontFamily="@font/dmsansregular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Sites"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp" />
+
+
+                <TextView
+                    android:id="@+id/tvVender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:onClick="btnVenderClick"
+                    android:fontFamily="@font/dmsansregular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Approve sites"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/_14ssp" />
+
 
             </LinearLayout>
 

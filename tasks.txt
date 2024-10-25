@@ -3,6 +3,7 @@ rish1994@gmail.com- client
 rish1994a@gmail.com- vendor
 rish1994c@gmail.com- asm
 rish1994j@gmail.com- zo
+rish1994h@gmail.com- rhm
 
 https://ooh.warburttons.com/login
 management@acmemedia.in
@@ -11,10 +12,13 @@ management@acmemedia.in
 Name- OOH monitoring app
 Purpose- monitoring
 -----------
-rhm-
-4 zone data
-can approve reject for their zone
-uses endpoint https://ooh.warburttons.com/api/update-client-status/1/586/Approved
+
+test rhm and vendor approval flow
+
+//>rhm-
+//4 zone data
+//can approve reject for their zone
+//uses endpoint https://ooh.warburttons.com/api/update-client-status/1/586/Approved
 
 
 //line 211 viewsitedetail
@@ -22,19 +26,22 @@ uses endpoint https://ooh.warburttons.com/api/update-client-status/1/586/Approve
 //latlong 300 m check for all pictures taken where latlong are available, if not in //300 m radius show error- Haversine formula
 //latlong test
 
+//1315 api ref
 //Vendor update pic- line 35 viewvendorsites
 //vendor separate login for 1 person- where he approves of all pictures taken in //other vendor login
 
-put recce images in new_image, 1, 2, 3 etc
+>put recce images in new_image, 1, 2, 3 etc
 
-client login-
-two columns approved and to be approved
-client login add approval for pics sent by vendor update pic
-if rejected send back to vendor
+//client login-
+//two columns approved and to be approved
+//client login add approval for pics sent by vendor update pic
+//if rejected send back to vendor
 
 take 4 pics for update
 slider pics in all
 
+notification seems broken
+refresh after back approval vendor client rhm
 autofill for zo asm add site
 vendor name required for asm and zo dash add site- inform dev
 state city filter in vendor login

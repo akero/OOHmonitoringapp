@@ -72,6 +72,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
     String idarray[];
     Boolean approvesites;
     String userid;
+    Boolean camefromrhm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         if (getIntent().getExtras() != null) {
             Log.d("tag41", "2");
 
+            camefromrhm= false;
             approvesites= false;
             latlongold= "";
             responsetobeusedinupdateimage= "";
@@ -148,6 +150,16 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
                 }
                 Log.d("camera", "click registered");
+
+                try{
+                    if (getIntent().getBooleanExtra("camefromrhm", false)) {
+
+                        binding2.btnUpdatePhoto1.setVisibility(View.GONE);
+                        camefromrhm= true;
+                    }
+                    }catch (Exception e){
+                    Log.d("tg77", e.toString());
+                }
 
                 Button btn = findViewById(R.id.btnUpdatePhoto);
                 btn.setOnClickListener(new View.OnClickListener() {
@@ -226,8 +238,14 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                     @Override
                     public void onClick(View view) {
 
-                        APIreferenceclass api= new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+                        if(!camefromrhm) {
+                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+                        }else{
 
+                            long j= 0;
+                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
+
+                        }
 
                     }
                 });
@@ -235,9 +253,14 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 binding2.btnReject.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if(!camefromrhm) {
 
-                        APIreferenceclass api= new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+                        }else{
+                            long j= 0;
+                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
 
+                        }
 
                     }
                 });
@@ -810,11 +833,24 @@ out.close();
                             siteDetail.setCompanyAddress(dataObject.optString("company_address"));
                             siteDetail.setCompanyName(dataObject.optString("company_name"));
                             siteDetail.setGst(dataObject.optString("gst"));
-                            try{
-                            if(!dataObject.optString("vendor_status").equals("null")){
-                                siteDetail.setVendorApproval(dataObject.optString("vendor_status"));
 
-                            }}catch (Exception e){
+                        }if (camefrom.equals("ViewVendorSites")) {
+                            try{
+                                if(!dataObject.optString("vendor_status").equals("null")){
+                                    siteDetail.setVendorApproval(dataObject.optString("vendor_status"));
+
+                                }}catch (Exception e){
+                                Log.d("tag3", e.toString());
+                            }
+
+                        }
+
+                        if (camefromrhm){
+                            try{
+                                if(!dataObject.optString("client_status").equals("null")){
+                                    siteDetail.setVendorApproval(dataObject.optString("client_status"));
+
+                                }}catch (Exception e){
                                 Log.d("tag3", e.toString());
                             }
                         }
@@ -890,7 +926,7 @@ out.close();
                                 //TextView tvLastInspection = findViewById(R.id.tvStartDate);
                                 //tvLastInspection.setText(siteDetail.getCreatedAt());
 
-                                if(camefrom.equals("ViewVendorSites")){
+                                if(camefrom.equals("ViewVendorSites")||camefromrhm){
                                     try{
                                         if(siteDetail.getVendorApproval().equals("Approved")){
 

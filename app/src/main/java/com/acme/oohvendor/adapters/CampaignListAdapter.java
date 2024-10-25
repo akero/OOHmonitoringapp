@@ -20,6 +20,7 @@ import com.acme.oohvendor.activity.dashboard.RecceHistory;
 import com.acme.oohvendor.activity.dashboard.RecceInstallation;
 import com.acme.oohvendor.activity.dashboard.ViewCampaignSites;
 import com.acme.oohvendor.activity.dashboard.ViewCampaignSitesClientDash;
+import com.acme.oohvendor.activity.dashboard.ViewRhmSites;
 import com.acme.oohvendor.activity.dashboard.ViewVendorSites;
 import com.acme.oohvendor.activity.dashboard.ZoDashboardActivity;
 import com.acme.oohvendor.activity.vender.VenderDashBoardActivity;
@@ -141,6 +142,8 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
                 ((ZoDashboardActivity) context).onItemClick(position);
             }else if (context instanceof History) {
                 ((History) context).onItemClick(position);
+            }else if (context instanceof ViewRhmSites) {
+                ((ViewRhmSites) context).onItemClick(position);
             }
             });
         } catch (Exception e) {

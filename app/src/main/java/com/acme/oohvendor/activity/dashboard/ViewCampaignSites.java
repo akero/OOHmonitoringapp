@@ -5,8 +5,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -55,7 +57,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         binding.rvCampaignList.setLayoutManager(layoutManager);
         Log.d("whichclass", "ViewCampaignSites");
-
+        approvesites= false;
         showedit= true;
         statespinnerselected= false;
         populatevendorspinner= false;
@@ -142,6 +144,105 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
         binding.rvCampaignList.setAdapter(adapter);
         campaignList(clientid);
     }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnVenderClick(View view) {
+        Log.d("tag20", "btnvenderclick");
+        //clearUi();
+
+        binding.tvVender.setBackgroundResource(R.drawable.primaryround);
+        binding.tvVender.setTextColor(Color.WHITE);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        //binding.llSpinner.setVisibility(View.GONE);
+
+
+        approvesites= true;
+        venderList();
+    }
+
+
+    //TODO here send api call for sites to be approved
+    private void venderList() {
+        vendorclientorcampaign=2;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewCampaignSites.this ,area, a, b , c);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnCompaignClick(View view) {
+        //clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvCompaign.setBackgroundResource(R.drawable.primaryround);
+        binding.tvCompaign.setTextColor(Color.WHITE);
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+
+        /*binding.llSpinner.setVisibility(View.VISIBLE);
+
+        // Sample data for the spinners
+        String[] states = {"Select a State", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "TN1","Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"};
+
+        // Finding the spinners
+        Spinner spinnerState = findViewById(R.id.spinnerstate);
+        populatevendorspinner();
+
+        // Creating adapters for the spinners
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, states);
+
+        // Set the layout for dropdown options
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Attaching the adapters to the spinners
+        spinnerState.setAdapter(stateAdapter);
+
+        // Setting up an OnItemSelectedListener for the first spinner
+        spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // This code runs when an item is selected
+                String selectedState = parent.getItemAtPosition(position).toString();
+                statespinnerselected= true;
+                if (!selectedState.equals("Select a State")) {
+                    // Code to execute based on the selected state
+                    //Toast.makeText(AdminDashboardActivity.this, "Selected: " + selectedState, Toast.LENGTH_SHORT).show();
+
+                    // Add your custom logic here based on the selected state
+                    executeYourLogicBasedOnState(selectedState);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // This code runs when no item is selected (usually when the spinner starts)
+            }
+        });
+*/
+        approvesites= false;
+        campaignList(area);
+        // ... your logic ...
+    }
+    Boolean approvesites;
+
 
     boolean statespinnerselected;
 
@@ -485,6 +586,8 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                     .putExtra("sitenumber", id)
                     .putExtra("logintoken", logintoken)
                     .putExtra("vendorclientorcampaign", vendorclientorcampaign)
+                    .putExtra("approvesites", approvesites)
+
                     .putExtra("idarray", idarray));
 
             // .putExtra("siteId", siteId)); // If you are passing site id

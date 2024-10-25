@@ -475,6 +475,27 @@ public class APIreferenceclass {
         callapi1(headers, jsonPayload, context, url);
     }
 
+    //for viewrhmprojects
+    public APIreferenceclass(String loginToken, Context context, String id, long a, long b){
+
+
+
+        Log.d("tag58",id);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/rhm-project/"+ id;
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
     //for viewvendorprojects
     public APIreferenceclass(String loginToken, Context context, String id, double a){
 
@@ -502,6 +523,26 @@ public class APIreferenceclass {
         Log.d("tag58",id);
         //id="18";
         String url="https://ooh.warburttons.com/api/vendor-pending-project/"+ id;
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
+    //for viewrhmprojectsneedapproval
+    public APIreferenceclass(String loginToken, Context context, String id, double a, double b, double c){
+
+
+        Log.d("tag58",id);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/rhm-pending-sites/"+ id;
         Log.d("tag58",url);
 
         String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
@@ -1254,6 +1295,28 @@ public class APIreferenceclass {
 
 
         String url="https://ooh.warburttons.com/api/update-vendor-status/"+siteid+ "/"+ userid+ "/"+ approvalstatus;
+        Log.d("tag23", "in new login");
+        Log.d("tag23", url);
+
+
+        String jsonPayload = "";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + logintoken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside profile update api");
+
+        querytype=1; //post
+
+        callapi(headers, jsonPayload, context, querytype ,url);
+    }
+
+    //rhm site approve or reject
+    public APIreferenceclass(String logintoken, String userid, Context context, String siteid, String approvalstatus, long a){
+
+
+        String url="https://ooh.warburttons.com/api/update-client-status/"+siteid+ "/"+ userid+ "/"+ approvalstatus;
         Log.d("tag23", "in new login");
         Log.d("tag23", url);
 
