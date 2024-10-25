@@ -29,8 +29,11 @@ test rhm and vendor approval flow
 //1315 api ref
 //Vendor update pic- line 35 viewvendorsites
 //vendor separate login for 1 person- where he approves of all pictures taken in //other vendor login
+1645
 
 >put recce images in new_image, 1, 2, 3 etc
+
+add image send to image1 for + icon and update image in all logins
 
 //client login-
 //two columns approved and to be approved

@@ -1642,7 +1642,7 @@ public class APIreferenceclass {
             headers.put("Content-Type", "multipart/form-data; boundary=" + boundary);
 
             // Call the API with multipart data
-            callapi2(headers, multipart(context, selectedImage, jsonString), context, querytype, url);
+            callapi2(headers, multipartvendor(context, selectedImage, jsonString), context, querytype, url);
         } else {//normal call
             Map<String, String> headers = new HashMap<>();
             headers.put("Authorization", "Bearer " + logintoken);
@@ -1783,6 +1783,59 @@ public class APIreferenceclass {
         Log.d("tag99", e.toString());
     }
     return outputStream.toByteArray();
+    }
+
+    byte[] multipartvendor(Context context, Uri selectedImage, String jsonString){
+        // Read file content directly from Uri
+        byte[] fileBytes = readFileContent(context, selectedImage);
+        String outputFilePath = "/data/data/com.acme.afsvendor/files/output.txt";
+        String fileName = getFileName(context, selectedImage);
+
+
+
+        String boundary = "----WebKitFormBoundary7MA4YWxkTrZu0gW";
+        Log.d("tag99", fileName);
+        //Log.d("tag99", outputFilePath);
+        Log.d("tag99", selectedImage.toString());
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+            // Add File Part
+            outputStream.write(("--" + boundary + "\r\n").getBytes());
+            outputStream.write(("Content-Disposition: form-data; name=\"new_image\"; filename=\"" + fileName + "\"\r\n").getBytes());
+            outputStream.write(("Content-Type: " + guessContentTypeFromName(fileName) + "\r\n\r\n").getBytes());
+            outputStream.write(fileBytes);
+            outputStream.write(("\r\n").getBytes());
+
+            Log.d("tag99", "3");
+
+
+            // Add JSON Part
+            String formData = convertJsonToFormData(jsonString);
+            for (String field : formData.split("&")) {
+                String[] keyValue = field.split("=");
+                outputStream.write(("--" + boundary + "\r\n").getBytes());
+                outputStream.write(("Content-Disposition: form-data; name=\"" + keyValue[0] + "\"\r\n\r\n").getBytes());
+                outputStream.write((keyValue.length > 1 ? keyValue[1] : "").getBytes());
+                outputStream.write(("\r\n").getBytes());
+            }
+
+            Log.d("tag99", "4");
+
+
+            // End of multipart/form-data
+            outputStream.write(("--" + boundary + "--").getBytes());
+            FileOutputStream fos = new FileOutputStream(outputFilePath);
+            fos.write(outputStream.toByteArray());
+            fos.flush();
+            fos.close();
+
+            return outputStream.toByteArray();
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("tag99", e.toString());
+        }
+        return outputStream.toByteArray();
     }
 
 
