@@ -458,6 +458,7 @@ public class APIreferenceclass {
     public APIreferenceclass(String loginToken, Context context, String id, long a){
 
 
+
         Log.d("tag58",id);
         //id="18";
         String url="https://ooh.warburttons.com/api/vendor-project/"+ id;
@@ -481,6 +482,26 @@ public class APIreferenceclass {
         Log.d("tag58",id);
         //id="18";
         String url="https://ooh.warburttons.com/api/asm-project/"+ id;
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
+    //for viewvendorprojectsneedapproval
+    public APIreferenceclass(String loginToken, Context context, String id, double a, double b){
+
+
+        Log.d("tag58",id);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/vendor-pending-project/"+ id;
         Log.d("tag58",url);
 
         String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
@@ -1222,6 +1243,28 @@ public class APIreferenceclass {
         headers.put("Content-Type", "application/json");
 
         Log.d("tag58","Inside viewsitedetail api");
+
+        querytype=1; //post
+
+        callapi(headers, jsonPayload, context, querytype ,url);
+    }
+
+    //vendor site approve or reject
+    public APIreferenceclass(String logintoken, String userid, Context context, String siteid, String approvalstatus){
+
+
+        String url="https://ooh.warburttons.com/api/update-vendor-status/"+siteid+ "/"+ userid+ "/"+ approvalstatus;
+        Log.d("tag23", "in new login");
+        Log.d("tag23", url);
+
+
+        String jsonPayload = "";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + logintoken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside profile update api");
 
         querytype=1; //post
 

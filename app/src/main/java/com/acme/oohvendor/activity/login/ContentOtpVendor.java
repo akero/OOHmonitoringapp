@@ -50,6 +50,14 @@ public class ContentOtpVendor extends AppCompatActivity implements ApiInterface 
         context= this;
 
         loginType= "vendor";
+        try{
+
+            loginType= getIntent().getStringExtra("loginType");
+
+        }catch (Exception e){
+            Log.d("d", e.toString());
+        }
+
         // Initialize UI Elements
         //otp1 = findViewById(R.id.otp1);
        // otp2 = findViewById(R.id.otp2);
@@ -183,10 +191,10 @@ public class ContentOtpVendor extends AppCompatActivity implements ApiInterface 
                 token= jsonObject1.getString("token");
                 userid= Integer.toString(jsonObject1.getInt("id"));
 
-                if(loginType.equals("vendor")){
+                if(loginType.equals("vendor")||loginType.equals("vendor_executive")){
                     vendorid= jsonObject1.getInt("id");
                     area= jsonObject1.getString("name");
-                    //Log.d("tag58area",area);
+                    Log.d("tag58area",area);
                 }
 
                 //Log.d("tg4", loginType);
@@ -205,6 +213,21 @@ public class ContentOtpVendor extends AppCompatActivity implements ApiInterface 
                     intent.putExtra("vendorclientorcampaign", 2);
                     intent.putExtra("area", area);
                     intent.putExtra("name", name);
+                    intent.putExtra("vendortype", loginType);
+                    loadingSpinner();
+
+                    startActivity(intent);
+                }else if(loginType.equals("vendor_executive")){
+
+                    Intent intent= new Intent(ContentOtpVendor.this, ViewVendorSites.class);
+                    intent.putExtra("logintoken", token);
+                    Log.d("logintag", "correctvendorlogin");
+                    intent.putExtra("vendorid", vendorid);
+                    intent.putExtra("vendorclientorcampaign", 2);
+                    intent.putExtra("area", area);
+                    intent.putExtra("name", name);
+                    intent.putExtra("vendortype", loginType);
+                    Log.d("tag58area", area);
                     loadingSpinner();
 
                     startActivity(intent);

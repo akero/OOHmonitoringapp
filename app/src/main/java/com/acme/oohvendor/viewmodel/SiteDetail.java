@@ -44,7 +44,8 @@ public class SiteDetail {
     private String companyaddress;
     private String companyname;
     private String gst;
-
+    private String vendorapproval;
+    private String clientapproval;
 
     // Getters and Setters for each field
 
@@ -62,6 +63,22 @@ public class SiteDetail {
 
     public void setState(String id) {
         this.state = id;
+    }
+
+    public String getVendorApproval() {
+        return vendorapproval;
+    }
+
+    public void setVendorApproval(String id) {
+        this.vendorapproval = id;
+    }
+
+    public String getClientApproval() {
+        return clientapproval;
+    }
+
+    public void setClientApproval(String id) {
+        this.clientapproval = id;
     }
 
     public String getDistrict() {

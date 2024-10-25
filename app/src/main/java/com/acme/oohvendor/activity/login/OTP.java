@@ -162,10 +162,10 @@ public class OTP extends AppCompatActivity implements ApiInterface {
             JSONObject js= jsonobj.getJSONObject("data");
 
 
-            if(js.optString("user_type").equals("vendor")){
+            if(js.optString("user_type").equals("vendor")||js.optString("user_type").equals("vendor_executive")){
                 intent = new Intent(OTP.this, ContentOtpVendor.class);
                 intent.putExtra("email", emailInput);
-                //intent.putExtra("loginType", loginType);
+                intent.putExtra("loginType", js.optString("user_type"));
 
                 //animation code
                 runOnUiThread(new Runnable() {

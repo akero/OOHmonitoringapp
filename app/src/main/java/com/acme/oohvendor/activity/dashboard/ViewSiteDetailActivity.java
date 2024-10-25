@@ -70,6 +70,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
     String latlong;
     private LocationHelper locationHelper;
     String idarray[];
+    Boolean approvesites;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,17 +79,36 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         if (getIntent().getExtras() != null) {
             Log.d("tag41", "2");
 
+            approvesites= false;
+            latlongold= "";
             responsetobeusedinupdateimage= "";
             anydamage= false;
+            userid= "";
             updatephoto= false;
             idarray = null;
             campaignId = getIntent().getExtras().getString("campaignId", "");
             campaignType = getIntent().getExtras().getString("campaignType", "");
             siteNumber = getIntent().getExtras().getString("sitenumber", "");
+            Log.d("siteno", siteNumber);
+
             logintoken = getIntent().getExtras().getString("logintoken", "");
             if(logintoken.equals("")){
                 FileHelper fh= new FileHelper();
                 logintoken= fh.readLoginToken(this);
+                //userid= fh.readUserId(this);
+                //Log.d("userid", userid);
+
+            }
+            FileHelper fh= new FileHelper();
+            userid= fh.readUserId(this);
+
+
+
+            try{
+
+                approvesites= getIntent().getBooleanExtra("approvesites", false);
+            }catch (Exception e){
+                Log.d("tg77", e.toString());
             }
 
             camefrom = getIntent().getExtras().getString("camefrom", "");
@@ -102,6 +123,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             } catch (Exception e) {
                 Log.d("tag22", e.toString());
             }
+
+
 
             picturetaken = false;
             latlong = "";
@@ -196,7 +219,29 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 binding.btnNext.setVisibility(View.GONE);
             }
 
-            Log.d("tg2", siteNumber);
+            if(approvesites) {
+                binding2.llapprove.setVisibility(View.VISIBLE);
+
+                binding2.btnApprove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        APIreferenceclass api= new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+
+
+                    }
+                });
+
+                binding2.btnReject.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        APIreferenceclass api= new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+
+
+                    }
+                });
+            }
         }
 
         //buttons to move to next or prev site
@@ -412,6 +457,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
     boolean picturetaken;
     Uri imageUri;
+    String latlongold;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -463,8 +509,15 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 if (locationtaken) {
 
                     if (updatephoto){
+                        Log.d("lfl", "yes");
+                        Log.d("lfl", latlong);
+                        Boolean a= checkiflatlongisnear(latlong);
 
-                        apicallforvendorimageupdate(latlong, imageUri);
+                        if(a){
+                            apicallforvendorimageupdate(latlong, imageUri);
+                        }else {
+                            Toast.makeText(ViewSiteDetailActivity.this, "Location not near the site", Toast.LENGTH_SHORT).show();
+                        }
                     }else if(anydamage){
                         apicallforvendorimageupdatedamage(latlong, imageUri);
                     }
@@ -474,13 +527,58 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 Log.d("tag22", "activity result works");
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.d("lfl", e.toString());
                 Toast.makeText(this, "Image update failed", Toast.LENGTH_SHORT).show();
             }
             // Do something with the imageUri, e.g., display the image or upload it
         } else {
             Log.d("tag22", "something went wrong");
         }
+    }
+
+    Boolean checkiflatlongisnear(String locationlatlong){
+            String oldlat, oldlong, lat, longitude;
+            oldlat= latlongold.split(",")[0];
+            oldlong= latlongold.split(",")[1];
+            lat= locationlatlong.split(",")[0];
+            longitude= locationlatlong.split(",")[1];
+
+            double distance = haversine(Double.parseDouble(oldlat), Double.parseDouble(oldlong), Double.parseDouble(lat), Double.parseDouble(longitude));
+
+            Log.d("lfl", "oldlat"+ Double.parseDouble(oldlat)+ "oldlong"+  Double.parseDouble(oldlong)+ "lat"+  Double.parseDouble(lat)+ "long"+  Double.parseDouble(longitude));
+
+            Log.d("lfl", "distance" + distance);
+
+            if(distance<= 300){
+                Log.d("lfl", "locationnear");
+                return true;
+
+            }else{
+
+                Log.d("lfl", "locationfar");
+                return false;
+            }
+    }
+
+    public static double haversine(double lat1, double lon1, double lat2, double lon2) {
+        // Radius of the Earth in meters
+        final double R = 6371000;
+
+        // Convert latitude and longitude from degrees to radians
+        double phi1 = Math.toRadians(lat1);
+        double phi2 = Math.toRadians(lat2);
+        double deltaPhi = Math.toRadians(lat2 - lat1);
+        double deltaLambda = Math.toRadians(lon2 - lon1);
+
+        // Haversine formula
+        double a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2)
+                + Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        // Distance in meters
+        double distance = R * c;
+
+        return distance;
     }
 
     void apicallforvendorimageupdate(String latlong, Uri uri) {
@@ -712,9 +810,15 @@ out.close();
                             siteDetail.setCompanyAddress(dataObject.optString("company_address"));
                             siteDetail.setCompanyName(dataObject.optString("company_name"));
                             siteDetail.setGst(dataObject.optString("gst"));
+                            try{
+                            if(!dataObject.optString("vendor_status").equals("null")){
+                                siteDetail.setVendorApproval(dataObject.optString("vendor_status"));
 
+                            }}catch (Exception e){
+                                Log.d("tag3", e.toString());
+                            }
                         }
-
+                        latlongold= dataObject.optString("lat")+ ","+dataObject.optString("long");
                         //siteDetail.setCreatedAt(dataObject.optString("created_at"));
                         //siteDetail.setEndDate(dataObject.optString("end_date"));
                         siteDetail.setLatitude(dataObject.optString("lat"));
@@ -785,6 +889,30 @@ out.close();
 
                                 //TextView tvLastInspection = findViewById(R.id.tvStartDate);
                                 //tvLastInspection.setText(siteDetail.getCreatedAt());
+
+                                if(camefrom.equals("ViewVendorSites")){
+                                    try{
+                                        if(siteDetail.getVendorApproval().equals("Approved")){
+
+                                            binding2.btnApprove.setBackgroundColor(
+                                                    ContextCompat.getColor(ViewSiteDetailActivity.this, R.color.green)
+                                            );
+                                            binding2.btnApprove.setText("Approved");
+
+                                        }else if(siteDetail.getVendorApproval().equals("Rejected")){
+                                            binding2.btnReject.setBackgroundColor(
+                                                    ContextCompat.getColor(ViewSiteDetailActivity.this, R.color.colorred)
+                                            );
+
+                                            binding2.btnReject.setText("Rejected");
+
+                                        }
+
+                                    }catch (Exception e){
+                                        Log.d("gg", e.toString());
+                                    }
+
+                                }
 
                                 TextView tvLatitude = findViewById(R.id.tvLatitude);
                                 tvLatitude.setText(siteDetail.getLatitude());
