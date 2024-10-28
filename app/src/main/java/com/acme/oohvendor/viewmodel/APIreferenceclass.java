@@ -536,6 +536,26 @@ public class APIreferenceclass {
         callapi1(headers, jsonPayload, context, url);
     }
 
+    //for viewvendorprojectsneedapproval- rejected by rhm
+    public APIreferenceclass(String loginToken, Context context, String name, double a, double b, double c, double d){
+
+
+        Log.d("tag58",name);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/"+ name;
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
     //for viewrhmprojectsneedapproval
     public APIreferenceclass(String loginToken, Context context, String id, double a, double b, double c){
 
@@ -555,6 +575,8 @@ public class APIreferenceclass {
 
         callapi1(headers, jsonPayload, context, url);
     }
+
+
 
     //for zodash
     public APIreferenceclass(String loginToken, Context context, String id, double a, int b){

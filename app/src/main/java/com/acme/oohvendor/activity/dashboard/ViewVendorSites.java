@@ -67,7 +67,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
     //JSONArray jsonArray;
     boolean showMenus = false;
     private final Context ctxt= this;
-    int vendorclientorcampaign=2; //campaign is 0, client is 1, vendor is 2
+    int vendorclientorcampaign=0; //campaign is 0, client is 1, vendor is 2
     //TODO- populate this token
     String logintoken="";
     String idofcampaign;
@@ -205,6 +205,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 try {
                                     String imageUrl = dataObject.optString("image");
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
+                                    Log.d("imageurl", "1");
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -239,6 +240,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 try {
                                     String imageUrl = dataObject.optString("logo");
                                     imageUrl = "https://acme.warburttons.com/" + imageUrl;
+                                    Log.d("imageurl", "2");
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -274,6 +276,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 try {
                                     String imageUrl = dataObject.optString("image");
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
+                                    Log.d("imageurl", "3");
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -361,7 +364,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
     //TODO here send api call for sites to be approved
     private void venderList() {
-        vendorclientorcampaign=2;
+        vendorclientorcampaign=0;
         //TODO pass correct logintoken here
         //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
 
@@ -431,6 +434,46 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         approvesites= false;
         campaignList(area);
         // ... your logic ...
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnClientClick(View view) {
+        Log.d("tag20", "btnclientclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvClient.setBackgroundResource(R.drawable.primaryround);
+        Log.d("tag20", "1");
+        binding.tvClient.setTextColor(Color.WHITE);
+        Log.d("tag20", "2");
+
+
+        //binding.llSpinner.setVisibility(View.GONE);
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        approvesites= false;
+
+        clientList();
+        // ... your logic ...
+    }
+
+    private void clientList() {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+        //TODO- here
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        double d= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this ,area, a, b, c ,d );
     }
 
     private void campaignList() {

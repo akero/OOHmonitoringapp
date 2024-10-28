@@ -1,6 +1,7 @@
 rishabh@acmemedia.in - admin
 rish1994@gmail.com- client
-rish1994a@gmail.com- vendor
+rish1994a@gmail.com- vendor_executive
+rish1994f@gmail.com- vendor
 rish1994c@gmail.com- asm
 rish1994j@gmail.com- zo
 rish1994h@gmail.com- rhm
@@ -14,31 +15,10 @@ Purpose- monitoring
 -----------
 
 test rhm and vendor approval flow
-
-//>rhm-
-//4 zone data
-//can approve reject for their zone
-//uses endpoint https://ooh.warburttons.com/api/update-client-status/1/586/Approved
-
-
-//line 211 viewsitedetail
-
-//latlong 300 m check for all pictures taken where latlong are available, if not in //300 m radius show error- Haversine formula
-//latlong test
-
-//1315 api ref
-//Vendor update pic- line 35 viewvendorsites
-//vendor separate login for 1 person- where he approves of all pictures taken in //other vendor login
-1645
-
->put recce images in new_image, 1, 2, 3 etc
-
+test- put recce images in new_image, 1, 2, 3 etc
+rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil
 add image send to image1 for + icon and update image in all logins
 
-//client login-
-//two columns approved and to be approved
-//client login add approval for pics sent by vendor update pic
-//if rejected send back to vendor
 
 take 4 pics for update
 slider pics in all
@@ -48,15 +28,11 @@ refresh after back approval vendor client rhm
 autofill for zo asm add site
 vendor name required for asm and zo dash add site- inform dev
 state city filter in vendor login
-//correct pics
 >refresh after add site- line 472
 //null change vendor dash
 remove selfie from admin dash add site
 
-
-
 password make enter press next
-//update photo vendor resend api call after upload
 
 in vendor dash sites load slow sometimes
 
@@ -75,6 +51,27 @@ todo after demo
 notification fragment change when backend fixed
 make code visible in addsite
 
+
+//>rhm-
+//4 zone data
+//can approve reject for their zone
+//uses endpoint https://ooh.warburttons.com/api/update-client-status/1/586/Approved
+//correct pics
+
+//line 211 viewsitedetail
+//update photo vendor resend api call after upload
+
+//latlong 300 m check for all pictures taken where latlong are available, if not in //300 m radius show error- Haversine formula
+//latlong test
+
+//1315 api ref
+//Vendor update pic- line 35 viewvendorsites
+//vendor separate login for 1 person- where he approves of all pictures taken in //other vendor login
+
+//client login-
+//two columns approved and to be approved
+//client login add approval for pics sent by vendor update pic
+//if rejected send back to vendor
 //notification for update photo- chck WhatsApp Radhika screenshot
 //spinner vendor finish
 //admindash populating vendor spinner issue in onresponse

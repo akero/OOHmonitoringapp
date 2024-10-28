@@ -59,7 +59,7 @@ public class ContentOtpVendor extends AppCompatActivity implements ApiInterface 
         }
 
         // Initialize UI Elements
-        //otp1 = findViewById(R.id.otp1);
+        otp1 = findViewById(R.id.otp1);
        // otp2 = findViewById(R.id.otp2);
         //otp3 = findViewById(R.id.otp3);
         //otp4 = findViewById(R.id.otp4);
@@ -253,7 +253,7 @@ public class ContentOtpVendor extends AppCompatActivity implements ApiInterface 
 
                         try {
                             if (jsonObject.getString("message").equals("Unauthorised.")) {
-                                // Toast.makeText(context, "Email is unauthorised.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Unauthorised.", Toast.LENGTH_SHORT).show();
                             }
                         }catch (Exception e){
                             Log.d("dsad", e.toString());

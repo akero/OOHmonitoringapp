@@ -891,7 +891,14 @@ out.close();
 
                         try {
                             String imageUrl = dataObject.optString("image");
+
+
                             imageUrl = "https://ooh.warburttons.com/" + imageUrl;
+                            if(imageUrl.equals("https://ooh.warburttons.com/null")){
+                                imageUrl= "https://ooh.warburttons.com/"+ dataObject.optString("new_image");
+
+                            }
+
                             Log.d("tag41", "imageurl is " + imageUrl);
                             Log.d("tg2", "image code not executing 1");
 
@@ -930,15 +937,14 @@ out.close();
                                     try{
                                         if(siteDetail.getVendorApproval().equals("Approved")){
 
-                                            binding2.btnApprove.setBackgroundColor(
-                                                    ContextCompat.getColor(ViewSiteDetailActivity.this, R.color.green)
-                                            );
+                                            binding2.btnApprove.setBackgroundResource(
+                                                    R.drawable.primarystrokegreen);
                                             binding2.btnApprove.setText("Approved");
 
                                         }else if(siteDetail.getVendorApproval().equals("Rejected")){
-                                            binding2.btnReject.setBackgroundColor(
-                                                    ContextCompat.getColor(ViewSiteDetailActivity.this, R.color.colorred)
-                                            );
+                                            binding2.btnReject.setBackgroundResource(
+                                                    R.drawable.primarystrokered);
+
 
                                             binding2.btnReject.setText("Rejected");
 
