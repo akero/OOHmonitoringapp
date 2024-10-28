@@ -13,7 +13,11 @@ management@acmemedia.in
 Name- OOH monitoring app
 Purpose- monitoring
 -----------
+//location click edit
+//vendor site not adding
 
+>WhatsApp msg
+add tabs to vendor and rhm login
 test rhm and vendor approval flow
 test- put recce images in new_image, 1, 2, 3 etc
 rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil

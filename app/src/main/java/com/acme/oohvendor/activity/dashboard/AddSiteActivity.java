@@ -936,7 +936,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         }
     }
 
-    void logout() {
+    public void logout() {
 
         try {
             FileHelper fh = new FileHelper();
@@ -1283,7 +1283,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
 
             binding.etTotalArea1.setText(jsonobj1.getString("address"));
             if(!TextUtils.isEmpty(binding.etTotalArea1.getText())){
-                binding.etTotalArea1.setFocusable( View.NOT_FOCUSABLE);
+                //binding.etTotalArea1.setFocusable( View.NOT_FOCUSABLE);
             }
 
             binding.etWidth2.setText(jsonobj1.getString("city"));
