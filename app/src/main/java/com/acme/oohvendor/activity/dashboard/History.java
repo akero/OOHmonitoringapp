@@ -147,7 +147,7 @@ public class History extends AppCompatActivity implements ApiInterface {
     private void implementUi(String response){
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonArray1= new JSONArray();
+            //jsonArray1= new JSONArray();
 
             Log.d("tg111", response);
             String ids[];
@@ -181,6 +181,7 @@ public class History extends AppCompatActivity implements ApiInterface {
                                 jsonObject.putOpt("uid", dataObject.optString("uid"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
                                 jsonObject.putOpt("name", dataObject.optString("location"));
+                                jsonObject.putOpt("uid", dataObject.optString("code"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 

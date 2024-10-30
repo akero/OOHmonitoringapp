@@ -93,7 +93,7 @@ public class ViewCampaignSitesClientDash extends AppCompatActivity implements Ap
     private void implementUi(String response){
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonArray1= new JSONArray();
+            //jsonArray1= new JSONArray();
 
             String ids[];
             JSONObject jsonResponse = new JSONObject(response);

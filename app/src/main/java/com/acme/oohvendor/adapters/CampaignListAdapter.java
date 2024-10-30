@@ -91,7 +91,7 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
             JSONObject jsonObject = jsonArray.getJSONObject(position);
             holder.tvSiteNo.setText(jsonObject.getString("name"));
             if(jsonObject.has("uid")) {
-                holder.tvUnitNo.setText("Unit Id:- " + jsonObject.getString("uid"));
+                holder.tvUnitNo.setText("Code: " + jsonObject.getString("uid"));
             } else {
                 holder.tvUnitNo.setText("Company:- " + jsonObject.getString("company_name"));
             }

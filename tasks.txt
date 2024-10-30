@@ -17,15 +17,17 @@ Purpose- monitoring
 //vendor site not adding
 
 >WhatsApp msg
+WhatsApp radhika
 add tabs to vendor and rhm login
 test rhm and vendor approval flow
 test- put recce images in new_image, 1, 2, 3 etc
 rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil
 add image send to image1 for + icon and update image in all logins
 
-
+//code 
+zoom
 take 4 pics for update
-slider pics in all
+>slider pics in all
 
 notification seems broken
 refresh after back approval vendor client rhm

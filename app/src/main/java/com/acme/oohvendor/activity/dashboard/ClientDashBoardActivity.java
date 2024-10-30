@@ -155,7 +155,7 @@ public class ClientDashBoardActivity extends AppCompatActivity implements ApiInt
                 JSONObject jsonObject = new JSONObject();
                 JSONObject jsonObject1= new JSONObject();
                 JSONObject jsonObject2= new JSONObject();
-                jsonArray1= new JSONArray();
+                //jsonArray1= new JSONArray();
                 jsonArray2= new JSONArray();
                 jsonArray3= new JSONArray();
                 String ids[];

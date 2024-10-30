@@ -52,8 +52,7 @@
         android:layout_above="@id/tvSiteNo"
         android:layout_marginLeft="@dimen/_10sdp"
         android:fontFamily="@font/dmsansregular"
-        android:text="Unit Id:- #4544004"
-        android:visibility="gone"
+        android:text="Code: "
         android:textColor="@color/white"
         android:textSize="@dimen/_10ssp" />
 

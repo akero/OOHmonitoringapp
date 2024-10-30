@@ -307,7 +307,7 @@ public class RecceHistory extends AppCompatActivity implements ApiInterface {
 
         try {
         JSONObject jsonObject = new JSONObject();
-        jsonArray1= new JSONArray();
+        //jsonArray1= new JSONArray();
 
         Log.d("tg111", response);
         String ids[];

@@ -14,6 +14,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -45,8 +47,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInterface, LocationCallback {
     private final Context ctxt = this;
@@ -73,6 +77,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
     Boolean approvesites;
     String userid;
     Boolean camefromrhm;
+    int whichbinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +93,12 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             userid= "";
             updatephoto= false;
             idarray = null;
+            imageurlarray = new ArrayList<>();
             campaignId = getIntent().getExtras().getString("campaignId", "");
             campaignType = getIntent().getExtras().getString("campaignType", "");
             siteNumber = getIntent().getExtras().getString("sitenumber", "");
             Log.d("siteno", siteNumber);
+            whichbinding= 0;
 
             logintoken = getIntent().getExtras().getString("logintoken", "");
             if(logintoken.equals("")){
@@ -139,13 +146,18 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             if (!camefrom.equals("ViewVendorSites") && !camefrom.equals("AsmDashboardActivity") && !camefrom.equals("ZoDashboardActivity")) {
                 Log.d("tag22", "1");
+                whichbinding=1;
                 binding = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail);
             } else {
                 if (!camefrom.equals("ViewVendorSites")) {
                     Log.d("tag22", "2");
+                    whichbinding=2;
+
                     binding1 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor);
                 } else {
                     Log.d("tag22", "3");
+                    whichbinding=3;
+
                     binding2 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor_real);
 
                 }
@@ -267,24 +279,22 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             }
         }
 
+        AtomicInteger imageno = new AtomicInteger(0);
         //buttons to move to next or prev site
         ImageView left = findViewById(R.id.lefticon);
         left.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                String prevSite = "";
-                for (int i = 0; i < idarray.length; i++) {
-                    if (idarray[i].equals(siteNumber)) {
-                        if (!prevSite.equals("")) {
-                            siteNumber = prevSite;
-                            apicall(logintoken, prevSite);
-                            break;
-                        }
-                    } else {
-                        prevSite = idarray[i];
-                    }
+                if (imageno.get() == 0) {
+                    // Set to last index (size - 1)
+                    imageno.set(imageurlarray.size() - 1);
+                } else {
+                    imageno.set(imageno.get() - 1);
                 }
+
+                // Set image after updating index
+                setimage(imageurlarray.get(imageno.get()));
             }
 
         });
@@ -294,17 +304,20 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             @Override
             public void onClick(View v) {
-                String nextSite = "";
-                for (int i = 0; i < idarray.length; i++) {
-                    if (idarray[i].equals(siteNumber)) {
-                        if (i != idarray.length - 1) {
-                            nextSite = idarray[i + 1];
-                            siteNumber = nextSite;
-                            apicall(logintoken, nextSite);
-                            break;
-                        }
-                    }
+                if (imageno.get() >= imageurlarray.size() - 1) {
+                    imageno.set(0);
+                    setimage(imageurlarray.get(imageno.get()));
+                    Log.d("imageurl", imageurlarray.get(imageno.get()));
+
+                }else{
+                    imageno.set(imageno.get()+1);
+                    setimage(imageurlarray.get(imageno.get()));
+                    Log.d("imageurl", imageurlarray.get(imageno.get()));
+
                 }
+
+
+
             }
 
         });
@@ -319,6 +332,42 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
         apicall(logintoken, siteNumber);
         Log.d("tag41", "5");
     }
+
+    public void setimage(String image){
+
+        try {
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            URL url = new URL("https://ooh.warburttons.com/" + image);
+            Log.d("imageurl1", url.toString());
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        final Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        // Use mainHandler to update UI on main thread
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                RoundRectCornerImageView tvImage = findViewById(R.id.ivCampaignImage);
+                                tvImage.setImageBitmap(bitmap);
+                                Log.d("tg2", "image code executing");
+                            }
+                        });
+                    } catch (Exception e) {
+                        Log.e("Error", e.getMessage());
+                    }
+                }
+            }).start();
+
+
+
+
+
+        }catch (Exception e){
+            Log.d("tag33", e.toString());
+        }
+        }
 
     boolean locationtaken;
 
@@ -795,6 +844,8 @@ out.close();
     JSONObject jsonobj;
     String responsetobeusedinupdateimage;
 
+    ArrayList<String> imageurlarray;
+
     private void implementUI(String response) {
         try {
 
@@ -897,6 +948,29 @@ out.close();
                             if(imageUrl.equals("https://ooh.warburttons.com/null")){
                                 imageUrl= "https://ooh.warburttons.com/"+ dataObject.optString("new_image");
 
+                            }
+
+                            try{
+
+                                String imageurl1;
+
+                                imageurl1= dataObject.optString("image");
+                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+
+                                imageurl1= dataObject.optString("image1");
+                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+
+                                imageurl1= dataObject.optString("image2");
+                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+
+                                imageurl1= dataObject.optString("image3");
+                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+
+                                imageurl1= dataObject.optString("image4");
+                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+
+                            }catch (Exception e){
+                                Log.d("aaa", e.toString());
                             }
 
                             Log.d("tag41", "imageurl is " + imageUrl);

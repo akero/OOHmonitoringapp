@@ -166,7 +166,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
     private void implementUi(String response){
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonArray1= new JSONArray();
+            //jsonArray1= new JSONArray();
 
             Log.d("tg111", response);
             String ids[];
@@ -196,9 +196,10 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 idarray[i]= Integer.toString(dataObject.optInt("id"));
 
                                 jsonObject.putOpt("id", dataObject.optInt("id"));
-                                jsonObject.putOpt("uid", dataObject.optString("uid"));
+                                //jsonObject.putOpt("uid", dataObject.optString("uid"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
                                 jsonObject.putOpt("name", dataObject.optString("location"));
+                                jsonObject.putOpt("uid", dataObject.optString("code"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 
@@ -234,6 +235,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 jsonObject.putOpt("company_name", dataObject.optString("company_name"));
                                 jsonObject.putOpt("image", dataObject.optString("logo"));
                                 jsonObject.putOpt("name", dataObject.optString("name"));
+                                jsonObject.putOpt("uid", dataObject.optString("code"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
 
@@ -270,7 +272,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                 jsonObject.putOpt("company_name", dataObject.optString("retail_name"));
                                 jsonObject.putOpt("image", dataObject.optString("image"));
                                 jsonObject.putOpt("name", dataObject.optString("location"));
+                                jsonObject.putOpt("uid", dataObject.optString("code"));
 
+                                Log.d("tag345", dataObject.optString("code"));
                                 //siteDetail.setName(dataObject.optString("name"));
 
                                 try {
