@@ -556,6 +556,46 @@ public class APIreferenceclass {
         callapi1(headers, jsonPayload, context, url);
     }
 
+    //for viewvendorprojectsneedapproval- approved by vendor
+    public APIreferenceclass(String loginToken, Context context, String name, double a, double b, double c, double d, double e){
+
+
+        Log.d("tag58",name);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/vendor-approved-sites/"+ name;
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
+    //for viewvendorprojectsneedapproval- rejected by vendor
+    public APIreferenceclass(String loginToken, Context context, String name, double a, double b, double c, double d, double e, double f){
+
+
+        Log.d("tag58",name);
+        //id="18";
+        String url="https://ooh.warburttons.com/api/vendor-rejected-sites/"+ name;
+        Log.d("tag58",url);
+
+        String jsonPayload = "{\"Authorization\": \"" + loginToken +"\"}";
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Bearer " + loginToken);
+        headers.put("Content-Type", "application/json");
+
+        Log.d("tag58","Inside viewsitedetail api");
+
+        callapi1(headers, jsonPayload, context, url);
+    }
+
     //for viewrhmprojectsneedapproval
     public APIreferenceclass(String loginToken, Context context, String id, double a, double b, double c){
 

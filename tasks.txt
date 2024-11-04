@@ -22,16 +22,16 @@ Purpose- monitoring
 WhatsApp msg
 WhatsApp Radhika
 WhatsApp anish bugs
-add tabs to vendor and rhm login
-vendor login tabs when switching text becomes gray
+>add tabs to vendor and >rhm login
+/vendor login tabs when switching text becomes gray
 test rhm and vendor approval flow
 test- put recce images in new_image, 1, 2, 3 etc
 rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil
 add image send to image1 for + icon and update image in all logins
 refresh add
 update vendor take photo display
->change vendor name to site name in vendor login details
-rhm rejected data showing when not rejected
+//change vendor name to site name in vendor login details
+//rhm rejected data showing when not rejected
 check if site name is uploading correctly
 after update image show new photo
 

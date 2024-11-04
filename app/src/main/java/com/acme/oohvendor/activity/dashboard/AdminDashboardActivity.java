@@ -396,6 +396,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         }
                     }
                     Log.d("JSONArrayContent", "JSONArray1: " + jsonArray1.toString());
+                }else if(dataArray == null || dataArray.length() <= 0){
+                    jsonArray1= new JSONArray();
+                    //jsonArray1.put(jsonObject);
                 }
 
                 allsitedata= response;

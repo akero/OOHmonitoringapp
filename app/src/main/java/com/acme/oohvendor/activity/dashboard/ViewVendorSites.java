@@ -307,6 +307,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                         }
                     }
                     Log.d("JSONArrayContent", "JSONArray1: " + jsonArray1.toString());
+                }else if(dataArray == null || dataArray.length() <= 0){
+                    jsonArray1= new JSONArray();
+                    //jsonArray1.put(jsonObject);
                 }
             }else if(status instanceof String && ((String) status).equalsIgnoreCase("success")){
 
@@ -367,6 +370,12 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         binding.tvCompaign.setBackgroundResource(0);
         binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
 
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
+
         //binding.llSpinner.setVisibility(View.GONE);
 
 
@@ -400,6 +409,12 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
         binding.tvCompaign.setBackgroundResource(R.drawable.primaryround);
         binding.tvCompaign.setTextColor(Color.WHITE);
+
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
 
         progressBar.setVisibility(View.VISIBLE);
         progressBar.startAnimation(rotateAnimation);
@@ -468,6 +483,12 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         binding.tvCompaign.setBackgroundResource(0);
         binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
 
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
+
         approvesites= false;
 
         clientList();
@@ -487,6 +508,100 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         double c= 1.0;
         double d= 1.0;
         APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this ,area, a, b, c ,d );
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnVendorRejectedClick(View view) {
+        Log.d("tag20", "btnclientclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(R.drawable.primaryround);
+        Log.d("tag20", "1");
+        binding.tvRejected.setTextColor(Color.WHITE);
+        Log.d("tag20", "2");
+
+
+        //binding.llSpinner.setVisibility(View.GONE);
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        approvesites= true;
+
+        vendorRejectedList();
+        // ... your logic ...
+    }
+
+    private void vendorRejectedList() {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+        //TODO- here
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        double d= 1.0;
+        double e= 1.0;
+        double f= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this ,area, a, b, c ,d, e, f);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnApprovedClick(View view) {
+        Log.d("tag20", "btnclientclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvApproved.setBackgroundResource(R.drawable.primaryround);
+        Log.d("tag20", "1");
+        binding.tvApproved.setTextColor(Color.WHITE);
+        Log.d("tag20", "2");
+
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
+        //binding.llSpinner.setVisibility(View.GONE);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        approvesites= false;
+
+        approvedList();
+        // ... your logic ...
+    }
+
+    private void approvedList() {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+        //TODO- here
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        double d= 1.0;
+        double e= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this ,area, a, b, c ,d , e );
     }
 
     private void campaignList() {
