@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -211,6 +212,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
                                 try {
                                     String imageUrl = dataObject.optString("image");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                                     Log.d("imageurl", "1");
                                     Log.d("tag41", "imageurl is " + imageUrl);
@@ -224,7 +228,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -261,7 +267,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -300,7 +308,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -355,6 +365,9 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
         }
     }
+
+
+
 
     @SuppressLint("ResourceAsColor")
     public void btnVenderClick(View view) {
@@ -796,6 +809,30 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         intent.putExtra("vendorid", String.valueOf(vendorid));
         startActivityForResult(intent,1);
     }
+
+    //public boolean shouldRestart = false;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Check if we need to restart the activity
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        boolean shouldRestart = prefs.getBoolean("shouldRestart", false);
+
+        if (shouldRestart) {
+            // Clear the flag to prevent multiple restarts
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("shouldRestart", false);
+            editor.apply();
+
+            // Restart the activity
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+    }
+
 
     public void onProfileClick(View view){
         String userid= FileHelper.readUserId(this);

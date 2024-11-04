@@ -212,6 +212,12 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
 
                                 try {
                                     String imageUrl = dataObject.optString("image");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
+                                    if(imageUrl == null || imageUrl.isEmpty()){
+                                        imageUrl= dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
@@ -224,7 +230,10 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    Log.d("i is 0", "true");
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -246,7 +255,10 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                 //siteDetail.setName(dataObject.optString("name"));
 
                                 try {
-                                    String imageUrl = dataObject.optString("logo");
+                                    String imageUrl = dataObject.optString("image");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://acme.warburttons.com/" + imageUrl;
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
@@ -259,7 +271,9 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -283,6 +297,9 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
 
                                 try {
                                     String imageUrl = dataObject.optString("image");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
@@ -295,7 +312,9 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -365,6 +384,12 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
         binding.tvCompaign.setBackgroundResource(0);
         binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
 
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
+
         //binding.llSpinner.setVisibility(View.GONE);
 
 
@@ -399,6 +424,12 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
 
         binding.tvCompaign.setBackgroundResource(R.drawable.primaryround);
         binding.tvCompaign.setTextColor(Color.WHITE);
+
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
 
         progressBar.setVisibility(View.VISIBLE);
         progressBar.startAnimation(rotateAnimation);
@@ -446,6 +477,150 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
         approvesites= false;
         campaignList(area);
         // ... your logic ...
+    }
+
+   /* @SuppressLint("ResourceAsColor")
+    public void btnClientClick(View view) {
+        Log.d("tag20", "btnclientclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvClient.setBackgroundResource(R.drawable.primaryround);
+        Log.d("tag20", "1");
+        binding.tvClient.setTextColor(Color.WHITE);
+        Log.d("tag20", "2");
+
+
+        //binding.llSpinner.setVisibility(View.GONE);
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
+
+        approvesites= false;
+
+        clientList();
+        // ... your logic ...
+    }
+
+    private void clientList() {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+        //TODO- here
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        double d= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this ,area, a, b, c ,d );
+    }*/
+
+    @SuppressLint("ResourceAsColor")
+    public void btnVendorRejectedClick(View view) {
+        Log.d("tag20", "btnclientclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(R.drawable.primaryround);
+        Log.d("tag20", "1");
+        binding.tvRejected.setTextColor(Color.WHITE);
+        Log.d("tag20", "2");
+
+
+        //binding.llSpinner.setVisibility(View.GONE);
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvApproved.setBackgroundResource(0);
+        binding.tvApproved.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        approvesites= true;
+
+        vendorRejectedList();
+        // ... your logic ...
+    }
+//rhm rejected
+    private void vendorRejectedList() {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+        //TODO- here
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        double d= 1.0;
+        double e= 1.0;
+        double f= 1.0;
+        double g= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewRhmSites.this ,area, a, b, c ,d, e, f, g);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void btnApprovedClick(View view) {
+        Log.d("tag20", "btnclientclick");
+        clearUi();
+
+        binding.tvVender.setBackgroundResource(0);
+        binding.tvVender.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvApproved.setBackgroundResource(R.drawable.primaryround);
+        Log.d("tag20", "1");
+        binding.tvApproved.setTextColor(Color.WHITE);
+        Log.d("tag20", "2");
+
+
+        binding.tvCompaign.setBackgroundResource(0);
+        binding.tvCompaign.setTextColor(R.color.colorPrimaryDark);
+
+        binding.tvRejected.setBackgroundResource(0);
+        binding.tvRejected.setTextColor(R.color.colorPrimaryDark);
+        //binding.llSpinner.setVisibility(View.GONE);
+
+        binding.tvClient.setBackgroundResource(0);
+        binding.tvClient.setTextColor(R.color.colorPrimaryDark);
+
+        approvesites= false;
+
+        approvedList();
+        // ... your logic ...
+    }
+
+    private void approvedList() {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+        //TODO- here
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        double a= 1.0;
+        double b= 1.0;
+        double c= 1.0;
+        double d= 1.0;
+        double e= 1.0;
+        double f= 1.0;
+        double g= 1.0;
+        double h= 1.0;
+        APIreferenceclass api= new APIreferenceclass(logintoken, ViewRhmSites.this ,area, a, b, c ,d , e , f, g, h);
     }
 
     private void campaignList() {

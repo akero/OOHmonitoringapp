@@ -2,6 +2,7 @@ package com.acme.oohvendor.activity.dashboard;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -310,7 +311,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         Log.d("tag1234", imageUrl);
 
                         //siteDetail.setName(dataObject.optString("name"));
-                        jsonArray1= new JSONArray();
+                        if(i==0) {
+                            jsonArray1 = new JSONArray();
+                        }
                         jsonArray1.put(jsonObject);
 //TODO here
                         }
@@ -349,7 +352,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                                 jsonObject1.putOpt("updated_at", dataObject.optString("updated_at"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
                                 jsonArray2.put(jsonObject1);
                             //TODO here
@@ -388,7 +393,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                                 jsonObject2.putOpt("updated_at", dataObject.optString("updated_at"));
                                 jsonObject2.putOpt("area", dataObject.optString("area"));
                                 //siteDetail.setName(dataObject.optString("name"));
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
                                 jsonArray3.put(jsonObject2);
 //TODO here
@@ -606,6 +613,27 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
         }
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Check if we need to restart the activity
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        boolean shouldRestart = prefs.getBoolean("shouldRestart", false);
+
+        if (shouldRestart) {
+            // Clear the flag to prevent multiple restarts
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("shouldRestart", false);
+            editor.apply();
+
+            // Restart the activity
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
     }
 
     @SuppressLint("ResourceAsColor")

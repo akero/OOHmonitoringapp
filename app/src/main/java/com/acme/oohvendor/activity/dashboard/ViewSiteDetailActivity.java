@@ -964,12 +964,17 @@ out.close();
                         siteDetail.setVendorname(dataObject.optString("vendor_name"));
                         siteDetail.setAddress(dataObject.optString("address"));
 
-                        if (camefrom.equals("ViewVendorSites")) {
+                        if (camefrom.equals("ViewVendorSites")&&!camefromrhm) {
                             siteDetail.setCompanyAddress(dataObject.optString("company_address"));
                             siteDetail.setCompanyName(dataObject.optString("company_name"));
                             siteDetail.setGst(dataObject.optString("gst"));
 
-                        }if (camefrom.equals("ViewVendorSites")) {
+                        }else if (camefrom.equals("ViewVendorSites")&&camefromrhm) {
+                            siteDetail.setCompanyAddress(dataObject.optString("company_address"));
+                            siteDetail.setCompanyName(dataObject.optString("company_name"));
+                            siteDetail.setGst(dataObject.optString("gst"));
+
+                        }if (camefrom.equals("ViewVendorSites")&&!camefromrhm) {
                             try{
                                 if(!dataObject.optString("vendor_status").equals("null")) {
                                     siteDetail.setVendorApproval(dataObject.optString("vendor_status"));
@@ -1264,6 +1269,7 @@ out.close();
 
                                 if(camefrom.equals("ViewVendorSites")||camefromrhm){
                                     try{
+                                        Log.d("approvedrhm", siteDetail.getVendorApproval());
                                         if(siteDetail.getVendorApproval().equals("Approved")){
 
                                             binding2.btnApprove.setBackgroundResource(

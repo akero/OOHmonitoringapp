@@ -190,7 +190,11 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
 
                                 try {
                                     String imageUrl = dataObject.optString("image");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
+
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -202,7 +206,9 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -225,7 +231,11 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
 
                                 try {
                                     String imageUrl = dataObject.optString("logo");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://acme.warburttons.com/" + imageUrl;
+
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                         URL url = new URL(imageUrl);
@@ -237,7 +247,9 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -261,6 +273,9 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
 
                                 try {
                                     String imageUrl = dataObject.optString("image");
+                                    if (imageUrl == null || imageUrl.isEmpty()) {
+                                        imageUrl = dataObject.optString("new_image");
+                                    }
                                     imageUrl = "https://ooh.warburttons.com/" + imageUrl;
                                     Log.d("tag41", "imageurl is " + imageUrl);
                                     if (imageUrl != "null" && !imageUrl.isEmpty()) {
@@ -273,7 +288,9 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
-                                jsonArray1= new JSONArray();
+                                if(i==0) {
+                                    jsonArray1 = new JSONArray();
+                                }
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }

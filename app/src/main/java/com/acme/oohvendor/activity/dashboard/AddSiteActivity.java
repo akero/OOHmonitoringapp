@@ -6,6 +6,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -73,6 +74,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
     private final Context ctxt = this;
     String selectedClient;
     String userid;
+    String camefrom;
 
     boolean pictureandlatlongready; //in imageUri and latlong
 
@@ -109,6 +111,13 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             asm_contact = savedInstanceState.getString("asm_contact");
             retailer_code= savedInstanceState.getString("retailer_code");
 
+        }
+        camefrom= "";
+
+        try{
+                camefrom= getIntent().getStringExtra("camefrom");
+        }catch (Exception e){
+            Log.d("asdas", e.toString());
         }
 
 
@@ -670,11 +679,14 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
     @Override
     public void onBackPressed() {
         // Create an Intent and set a flag or extra
-        Log.d("tagback", "back pressed");
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("cameFromSecondActivity", true);  // Add a flag or extra
-        setResult(RESULT_OK, returnIntent);  // Optional: Set result code
-        super.onBackPressed();  // Call the original method to handle the back press
+
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("shouldRestart", true); // This flag indicates that ViewVendorSites should restart
+        editor.apply();
+
+        // Finish AddSiteActivity and return to ViewVendorSites
+        super.onBackPressed();
     }
 
 
@@ -1263,13 +1275,14 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
             }
 
             try{
-                binding.etTotalArea1.setText(jsonobj1.getString("project"));
+                binding.etTotalArea1.setText(jsonobj1.getString("location"));
 
             }catch (Exception e){
                 Log.d("tag332",e.toString());
             }
 
             binding.etname.setText(jsonobj1.getString("location"));
+            binding.etTotalArea1.setText(jsonobj1.getString("location"));
             if(!TextUtils.isEmpty(binding.etname.getText())){
                 //binding.etname.setFocusable( View.NOT_FOCUSABLE);
             }
@@ -1281,10 +1294,10 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 binding.etHeight5.setFocusable( View.NOT_FOCUSABLE);
             }
 
-            binding.etTotalArea1.setText(jsonobj1.getString("address"));
-            if(!TextUtils.isEmpty(binding.etTotalArea1.getText())){
+            //binding.etTotalArea1.setText(jsonobj1.getString("address"));
+            //if(!TextUtils.isEmpty(binding.etTotalArea1.getText())){
                 //binding.etTotalArea1.setFocusable( View.NOT_FOCUSABLE);
-            }
+            //}
 
             binding.etWidth2.setText(jsonobj1.getString("city"));
             if(!TextUtils.isEmpty(binding.etWidth2.getText())){
@@ -1419,6 +1432,8 @@ try {
             }
 
             binding.etname.setText(jsonobj1.optString("location"));
+            binding.etTotalArea1.setText(jsonobj1.getString("location"));
+
             if(!TextUtils.isEmpty(binding.etname.getText())){
                 //binding.etname.setFocusable( View.NOT_FOCUSABLE);
             }
