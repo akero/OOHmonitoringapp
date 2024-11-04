@@ -202,6 +202,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -236,6 +237,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -271,6 +273,7 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }

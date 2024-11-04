@@ -224,6 +224,7 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -258,6 +259,7 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -293,6 +295,7 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }

@@ -397,7 +397,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                                 jsonObject.putOpt("uid", dataObject.optString("code"));
                                 //siteDetail.setName(dataObject.optString("name"));
 
-
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -421,7 +421,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
                                 jsonObject.putOpt("name", dataObject.optString("retail_name"));
 
 
-
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -448,6 +448,7 @@ public class ViewCampaignSites extends AppCompatActivity implements ApiInterface
 
 
 //TODO here
+                            jsonArray1= new JSONArray();
                             jsonArray1.put(jsonObject);
                         }
                         }

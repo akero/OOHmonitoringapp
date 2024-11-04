@@ -76,6 +76,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
     ProgressBar progressBar;
     Animation rotateAnimation;
     int vendorid;
+    String vendortype;
 
 
     //todo access token save to memory add to api call
@@ -89,6 +90,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         vendorid= 0;
         area= "";
         approvesites= false;
+        vendortype= "";
 
         Log.d("whichclass", "ViewVendorSites");
 
@@ -112,7 +114,11 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         try{
 
             if(getIntent().getStringExtra("vendortype").equals("vendor_executive")){
+                vendortype= getIntent().getStringExtra("vendortype");
                 binding.llcompaign.setVisibility(View.GONE);
+            }else{
+                vendortype= getIntent().getStringExtra("vendortype");
+
             }
             String name= getIntent().getStringExtra("name");
             binding.title.setText(binding.title.getText()+ " -\n"+ name);
@@ -218,6 +224,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -254,6 +261,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -292,6 +300,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                                     Log.e("tag41", "sdfdg", e);
                                     // Handle error
                                 }
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
 //TODO here
                             }
@@ -562,6 +571,7 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
                     .putExtra("logintoken", logintoken)
                     .putExtra("vendorclientorcampaign", vendorclientorcampaign)
                     .putExtra("approvesites", approvesites)
+                    .putExtra("vendortype", vendortype)
                     .putExtra("idarray", idarray));
 
             // .putExtra("siteId", siteId)); // If you are passing site id

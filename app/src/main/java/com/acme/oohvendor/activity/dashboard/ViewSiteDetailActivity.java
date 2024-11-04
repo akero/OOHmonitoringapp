@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,9 +19,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +82,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
     String userid;
     Boolean camefromrhm;
     int whichbinding;
+    String vendortype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +91,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             Log.d("tag41", "2");
 
             camefromrhm= false;
+            vendortype= "";
             approvesites= false;
             latlongold= "";
             responsetobeusedinupdateimage= "";
@@ -115,7 +121,11 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             try{
 
+
                 approvesites= getIntent().getBooleanExtra("approvesites", false);
+                vendortype= getIntent().getStringExtra("vendortype");
+
+                Log.d("approvesitesviewsitedetail", approvesites.toString()+ " "+ vendortype);
             }catch (Exception e){
                 Log.d("tg77", e.toString());
             }
@@ -322,6 +332,79 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
         });
 
+        RoundRectCornerImageView imageView = findViewById(R.id.ivCampaignImage);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create full screen dialog
+                final Dialog dialog = new Dialog(ViewSiteDetailActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+
+                // Create new ImageView for dialog
+                ImageView fullScreenImage = new ImageView(ViewSiteDetailActivity.this);
+                fullScreenImage.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT));
+                fullScreenImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+                // Set the same image
+                fullScreenImage.setImageDrawable(imageView.getDrawable());
+
+                // Track if we're zooming
+                final boolean[] isZooming = {false};
+
+                ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(ViewSiteDetailActivity.this,
+                        new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+                            private float scaleFactor = 1.0f;
+                            @Override
+                            public boolean onScale(ScaleGestureDetector detector) {
+                                isZooming[0] = true;
+                                scaleFactor *= detector.getScaleFactor();
+                                scaleFactor = Math.max(0.1f, Math.min(scaleFactor, 10.0f));
+                                fullScreenImage.setScaleX(scaleFactor);
+                                fullScreenImage.setScaleY(scaleFactor);
+                                return true;
+                            }
+
+                            @Override
+                            public void onScaleEnd(ScaleGestureDetector detector) {
+                                isZooming[0] = false;
+                            }
+                        });
+
+                fullScreenImage.setOnTouchListener(new View.OnTouchListener() {
+                    private float startX, startY;
+                    private static final float CLICK_THRESHOLD = 10;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        scaleGestureDetector.onTouchEvent(event);
+
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                startX = event.getX();
+                                startY = event.getY();
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                float endX = event.getX();
+                                float endY = event.getY();
+                                float deltaX = Math.abs(endX - startX);
+                                float deltaY = Math.abs(endY - startY);
+
+                                // If it was a simple tap (minimal movement) and not zooming
+                                if (deltaX < CLICK_THRESHOLD && deltaY < CLICK_THRESHOLD && !isZooming[0]) {
+                                    dialog.dismiss();
+                                }
+                                break;
+                        }
+                        return true;
+                    }
+                });
+
+                dialog.setContentView(fullScreenImage);
+                dialog.show();
+            }
+        });
 
         //= "";
         Log.d("tag41", "1");
@@ -862,6 +945,7 @@ out.close();
                         siteDetail.setId(dataObject.optInt("id"));
                         siteDetail.setVendorId(dataObject.optString("vendor_id"));
                         siteDetail.setLocation(dataObject.optString("location"));
+                        //Log.d("tag333", siteDetail.getLocation());
 
                         //new
                         siteDetail.setState(dataObject.optString("state"));
@@ -887,12 +971,102 @@ out.close();
 
                         }if (camefrom.equals("ViewVendorSites")) {
                             try{
-                                if(!dataObject.optString("vendor_status").equals("null")){
+                                if(!dataObject.optString("vendor_status").equals("null")) {
                                     siteDetail.setVendorApproval(dataObject.optString("vendor_status"));
 
-                                }}catch (Exception e){
+                                    Log.d("vendortype", vendortype);
+                                    if(vendortype.equals("vendor")){
+                                    approvesites = true;
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            binding2.llapprove.setVisibility(View.VISIBLE);
+
+                                            binding2.btnApprove.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+
+                                                    if (!camefromrhm) {
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+                                                    } else {
+
+                                                        long j = 0;
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
+
+                                                    }
+
+                                                }
+                                            });
+
+                                            binding2.btnReject.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    if (!camefromrhm) {
+
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+                                                    } else {
+                                                        long j = 0;
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
+
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+
+                                }else{
+                                    if(vendortype.equals("vendor")) {
+                                        approvesites = true;
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                binding2.llapprove.setVisibility(View.VISIBLE);
+
+                                                binding2.btnApprove.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+
+                                                        if (!camefromrhm) {
+                                                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+                                                        } else {
+
+                                                            long j = 0;
+                                                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
+
+                                                        }
+
+                                                    }
+                                                });
+
+                                                binding2.btnReject.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        if (!camefromrhm) {
+
+                                                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+                                                        } else {
+                                                            long j = 0;
+                                                            APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
+
+                                                        }
+
+                                                    }
+                                                });
+                                            }
+                                        });
+
+                                    }
+                                }
+
+                            }catch (Exception e){
                                 Log.d("tag3", e.toString());
                             }
+
+
 
                         }
 
@@ -900,6 +1074,87 @@ out.close();
                             try{
                                 if(!dataObject.optString("client_status").equals("null")){
                                     siteDetail.setVendorApproval(dataObject.optString("client_status"));
+                                    approvesites= true;
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            binding2.llapprove.setVisibility(View.VISIBLE);
+
+                                            binding2.btnApprove.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+
+                                                    if(!camefromrhm) {
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+                                                    }else{
+
+                                                        long j= 0;
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
+
+                                                    }
+
+                                                }
+                                            });
+
+                                            binding2.btnReject.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    if(!camefromrhm) {
+
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+                                                    }else{
+                                                        long j= 0;
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
+
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    });
+                                }else{
+
+                                    approvesites= true;
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            binding2.llapprove.setVisibility(View.VISIBLE);
+
+                                            binding2.btnApprove.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+
+                                                    if(!camefromrhm) {
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
+                                                    }else{
+
+                                                        long j= 0;
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
+
+                                                    }
+
+                                                }
+                                            });
+
+                                            binding2.btnReject.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    if(!camefromrhm) {
+
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
+                                                    }else{
+                                                        long j= 0;
+                                                        APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
+
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    });
+
 
                                 }}catch (Exception e){
                                 Log.d("tag3", e.toString());
@@ -1111,8 +1366,16 @@ out.close();
                                 tvHeight9.setText(siteDetail.getAnydamage());
 
                                 TextView tvHeight10 = findViewById(R.id.tvHeigh5);
-                                tvHeight10.setText(siteDetail.getVendorname());
+                                if(camefrom.equals("ViewVendorSites")) {
 
+                                            binding2.tvSiteno.setText("Site name");
+                                            binding2.tvHeigh5.setText(siteDetail.getLocation());
+
+
+                                }else{
+                                    tvHeight10.setText(siteDetail.getVendorname());
+
+                                }
                                 TextView tvHeight11 = findViewById(R.id.tvWidt5);
                                 tvHeight11.setText(siteDetail.getAddress());
 

@@ -5,6 +5,9 @@ rish1994f@gmail.com- vendor
 rish1994c@gmail.com- asm
 rish1994j@gmail.com- zo
 rish1994h@gmail.com- rhm
+nikhil@propdub.com- vendor - 12345
+nikhil91.goswami@gmail.com- vendor exec
+
 
 https://ooh.warburttons.com/login
 management@acmemedia.in
@@ -16,18 +19,30 @@ Purpose- monitoring
 //location click edit
 //vendor site not adding
 
->WhatsApp msg
-WhatsApp radhika
+WhatsApp msg
+WhatsApp Radhika
+WhatsApp anish bugs
 add tabs to vendor and rhm login
+vendor login tabs when switching text becomes gray
 test rhm and vendor approval flow
 test- put recce images in new_image, 1, 2, 3 etc
 rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil
 add image send to image1 for + icon and update image in all logins
+refresh add
+update vendor take photo display
+>change vendor name to site name in vendor login details
+rhm rejected data showing when not rejected
+check if site name is uploading correctly
+after update image show new photo
+
+
+//history data showing in all sites in vendor and vendor executive- because array not reinitialized
+//vendor login approve decline not showing
 
 //code 
-zoom
+//zoom
 take 4 pics for update
->slider pics in all
+//slider pics in all
 
 notification seems broken
 refresh after back approval vendor client rhm

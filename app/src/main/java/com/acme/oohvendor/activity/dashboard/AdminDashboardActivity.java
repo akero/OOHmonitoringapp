@@ -310,7 +310,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                         Log.d("tag1234", imageUrl);
 
                         //siteDetail.setName(dataObject.optString("name"));
-
+                        jsonArray1= new JSONArray();
                         jsonArray1.put(jsonObject);
 //TODO here
                         }
@@ -349,7 +349,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                                 jsonObject1.putOpt("updated_at", dataObject.optString("updated_at"));
 
                                 //siteDetail.setName(dataObject.optString("name"));
-
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
                                 jsonArray2.put(jsonObject1);
                             //TODO here
@@ -388,7 +388,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements ApiInte
                                 jsonObject2.putOpt("updated_at", dataObject.optString("updated_at"));
                                 jsonObject2.putOpt("area", dataObject.optString("area"));
                                 //siteDetail.setName(dataObject.optString("name"));
-
+                                jsonArray1= new JSONArray();
                                 jsonArray1.put(jsonObject);
                                 jsonArray3.put(jsonObject2);
 //TODO here

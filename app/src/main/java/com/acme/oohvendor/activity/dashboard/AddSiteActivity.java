@@ -431,7 +431,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                                                       @Override
                                                       public void onClick(View view) {
 
-                                                          logout();
+                                                          logout(view);
 
                                                       }
                                                   }
@@ -936,7 +936,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
         }
     }
 
-    public void logout() {
+    public void logout(View v) {
 
         try {
             FileHelper fh = new FileHelper();
@@ -1269,7 +1269,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 Log.d("tag332",e.toString());
             }
 
-            binding.etname.setText(jsonobj1.getString("site_name"));
+            binding.etname.setText(jsonobj1.getString("location"));
             if(!TextUtils.isEmpty(binding.etname.getText())){
                 //binding.etname.setFocusable( View.NOT_FOCUSABLE);
             }
@@ -1418,7 +1418,7 @@ try {
                 binding.etHeight8.setFocusable( View.NOT_FOCUSABLE);
             }
 
-            binding.etname.setText(jsonobj1.optString("site_name"));
+            binding.etname.setText(jsonobj1.optString("location"));
             if(!TextUtils.isEmpty(binding.etname.getText())){
                 //binding.etname.setFocusable( View.NOT_FOCUSABLE);
             }
