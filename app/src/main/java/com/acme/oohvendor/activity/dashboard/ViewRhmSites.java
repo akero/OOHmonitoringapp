@@ -400,7 +400,7 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
 
     //TODO here send api call for sites to be approved
     private void venderList() {
-        vendorclientorcampaign=2;
+        //vendorclientorcampaign=2;
         //TODO pass correct logintoken here
         //logintoken="Bearer 211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
 

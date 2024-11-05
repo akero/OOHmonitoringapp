@@ -167,6 +167,7 @@ public class AddSiteActivity extends AppCompatActivity implements ApiInterface, 
                 binding.etHeight8.setVisibility(View.GONE);
                 //TODO make code visible after demo
                 binding.llDimensions222.setVisibility(View.GONE);
+                binding.llDimensions4.setVisibility(View.GONE);
             }
 
         }catch (Exception e){

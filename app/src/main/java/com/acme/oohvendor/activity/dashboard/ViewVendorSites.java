@@ -820,6 +820,8 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
         boolean shouldRestart = prefs.getBoolean("shouldRestart", false);
 
+        Log.d("tag223", "onresume");
+
         if (shouldRestart) {
             // Clear the flag to prevent multiple restarts
             SharedPreferences.Editor editor = prefs.edit();

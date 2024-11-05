@@ -175,7 +175,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 boolean success2= FileHelper.writeUserType(this, "supervisor");
             }
 
-            if(loginType.equals("asm")){
+            if(loginType.equals("state_lead")){
                 recceasmid= jsonObject1.getInt("id");
                 area= jsonObject1.getString("name");
                 realarea= jsonObject1.getString("state");
@@ -256,7 +256,7 @@ public class ContentOtp extends AppCompatActivity implements ApiInterface {
                 startActivity(intent);
             }
             //todo add installation login
-            else if(loginType.equals("asm")){
+            else if(loginType.equals("state_lead")){
 
                 Intent intent= new Intent(ContentOtp.this, AsmDashboardActivity.class);
                 intent.putExtra("logintoken", token);

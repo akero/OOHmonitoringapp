@@ -959,6 +959,7 @@
                     android:fontFamily="@font/dmsansbold"
                     android:onClick="onDownloadClick"
                     android:text="Download"
+                    android:visibility="gone"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_14ssp" />

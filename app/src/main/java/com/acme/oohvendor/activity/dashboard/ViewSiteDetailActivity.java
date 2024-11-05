@@ -159,7 +159,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                 whichbinding=1;
                 binding = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail);
             } else {
-                if (!camefrom.equals("ViewVendorSites")) {
+                if (!camefrom.equals("ViewVendorSites")&&!camefrom.equals("AsmDashboardActivity")) {
                     Log.d("tag22", "2");
                     whichbinding=2;
 
@@ -171,6 +171,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                     binding2 = DataBindingUtil.setContentView(this, R.layout.activity_view_site_detail_vendor_real);
 
                 }
+
+                Log.d("whichbinding", Integer.toString(whichbinding));
                 Log.d("camera", "click registered");
 
                 try{
@@ -670,6 +672,11 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
                         if(a){
                             apicallforvendorimageupdate(latlong, imageUri);
+
+                                binding2.btnUpdatePhoto1.setText("Retake Photo");
+
+
+
                         }else {
                             Toast.makeText(ViewSiteDetailActivity.this, "Location not near the site", Toast.LENGTH_SHORT).show();
                         }
@@ -758,6 +765,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             Log.d("tag44", jsonobj.toString());
 
                 jsonobj1 = jsonobj.getJSONObject("data");
+
 
             Log.d("tag44", jsonobj1.toString());
             String latitude = "";
@@ -934,6 +942,10 @@ out.close();
 
             Log.d("tagresponse is", response);
             JSONObject jsonResponse = new JSONObject(response);
+
+            if(updatephoto){
+                Log.d("lfll", "yes");
+            }
 
             if (jsonResponse.getString("message").equals("Data fetched successfully!")) {
                 JSONObject dataArray = new JSONObject(jsonResponse.getString("data"));
@@ -1210,24 +1222,54 @@ out.close();
 
                             }
 
+                            if(updatephoto){
+                                Log.d("approvestes", "yes");
+                                imageUrl= dataObject.optString("new_image");
+                                imageUrl = "https://ooh.warburttons.com/" + imageUrl;
+                                Log.d("approvestes", imageUrl);
+
+                                updatephoto= false;
+
+                            }
+
+
+
+
                             try{
 
                                 String imageurl1;
 
                                 imageurl1= dataObject.optString("image");
-                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+                                Log.d("weinelse", imageurl1);
+                                if(imageurl1 != null &&!imageurl1.equals("") &&!imageurl1.equals("null") ){imageurlarray.add(imageurl1);}else{
+                                    imageurl1= dataObject.optString("new_image");
+                                    imageurlarray.add(imageurl1);
+                                    Log.d("weinelse", "we");
+                                }
 
                                 imageurl1= dataObject.optString("image1");
-                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+                                if(imageurl1 != null &&!imageurl1.equals("") &&!imageurl1.equals("null") ){imageurlarray.add(imageurl1);}else{
+                                    imageurl1= dataObject.optString("new_image1");
+                                    imageurlarray.add(imageurl1);
+                                }
 
                                 imageurl1= dataObject.optString("image2");
-                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+                                if(imageurl1 != null &&!imageurl1.equals("") &&!imageurl1.equals("null") ){imageurlarray.add(imageurl1);}else{
+                                    imageurl1= dataObject.optString("new_image2");
+                                    imageurlarray.add(imageurl1);
+                                }
 
                                 imageurl1= dataObject.optString("image3");
-                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+                                if(imageurl1 != null &&!imageurl1.equals("") &&!imageurl1.equals("null") ){imageurlarray.add(imageurl1);}else{
+                                    imageurl1= dataObject.optString("new_image3");
+                                    imageurlarray.add(imageurl1);
+                                }
 
                                 imageurl1= dataObject.optString("image4");
-                                if(!imageurl1.equals("")){imageurlarray.add(imageurl1);}
+                                if(imageurl1 != null &&!imageurl1.equals("") &&!imageurl1.equals("null") ){imageurlarray.add(imageurl1);}else{
+                                    imageurl1= dataObject.optString("new_image4");
+                                    imageurlarray.add(imageurl1);
+                                }
 
                             }catch (Exception e){
                                 Log.d("aaa", e.toString());
@@ -1235,6 +1277,7 @@ out.close();
 
                             Log.d("tag41", "imageurl is " + imageUrl);
                             Log.d("tg2", "image code not executing 1");
+
 
                             if (imageUrl != "null" && !imageUrl.isEmpty()) {
                                 URL url = new URL(imageUrl);
@@ -1275,13 +1318,18 @@ out.close();
                                             binding2.btnApprove.setBackgroundResource(
                                                     R.drawable.primarystrokegreen);
                                             binding2.btnApprove.setText("Approved");
+                                            binding2.btnApprove.setEnabled(false);
+                                            binding2.btnReject.setEnabled(false);
 
                                         }else if(siteDetail.getVendorApproval().equals("Rejected")){
                                             binding2.btnReject.setBackgroundResource(
                                                     R.drawable.primarystrokered);
 
-
+                                            Log.d("tag341", "rejected");
                                             binding2.btnReject.setText("Rejected");
+                                            binding2.btnReject.setEnabled(false);
+                                            binding2.btnApprove.setEnabled(false);
+
 
                                         }
 
