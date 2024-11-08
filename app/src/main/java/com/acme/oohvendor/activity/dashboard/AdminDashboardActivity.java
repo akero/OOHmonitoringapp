@@ -1058,6 +1058,12 @@ Log.d("tag41", "click detected");
         onBackPressed();
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing when the back button is pressed
+    }
+
+
     public void reset(View v){
 
         // Step 1: Get the original intent data

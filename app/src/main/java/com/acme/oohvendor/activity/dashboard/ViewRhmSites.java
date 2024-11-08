@@ -725,6 +725,12 @@ public class ViewRhmSites extends AppCompatActivity implements ApiInterface {
         // Reset any other UI elements here as needed
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing when the back button is pressed
+    }
+
+
     private String[] extractIds(String[] dataStrings) {
         // Create an array to store extracted ids.
         String[] ids = new String[dataStrings.length];

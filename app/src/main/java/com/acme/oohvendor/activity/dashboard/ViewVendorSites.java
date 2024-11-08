@@ -856,6 +856,12 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         onBackPressed();
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing when the back button is pressed
+    }
+
+
     public void logout(View v) {
 
         try {

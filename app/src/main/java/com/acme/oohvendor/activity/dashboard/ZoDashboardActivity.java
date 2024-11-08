@@ -346,6 +346,10 @@ public class ZoDashboardActivity extends AppCompatActivity implements ApiInterfa
         APIreferenceclass api= new APIreferenceclass(logintoken, this, id, a, b);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing when the back button is pressed
+    }
 
 
     public void onItemClick(int position) {

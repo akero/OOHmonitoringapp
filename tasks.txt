@@ -16,44 +16,25 @@ management@acmemedia.in
 Name- OOH monitoring app
 Purpose- monitoring
 -----------
-//location click edit
-//vendor site not adding
-
-//rhm- remove download from all
-//showing code instead of company in pending
-//remove reject from rhm approved
-//remove vendor name from add site when accessed by vendor
-
+>vendor exec send email instead of name- pending
+//Jo 100m ka range ka img click pe usse 200m Krna hai
+//Approval or rejection p pop up aaega
 image update asm dash- test
-back pressed dashboard- do nothing
+//back pressed dashboard- do nothing
 text corrupting- probably from backend
+//add logo to login see Radhika WhatsApp
+refresh add to approval and rejected
 
 WhatsApp msg
 WhatsApp Radhika
 WhatsApp anish bugs
-//add tabs to vendor and rhm login
-/vendor login tabs when switching text becomes gray
+
 test rhm and vendor approval flow
 test- put recce images in new_image, 1, 2, 3 etc
-//rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil
 add image send to image1 for + icon and update image in all logins
-//refresh add
 update vendor take photo display
-//change vendor name to site name in vendor login details
-//rhm rejected data showing when not rejected
-//check if site name is uploading correctly
-//after update image show new photo
-//in fetch site code location not populating
-//pending only 1 site showing
+
 imageurl got fcked vendor main- backend
-
-//history data showing in all sites in vendor and vendor executive- because array not reinitialized
-//vendor login approve decline not showing
-
-//code 
-//zoom
-take 4 pics for update
-//slider pics in all
 
 notification seems broken
 refresh after back approval vendor client rhm
@@ -83,6 +64,44 @@ todo after demo
 notification fragment change when backend fixed
 make code visible in addsite
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//pending only 1 site showing
+//code 
+//zoom
+take 4 pics for update
+//slider pics in all
+//location click edit
+//vendor site not adding
+//add tabs to vendor and rhm login
+//change vendor name to site name in vendor login details
+//rhm rejected data showing when not rejected
+//check if site name is uploading correctly
+//after update image show new photo
+//in fetch site code location n
+//history data showing in all sites in vendor and vendor executive- because array not reinitialized
+//vendor login approve decline not showing
+//rhm rejected tab in vendor login - https://ooh.warburttons.com/api/rhm-rejected-site-for-vendor/Nikhil
+//vendor login tabs when switching text becomes gray
+//rhm- remove download from all
+//showing code instead of company in pending
+//remove reject from rhm approved
+//remove vendor name from add site when accessed by vendor
 
 //>rhm-
 //4 zone data

@@ -83,6 +83,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
     Boolean camefromrhm;
     int whichbinding;
     String vendortype;
+    boolean approved;
+    boolean rejected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +107,8 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
             siteNumber = getIntent().getExtras().getString("sitenumber", "");
             Log.d("siteno", siteNumber);
             whichbinding= 0;
+            approved= false;
+            rejected= false;
 
             logintoken = getIntent().getExtras().getString("logintoken", "");
             if(logintoken.equals("")){
@@ -263,9 +267,10 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                     public void onClick(View view) {
 
                         if(!camefromrhm) {
+                            approved= true;
                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
                         }else{
-
+                            approved= true;
                             long j= 0;
                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
 
@@ -279,8 +284,10 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
                     public void onClick(View view) {
                         if(!camefromrhm) {
 
+                            rejected= true;
                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
                         }else{
+                            rejected= true;
                             long j= 0;
                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
 
@@ -711,7 +718,7 @@ public class ViewSiteDetailActivity extends AppCompatActivity implements ApiInte
 
             Log.d("lfl", "distance" + distance);
 
-            if(distance<= 300){
+            if(distance<= 500){
                 Log.d("lfl", "locationnear");
                 return true;
 
@@ -947,6 +954,25 @@ out.close();
                 Log.d("lfll", "yes");
             }
 
+            if(approved){
+                approved= false;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ViewSiteDetailActivity.this, "Approved", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if(rejected){
+                rejected= false;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ViewSiteDetailActivity.this, "Rejected", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
             if (jsonResponse.getString("message").equals("Data fetched successfully!")) {
                 JSONObject dataArray = new JSONObject(jsonResponse.getString("data"));
                 if (dataArray != null && dataArray.length() > 0) {
@@ -1005,9 +1031,11 @@ out.close();
                                                 public void onClick(View view) {
 
                                                     if (!camefromrhm) {
+                                                        approved= true;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
                                                     } else {
 
+                                                        approved= true;
                                                         long j = 0;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
 
@@ -1021,8 +1049,10 @@ out.close();
                                                 public void onClick(View view) {
                                                     if (!camefromrhm) {
 
+                                                        rejected= true;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
                                                     } else {
+                                                        rejected= true;
                                                         long j = 0;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
 
@@ -1048,9 +1078,11 @@ out.close();
                                                     public void onClick(View view) {
 
                                                         if (!camefromrhm) {
+                                                            approved= true;
                                                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
                                                         } else {
 
+                                                            approved= true;
                                                             long j = 0;
                                                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
 
@@ -1064,8 +1096,10 @@ out.close();
                                                     public void onClick(View view) {
                                                         if (!camefromrhm) {
 
+                                                            rejected= true;
                                                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
                                                         } else {
+                                                            rejected= true;
                                                             long j = 0;
                                                             APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
 
@@ -1103,9 +1137,11 @@ out.close();
                                                 public void onClick(View view) {
 
                                                     if(!camefromrhm) {
+                                                        approved= true;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
                                                     }else{
 
+                                                        approved= true;
                                                         long j= 0;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
 
@@ -1119,8 +1155,10 @@ out.close();
                                                 public void onClick(View view) {
                                                     if(!camefromrhm) {
 
+                                                        rejected= true;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
                                                     }else{
+                                                        rejected= true;
                                                         long j= 0;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
 
@@ -1144,9 +1182,11 @@ out.close();
                                                 public void onClick(View view) {
 
                                                     if(!camefromrhm) {
+                                                        approved= true;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved");
                                                     }else{
 
+                                                        approved= true;
                                                         long j= 0;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Approved", j);
 
@@ -1160,8 +1200,10 @@ out.close();
                                                 public void onClick(View view) {
                                                     if(!camefromrhm) {
 
+                                                        rejected= true;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected");
                                                     }else{
+                                                        rejected= true;
                                                         long j= 0;
                                                         APIreferenceclass api = new APIreferenceclass(logintoken, userid, ViewSiteDetailActivity.this, siteNumber, "Rejected", j);
 

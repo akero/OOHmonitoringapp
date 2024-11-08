@@ -121,6 +121,10 @@ public class AsmDashboardActivity extends AppCompatActivity implements ApiInterf
         campaignList(realarea);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing when the back button is pressed
+    }
 
     //onresponsereceived from api
     public void onResponseReceived(String response){
