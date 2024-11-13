@@ -135,8 +135,12 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
         jsonArray1= new JSONArray();
         CampaignListAdapter adapter = new CampaignListAdapter(this, jsonArray1, false);
         binding.rvCampaignList.setAdapter(adapter);
-        campaignList(area);
 
+        if(vendortype.equals("vendor")) {
+            campaignList(area);
+        }else if(vendortype.equals("vendor_executive")){
+            campaignListexec(area);
+        }
         APIreferenceclass api= new APIreferenceclass(logintoken, ViewVendorSites.this, area, 1, "a");
     }
 
@@ -669,6 +673,23 @@ public class ViewVendorSites extends AppCompatActivity implements ApiInterface {
 
         long a= 1;
         APIreferenceclass api= new APIreferenceclass(logintoken, this, id, a);
+    }
+
+    private void campaignListexec(String id) {
+        vendorclientorcampaign=0;
+        //TODO pass correct logintoken here
+        //logintoken="211|fcsu2C90hfOUduHNXDSZRxu7394NaQhOpiG3zMeM";
+
+        //animation code
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.startAnimation(rotateAnimation);
+        //view.setVisibility(View.VISIBLE);
+        //animation code
+
+        long a= 1;
+        long b= 1;
+
+        APIreferenceclass api= new APIreferenceclass(logintoken, this, id, a, b, false);
     }
 
 

@@ -191,9 +191,13 @@ public class ContentOtpVendor extends AppCompatActivity implements ApiInterface 
                 token= jsonObject1.getString("token");
                 userid= Integer.toString(jsonObject1.getInt("id"));
 
-                if(loginType.equals("vendor")||loginType.equals("vendor_executive")){
+                if(loginType.equals("vendor")){
                     vendorid= jsonObject1.getInt("id");
                     area= jsonObject1.getString("name");
+                    Log.d("tag58area",area);
+                }else if(loginType.equals("vendor_executive")){
+                    vendorid= jsonObject1.getInt("id");
+                    area= jsonObject1.getString("email");
                     Log.d("tag58area",area);
                 }
 

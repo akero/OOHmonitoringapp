@@ -16,7 +16,7 @@ management@acmemedia.in
 Name- OOH monitoring app
 Purpose- monitoring
 -----------
->vendor exec send email instead of name- pending
+//vendor exec send email instead of name- pending
 //Jo 100m ka range ka img click pe usse 200m Krna hai
 //Approval or rejection p pop up aaega
 image update asm dash- test
